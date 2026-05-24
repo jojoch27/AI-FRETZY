@@ -137,7 +137,19 @@ public class ChatbotTest extends TestCase {
 
         assertTrue(response.contains("berkarakter rock"));
         assertTrue(response.contains("Electric Guitar"));
+        assertTrue(response.contains("Karakter: Rock"));
         assertFalse(response.contains("Acoustic Guitar"));
+    }
+
+    public void testCharacterRecommendationUsesDatabaseCharacterColumn() {
+        Database database = new Database();
+        database.setupDatabase();
+        Chatbot chatbot = new Chatbot(database);
+
+        String response = chatbot.receiveInput("rekomendasi gitar karakter jazz");
+
+        assertTrue(response.contains("berkarakter jazz"));
+        assertTrue(response.contains("Karakter: Jazz"));
     }
 
     public void testRecommendationLainnyaReturnsDifferentProducts() {

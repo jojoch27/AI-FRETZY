@@ -9,8 +9,13 @@ public class Product {
     private final double price;
     private final String description;
     private final String imageUrl;
+    private final String character;
 
     public Product(int productId, String brand, String title, String category, double price, String description, String imageUrl) {
+        this(productId, brand, title, category, price, description, imageUrl, "");
+    }
+
+    public Product(int productId, String brand, String title, String category, double price, String description, String imageUrl, String character) {
         this.productId = productId;
         this.brand = brand;
         this.title = title;
@@ -19,6 +24,7 @@ public class Product {
         this.price = price;
         this.description = description;
         this.imageUrl = imageUrl;
+        this.character = character == null ? "" : character.trim();
     }
 
     public Product(int productId, String brand, String title, String category, double price, String description) {
@@ -59,6 +65,10 @@ public class Product {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public String getCharacter() {
+        return character;
     }
 
     @Override

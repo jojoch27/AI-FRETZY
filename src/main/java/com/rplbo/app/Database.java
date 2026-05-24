@@ -15,6 +15,7 @@ import java.util.List;
 
 public class Database {
     private static final String URL = "jdbc:sqlite:fretzy_catalog.db";
+    private static final String PRODUCT_SELECT_COLUMNS = "id, brand, title, category, description, image_url, price_idr, COALESCE(character, '') AS character";
 
     public void saveData() {
         setupDatabase();
@@ -35,6 +36,7 @@ public class Database {
                     "category TEXT DEFAULT 'Acoustic Guitar', " +
                     "description TEXT, " +
                     "image_url TEXT, " +
+                    "character TEXT, " +
                     "price_eur REAL, " +
                     "price_idr INTEGER)");
             ensureProductColumns(stmt);
@@ -107,11 +109,12 @@ public class Database {
 
     public List<Product> findProducts(String keyword) {
         List<Product> products = new ArrayList<Product>();
-        String sql = "SELECT id, brand, title, category, description, image_url, price_idr " +
+        String sql = "SELECT " + PRODUCT_SELECT_COLUMNS + " " +
                 "FROM products " +
                 "WHERE lower(title) LIKE ? " +
                 "OR lower(brand) LIKE ? " +
                 "OR lower(category) LIKE ? " +
+                "OR lower(COALESCE(character, '')) LIKE ? " +
                 "OR lower(trim(COALESCE(brand, '') || ' ' || COALESCE(title, ''))) LIKE ? " +
                 "LIMIT 5";
 
@@ -123,6 +126,7 @@ public class Database {
             pstmt.setString(2, likeKeyword);
             pstmt.setString(3, likeKeyword);
             pstmt.setString(4, likeKeyword);
+            pstmt.setString(5, likeKeyword);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
@@ -134,7 +138,8 @@ public class Database {
                             rs.getString("category"),
                             rs.getInt("price_idr"),
                             rs.getString("description"),
-                            rs.getString("image_url")
+                            rs.getString("image_url"),
+                            rs.getString("character")
                     ));
                 }
             }
@@ -157,14 +162,14 @@ public class Database {
         }
 
         String[] tokens = normalizedKeyword.split("\\s+");
-        StringBuilder sql = new StringBuilder("SELECT id, brand, title, category, description, image_url, price_idr FROM products WHERE 1 = 1");
+        StringBuilder sql = new StringBuilder("SELECT " + PRODUCT_SELECT_COLUMNS + " FROM products WHERE 1 = 1");
         List<String> searchableTokens = new ArrayList<String>();
         for (String token : tokens) {
             if (token.length() < 2 || isIgnoredSearchToken(token)) {
                 continue;
             }
             searchableTokens.add(token);
-            sql.append(" AND lower(trim(COALESCE(brand, '') || ' ' || COALESCE(title, '') || ' ' || COALESCE(category, ''))) LIKE ?");
+            sql.append(" AND lower(trim(COALESCE(brand, '') || ' ' || COALESCE(title, '') || ' ' || COALESCE(category, '') || ' ' || COALESCE(character, ''))) LIKE ?");
         }
         sql.append(" LIMIT 5");
 
@@ -187,7 +192,8 @@ public class Database {
                             rs.getString("category"),
                             rs.getInt("price_idr"),
                             rs.getString("description"),
-                            rs.getString("image_url")
+                            rs.getString("image_url"),
+                            rs.getString("character")
                     ));
                 }
             }
@@ -211,7 +217,7 @@ public class Database {
 
     public List<Product> getProductsForDashboard(int limit) {
         List<Product> products = new ArrayList<Product>();
-        String sql = "SELECT id, brand, title, category, description, image_url, price_idr FROM products ORDER BY id ASC LIMIT ?";
+        String sql = "SELECT " + PRODUCT_SELECT_COLUMNS + " FROM products ORDER BY id ASC LIMIT ?";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -228,7 +234,8 @@ public class Database {
                             rs.getString("category"),
                             rs.getInt("price_idr"),
                             rs.getString("description"),
-                            rs.getString("image_url")
+                            rs.getString("image_url"),
+                            rs.getString("character")
                     ));
                 }
             }
@@ -241,7 +248,7 @@ public class Database {
 
     public List<Product> getAllProducts() {
         List<Product> products = new ArrayList<Product>();
-        String sql = "SELECT id, brand, title, category, description, image_url, price_idr FROM products ORDER BY category ASC, price_idr ASC, brand ASC, title ASC";
+        String sql = "SELECT " + PRODUCT_SELECT_COLUMNS + " FROM products ORDER BY category ASC, price_idr ASC, brand ASC, title ASC";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -254,7 +261,8 @@ public class Database {
                         rs.getString("category"),
                         rs.getInt("price_idr"),
                         rs.getString("description"),
-                        rs.getString("image_url")
+                        rs.getString("image_url"),
+                        rs.getString("character")
                 ));
             }
         } catch (SQLException e) {
@@ -266,7 +274,7 @@ public class Database {
 
     public List<Product> findProductsByCategory(String category, int limit) {
         List<Product> products = new ArrayList<Product>();
-        String sql = "SELECT id, brand, title, category, description, image_url, price_idr FROM products WHERE lower(category) LIKE ? ORDER BY price_idr ASC LIMIT ?";
+        String sql = "SELECT " + PRODUCT_SELECT_COLUMNS + " FROM products WHERE lower(category) LIKE ? ORDER BY price_idr ASC LIMIT ?";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -282,7 +290,8 @@ public class Database {
                             rs.getString("category"),
                             rs.getInt("price_idr"),
                             rs.getString("description"),
-                            rs.getString("image_url")
+                            rs.getString("image_url"),
+                            rs.getString("character")
                     ));
                 }
             }
@@ -295,7 +304,7 @@ public class Database {
 
     public List<Product> findProductsByMaxPrice(int maxPriceIdr, int limit) {
         List<Product> products = new ArrayList<Product>();
-        String sql = "SELECT id, brand, title, category, description, image_url, price_idr FROM products WHERE price_idr <= ? ORDER BY price_idr DESC LIMIT ?";
+        String sql = "SELECT " + PRODUCT_SELECT_COLUMNS + " FROM products WHERE price_idr <= ? ORDER BY price_idr DESC LIMIT ?";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -311,7 +320,8 @@ public class Database {
                             rs.getString("category"),
                             rs.getInt("price_idr"),
                             rs.getString("description"),
-                            rs.getString("image_url")
+                            rs.getString("image_url"),
+                            rs.getString("character")
                     ));
                 }
             }
@@ -324,7 +334,7 @@ public class Database {
 
     public List<Product> findProductsByCategoryAndMaxPrice(String category, int maxPriceIdr, int limit) {
         List<Product> products = new ArrayList<Product>();
-        String sql = "SELECT id, brand, title, category, description, image_url, price_idr " +
+        String sql = "SELECT " + PRODUCT_SELECT_COLUMNS + " " +
                 "FROM products " +
                 "WHERE price_idr <= ? AND " + buildCategoryWhereClause(category) + " " +
                 "ORDER BY price_idr DESC LIMIT ?";
@@ -343,7 +353,8 @@ public class Database {
                             rs.getString("category"),
                             rs.getInt("price_idr"),
                             rs.getString("description"),
-                            rs.getString("image_url")
+                            rs.getString("image_url"),
+                            rs.getString("character")
                     ));
                 }
             }
@@ -356,7 +367,7 @@ public class Database {
 
     public List<Product> findProductsByCategoryNearPrice(String category, int targetPriceIdr, int minPriceIdr, int maxPriceIdr, int limit) {
         List<Product> products = new ArrayList<Product>();
-        String sql = "SELECT id, brand, title, category, description, image_url, price_idr " +
+        String sql = "SELECT " + PRODUCT_SELECT_COLUMNS + " " +
                 "FROM products " +
                 "WHERE price_idr BETWEEN ? AND ? AND " + buildCategoryWhereClause(category) + " " +
                 "ORDER BY ABS(price_idr - ?) ASC LIMIT ?";
@@ -377,8 +388,143 @@ public class Database {
                             rs.getString("category"),
                             rs.getInt("price_idr"),
                             rs.getString("description"),
-                            rs.getString("image_url")
+                            rs.getString("image_url"),
+                            rs.getString("character")
                     ));
+                }
+            }
+        } catch (SQLException e) {
+            products.clear();
+        }
+
+        return products;
+    }
+
+    public List<Product> findProductsByCharacter(String character, int limit) {
+        List<Product> products = new ArrayList<Product>();
+        String sql = "SELECT " + PRODUCT_SELECT_COLUMNS + " FROM products WHERE " + buildCharacterWhereClause() + " ORDER BY price_idr ASC LIMIT ?";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            setCharacterParameter(pstmt, 1, character);
+            pstmt.setInt(2, limit);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    addProductFromResult(products, rs);
+                }
+            }
+        } catch (SQLException e) {
+            products.clear();
+        }
+
+        return products;
+    }
+
+    public List<Product> findProductsByCharacterAndMaxPrice(String character, int maxPriceIdr, int limit) {
+        List<Product> products = new ArrayList<Product>();
+        String sql = "SELECT " + PRODUCT_SELECT_COLUMNS + " FROM products WHERE price_idr <= ? AND " + buildCharacterWhereClause() + " ORDER BY price_idr DESC LIMIT ?";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, maxPriceIdr);
+            setCharacterParameter(pstmt, 2, character);
+            pstmt.setInt(3, limit);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    addProductFromResult(products, rs);
+                }
+            }
+        } catch (SQLException e) {
+            products.clear();
+        }
+
+        return products;
+    }
+
+    public List<Product> findProductsByCharacterNearPrice(String character, int targetPriceIdr, int minPriceIdr, int maxPriceIdr, int limit) {
+        List<Product> products = new ArrayList<Product>();
+        String sql = "SELECT " + PRODUCT_SELECT_COLUMNS + " FROM products WHERE price_idr BETWEEN ? AND ? AND " + buildCharacterWhereClause() + " ORDER BY ABS(price_idr - ?) ASC LIMIT ?";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, minPriceIdr);
+            pstmt.setInt(2, maxPriceIdr);
+            setCharacterParameter(pstmt, 3, character);
+            pstmt.setInt(4, targetPriceIdr);
+            pstmt.setInt(5, limit);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    addProductFromResult(products, rs);
+                }
+            }
+        } catch (SQLException e) {
+            products.clear();
+        }
+
+        return products;
+    }
+
+    public List<Product> findProductsByCategoryAndCharacter(String category, String character, int limit) {
+        List<Product> products = new ArrayList<Product>();
+        String sql = "SELECT " + PRODUCT_SELECT_COLUMNS + " FROM products WHERE " + buildCategoryWhereClause(category) + " AND " + buildCharacterWhereClause() + " ORDER BY price_idr ASC LIMIT ?";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            setCharacterParameter(pstmt, 1, character);
+            pstmt.setInt(2, limit);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    addProductFromResult(products, rs);
+                }
+            }
+        } catch (SQLException e) {
+            products.clear();
+        }
+
+        return products;
+    }
+
+    public List<Product> findProductsByCategoryAndCharacterAndMaxPrice(String category, String character, int maxPriceIdr, int limit) {
+        List<Product> products = new ArrayList<Product>();
+        String sql = "SELECT " + PRODUCT_SELECT_COLUMNS + " FROM products WHERE price_idr <= ? AND " + buildCategoryWhereClause(category) + " AND " + buildCharacterWhereClause() + " ORDER BY price_idr DESC LIMIT ?";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, maxPriceIdr);
+            setCharacterParameter(pstmt, 2, character);
+            pstmt.setInt(3, limit);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    addProductFromResult(products, rs);
+                }
+            }
+        } catch (SQLException e) {
+            products.clear();
+        }
+
+        return products;
+    }
+
+    public List<Product> findProductsByCategoryAndCharacterNearPrice(String category, String character, int targetPriceIdr, int minPriceIdr, int maxPriceIdr, int limit) {
+        List<Product> products = new ArrayList<Product>();
+        String sql = "SELECT " + PRODUCT_SELECT_COLUMNS + " FROM products WHERE price_idr BETWEEN ? AND ? AND " + buildCategoryWhereClause(category) + " AND " + buildCharacterWhereClause() + " ORDER BY ABS(price_idr - ?) ASC LIMIT ?";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, minPriceIdr);
+            pstmt.setInt(2, maxPriceIdr);
+            setCharacterParameter(pstmt, 3, character);
+            pstmt.setInt(4, targetPriceIdr);
+            pstmt.setInt(5, limit);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    addProductFromResult(products, rs);
                 }
             }
         } catch (SQLException e) {
@@ -617,6 +763,9 @@ public class Database {
         if (!hasColumn(stmt, "products", "image_url")) {
             stmt.execute("ALTER TABLE products ADD COLUMN image_url TEXT");
         }
+        if (!hasColumn(stmt, "products", "character")) {
+            stmt.execute("ALTER TABLE products ADD COLUMN character TEXT");
+        }
         stmt.execute("UPDATE products SET category = 'Bass Guitar' WHERE lower(COALESCE(title, '')) LIKE '%bass%'");
         stmt.execute("UPDATE products SET category = 'Classical Guitar' WHERE lower(COALESCE(title, '')) LIKE '%classical%' OR lower(COALESCE(title, '')) LIKE '%nylon%' OR lower(COALESCE(title, '')) LIKE '%klasik%'");
         stmt.execute("UPDATE products SET category = 'Electric Guitar' WHERE " +
@@ -814,6 +963,28 @@ public class Database {
             return "(lower(category) LIKE '%classical%' OR lower(title) LIKE '%classical%' OR lower(title) LIKE '%klasik%')";
         }
         return "((lower(category) LIKE '%acoustic%' OR lower(title) LIKE '%acoustic%' OR lower(title) LIKE '%akustik%' OR lower(title) LIKE '%dreadnought%' OR lower(title) LIKE '%solid top%' OR lower(title) LIKE '%fg800%') AND lower(title) NOT LIKE 'sc-%' AND lower(title) NOT LIKE '% sc-%' AND lower(title) NOT LIKE '%single cut%' AND lower(title) NOT LIKE '%les paul%')";
+    }
+
+    private String buildCharacterWhereClause() {
+        return "lower(COALESCE(character, '')) LIKE ?";
+    }
+
+    private void setCharacterParameter(PreparedStatement pstmt, int index, String character) throws SQLException {
+        String normalizedCharacter = character == null ? "" : character.toLowerCase().trim();
+        pstmt.setString(index, "%" + normalizedCharacter + "%");
+    }
+
+    private void addProductFromResult(List<Product> products, ResultSet rs) throws SQLException {
+        products.add(new Product(
+                rs.getInt("id"),
+                rs.getString("brand"),
+                rs.getString("title"),
+                rs.getString("category"),
+                rs.getInt("price_idr"),
+                rs.getString("description"),
+                rs.getString("image_url"),
+                rs.getString("character")
+        ));
     }
 
     private String normalizeDescription(String brand, String title, String category, String description) {

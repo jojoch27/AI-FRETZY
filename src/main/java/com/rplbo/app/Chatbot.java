@@ -220,6 +220,7 @@ public class Chatbot {
                     .append(product.getName())
                     .append(" - Rp ")
                     .append(String.format("%,.0f", product.getPrice()))
+                    .append(buildCharacterListSuffix(product))
                     .append("\n");
             nomor++;
         }
@@ -235,6 +236,7 @@ public class Chatbot {
                     .append(" (").append(product.getCategory()).append(")")
                     .append(" - Rp ")
                     .append(String.format("%,.0f", product.getPrice()))
+                    .append(buildCharacterListSuffix(product))
                     .append("\n");
             nomor++;
         }
@@ -257,9 +259,22 @@ public class Chatbot {
         return "Info lengkap gitar:\n"
                 + "Nama: " + product.getName() + "\n"
                 + "Kategori: " + product.getCategory() + "\n"
+                + buildCharacterDetailLine(product)
                 + "Harga: Rp " + String.format("%,.0f", product.getPrice()) + "\n"
                 + "Deskripsi: " + product.getDescription() + "\n"
                 + "Gambar: " + product.getImageUrl();
+    }
+
+    private String buildCharacterDetailLine(Product product) {
+        return product.getCharacter() == null || product.getCharacter().isEmpty()
+                ? ""
+                : "Karakter: " + product.getCharacter() + "\n";
+    }
+
+    private String buildCharacterListSuffix(Product product) {
+        return product.getCharacter() == null || product.getCharacter().isEmpty()
+                ? ""
+                : " - Karakter: " + product.getCharacter();
     }
 
     private String describeProductIfKnown(String input) {
@@ -431,6 +446,17 @@ public class Chatbot {
         boolean wantsAlternative = isAlternativeRecommendationRequest(input);
         List<Product> products;
 
+        if (hasCharacterCriteria(criteria)) {
+            products = findRankedProductsByCharacterCriteria(criteria, wantsAlternative);
+            if (!products.isEmpty()) {
+                rememberRecommendationContext(products, criteria);
+                String intro = buildCharacterRecommendationIntro(criteria, wantsAlternative);
+                return hasMultipleCategoryCriteria(criteria)
+                        ? formatGroupedRecommendation(intro, products, criteria.categories)
+                        : formatRecommendation(intro, products);
+            }
+        }
+
         if (criteria.budget > 0 && hasCategoryCriteria(criteria)) {
             if (hasMultipleCategoryCriteria(criteria)) {
                 products = findRankedProductsByEachCategory(criteria, wantsAlternative);
@@ -570,6 +596,20 @@ public class Chatbot {
         return wantsAlternative ? intro + " lainnya" : intro;
     }
 
+    private boolean hasCharacterCriteria(RecommendationCriteria criteria) {
+        return criteria != null && criteria.style != null && !criteria.style.isEmpty();
+    }
+
+    private String buildCharacterRecommendationIntro(RecommendationCriteria criteria, boolean wantsAlternative) {
+        String categoryPhrase = hasCategoryCriteria(criteria)
+                ? " " + buildCategoryPhrase(criteria.categories)
+                : "";
+        String budgetPhrase = criteria.budget > 0
+                ? (criteria.strictBudget ? " sesuai budget maksimal Anda" : " yang paling mendekati budget Anda")
+                : "";
+        return buildRecommendationIntro("Berikut rekomendasi gitar" + categoryPhrase + buildStylePhrase(criteria.style) + budgetPhrase, wantsAlternative);
+    }
+
     private boolean hasCategoryCriteria(RecommendationCriteria criteria) {
         return criteria != null && criteria.categories != null && !criteria.categories.isEmpty();
     }
@@ -646,6 +686,53 @@ public class Chatbot {
             }
         }
         return false;
+    }
+
+    private List<Product> findRankedProductsByCharacterCriteria(RecommendationCriteria criteria, boolean wantsAlternative) {
+        if (hasMultipleCategoryCriteria(criteria)) {
+            List<Product> products = new ArrayList<Product>();
+            for (String category : criteria.categories) {
+                RecommendationCriteria categoryCriteria = copyCriteriaForCategory(criteria, category);
+                addUniqueProducts(products, rankRecommendations(
+                        findProductsForCategoryAndCharacterCriteria(categoryCriteria),
+                        categoryCriteria,
+                        RECOMMENDATION_LIMIT,
+                        wantsAlternative
+                ));
+            }
+            return products;
+        }
+
+        List<Product> candidates = hasCategoryCriteria(criteria)
+                ? findProductsForCategoryAndCharacterCriteria(criteria)
+                : findProductsForCharacterCriteria(criteria);
+        return rankRecommendations(candidates, criteria, RECOMMENDATION_LIMIT, wantsAlternative);
+    }
+
+    private List<Product> findProductsForCharacterCriteria(RecommendationCriteria criteria) {
+        if (criteria.budget > 0) {
+            if (criteria.strictBudget) {
+                return database.findProductsByCharacterAndMaxPrice(criteria.style, criteria.budget, CANDIDATE_LIMIT);
+            }
+            List<Product> products = database.findProductsByCharacterNearPrice(criteria.style, criteria.budget, calculateFlexibleMinBudget(criteria.budget), calculateFlexibleMaxBudget(criteria.budget), CANDIDATE_LIMIT);
+            return products.isEmpty()
+                    ? database.findProductsByCharacterAndMaxPrice(criteria.style, criteria.budget, CANDIDATE_LIMIT)
+                    : products;
+        }
+        return database.findProductsByCharacter(criteria.style, CANDIDATE_LIMIT);
+    }
+
+    private List<Product> findProductsForCategoryAndCharacterCriteria(RecommendationCriteria criteria) {
+        if (criteria.budget > 0) {
+            if (criteria.strictBudget) {
+                return database.findProductsByCategoryAndCharacterAndMaxPrice(criteria.category, criteria.style, criteria.budget, CANDIDATE_LIMIT);
+            }
+            List<Product> products = database.findProductsByCategoryAndCharacterNearPrice(criteria.category, criteria.style, criteria.budget, calculateFlexibleMinBudget(criteria.budget), calculateFlexibleMaxBudget(criteria.budget), CANDIDATE_LIMIT);
+            return products.isEmpty()
+                    ? database.findProductsByCategoryAndCharacterAndMaxPrice(criteria.category, criteria.style, criteria.budget, CANDIDATE_LIMIT)
+                    : products;
+        }
+        return database.findProductsByCategoryAndCharacter(criteria.category, criteria.style, CANDIDATE_LIMIT);
     }
 
     private List<Product> findRankedProductsByEachCategory(RecommendationCriteria criteria, boolean wantsAlternative) {
@@ -732,10 +819,13 @@ public class Chatbot {
             return 0;
         }
 
-        String text = (safeLower(product.getBrand()) + " " + safeLower(product.getTitle()) + " " + safeLower(product.getCategory()));
+        String text = (safeLower(product.getBrand()) + " " + safeLower(product.getTitle()) + " " + safeLower(product.getCategory()) + " " + safeLower(product.getCharacter()));
         String style = criteria.style;
         int score = 0;
         if (style != null && !style.isEmpty()) {
+            if (matchesCharacter(product, style)) {
+                score += 50;
+            }
             if ("rock".equals(style)) {
                 score += scoreText(text, "les paul", "lp", "sc-", "single cut", "sg", "monarkh", "ec-", "jet", "custom", "humbucker", "hh");
             } else if ("metal".equals(style)) {
@@ -799,6 +889,13 @@ public class Chatbot {
                 && product.getCategory() != null
                 && category != null
                 && product.getCategory().equalsIgnoreCase(category);
+    }
+
+    private boolean matchesCharacter(Product product, String character) {
+        return product != null
+                && product.getCharacter() != null
+                && character != null
+                && product.getCharacter().toLowerCase().contains(character.toLowerCase());
     }
 
     private List<Product> diversifyRecommendations(List<Product> candidates, RecommendationCriteria criteria, int limit) {
@@ -876,6 +973,7 @@ public class Chatbot {
                     .append(" (").append(product.getCategory()).append(")")
                     .append(" - Rp ")
                     .append(String.format("%,.0f", product.getPrice()))
+                    .append(buildCharacterListSuffix(product))
                     .append("\n");
             nomor++;
         }
@@ -897,6 +995,7 @@ public class Chatbot {
                         .append(" (").append(product.getCategory()).append(")")
                         .append(" - Rp ")
                         .append(String.format("%,.0f", product.getPrice()))
+                        .append(buildCharacterListSuffix(product))
                         .append("\n");
                 nomor++;
             }
