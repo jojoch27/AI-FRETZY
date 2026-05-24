@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.rplbo.app.ChatbotTest" time="0.832" tests="25" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.rplbo.app.ChatbotTest" time="0.838" tests="26" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="ID"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\ASUS\AppData\Local\Temp\surefire11972131624840320333\surefirebooter-20260525013542090_3.jar C:\Users\ASUS\AppData\Local\Temp\surefire11972131624840320333 2026-05-25T01-35-41_991-jvmRun1 surefire-20260525013542090_1tmp surefire_0-20260525013542090_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\ASUS\AppData\Local\Temp\surefire6834328563065059566\surefirebooter-20260525014124599_3.jar C:\Users\ASUS\AppData\Local\Temp\surefire6834328563065059566 2026-05-25T01-41-24_481-jvmRun1 surefire-20260525014124599_1tmp surefire_0-20260525014124599_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="D:\Tugas SMT4\PrRPLBO\AI-FRETZY\target\test-classes;D:\Tugas SMT4\PrRPLBO\AI-FRETZY\target\classes;C:\Users\ASUS\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\ASUS\.m2\repository\org\openjfx\javafx-controls\21\javafx-controls-21.jar;C:\Users\ASUS\.m2\repository\org\openjfx\javafx-controls\21\javafx-controls-21-win.jar;C:\Users\ASUS\.m2\repository\org\openjfx\javafx-graphics\21\javafx-graphics-21.jar;C:\Users\ASUS\.m2\repository\org\openjfx\javafx-graphics\21\javafx-graphics-21-win.jar;C:\Users\ASUS\.m2\repository\org\openjfx\javafx-base\21\javafx-base-21.jar;C:\Users\ASUS\.m2\repository\org\openjfx\javafx-base\21\javafx-base-21-win.jar;C:\Users\ASUS\.m2\repository\org\openjfx\javafx-fxml\21\javafx-fxml-21.jar;C:\Users\ASUS\.m2\repository\org\openjfx\javafx-fxml\21\javafx-fxml-21-win.jar;C:\Users\ASUS\.m2\repository\org\xerial\sqlite-jdbc\3.45.1.0\sqlite-jdbc-3.45.1.0.jar;C:\Users\ASUS\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\ASUS\AppData\Local\Temp\surefire11972131624840320333\surefirebooter-20260525013542090_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\ASUS\AppData\Local\Temp\surefire6834328563065059566\surefirebooter-20260525014124599_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.2+10-LTS-69"/>
@@ -59,7 +59,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testOrdinalReferenceWithoutListContextGetsFeedback" classname="com.rplbo.app.ChatbotTest" time="0.194">
+  <testcase name="testOrdinalProductReferenceUsesPreviousRecommendationContext" classname="com.rplbo.app.ChatbotTest" time="0.213">
     <system-out><![CDATA[Database Katalog siap.
 ]]></system-out>
     <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
@@ -67,15 +67,19 @@ SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 ]]></system-err>
   </testcase>
-  <testcase name="testRecommendationLainnyaReturnsDifferentProducts" classname="com.rplbo.app.ChatbotTest" time="0.048">
+  <testcase name="testMultipleCategoryAndBudgetRecommendationIsGroupedByCategory" classname="com.rplbo.app.ChatbotTest" time="0.037">
     <system-out><![CDATA[Database Katalog siap.
 ]]></system-out>
   </testcase>
-  <testcase name="testOrdinalReferenceAfterSingleProductDetailGetsFeedback" classname="com.rplbo.app.ChatbotTest" time="0.031">
+  <testcase name="testAcousticRecommendationDoesNotReturnSingleCutElectricModels" classname="com.rplbo.app.ChatbotTest" time="0.03">
     <system-out><![CDATA[Database Katalog siap.
 ]]></system-out>
   </testcase>
-  <testcase name="testPriceOnlyRecommendationWorksWithoutCategory" classname="com.rplbo.app.ChatbotTest" time="0.027">
+  <testcase name="testDualIntentBudgetAndRockCharacterInfersElectricRecommendation" classname="com.rplbo.app.ChatbotTest" time="0.028">
+    <system-out><![CDATA[Database Katalog siap.
+]]></system-out>
+  </testcase>
+  <testcase name="testMultipleCategoryRecommendationIncludesEachRequestedCategory" classname="com.rplbo.app.ChatbotTest" time="0.029">
     <system-out><![CDATA[Database Katalog siap.
 ]]></system-out>
   </testcase>
@@ -83,60 +87,11 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
     <system-out><![CDATA[Database Katalog siap.
 ]]></system-out>
   </testcase>
+  <testcase name="testPriceOnlyRecommendationWorksWithoutCategory" classname="com.rplbo.app.ChatbotTest" time="0.024">
+    <system-out><![CDATA[Database Katalog siap.
+]]></system-out>
+  </testcase>
   <testcase name="testElectricRecommendationRespectsBudgetAndCategory" classname="com.rplbo.app.ChatbotTest" time="0.023">
-    <system-out><![CDATA[Database Katalog siap.
-]]></system-out>
-  </testcase>
-  <testcase name="testLargeBudgetRecommendationUsesClosestPrices" classname="com.rplbo.app.ChatbotTest" time="0.025">
-    <system-out><![CDATA[Database Katalog siap.
-]]></system-out>
-  </testcase>
-  <testcase name="testFingerstyleCharacterInfersAcousticRecommendation" classname="com.rplbo.app.ChatbotTest" time="0.023">
-    <system-out><![CDATA[Database Katalog siap.
-]]></system-out>
-  </testcase>
-  <testcase name="testFollowUpDetailUsesPreviousRecommendationContext" classname="com.rplbo.app.ChatbotTest" time="0.026">
-    <system-out><![CDATA[Database Katalog siap.
-]]></system-out>
-  </testcase>
-  <testcase name="testFollowUpRecommendationReusesPreviousCategory" classname="com.rplbo.app.ChatbotTest" time="0.037">
-    <system-out><![CDATA[Database Katalog siap.
-]]></system-out>
-  </testcase>
-  <testcase name="testMultipleCategoryAndBudgetRecommendationIsGroupedByCategory" classname="com.rplbo.app.ChatbotTest" time="0.028">
-    <system-out><![CDATA[Database Katalog siap.
-]]></system-out>
-  </testcase>
-  <testcase name="testMultipleCategoryRecommendationIncludesEachRequestedCategory" classname="com.rplbo.app.ChatbotTest" time="0.027">
-    <system-out><![CDATA[Database Katalog siap.
-]]></system-out>
-  </testcase>
-  <testcase name="testOrdinalProductReferenceUsesPreviousRecommendationContext" classname="com.rplbo.app.ChatbotTest" time="0.023">
-    <system-out><![CDATA[Database Katalog siap.
-]]></system-out>
-  </testcase>
-  <testcase name="testDualIntentBudgetAndRockCharacterInfersElectricRecommendation" classname="com.rplbo.app.ChatbotTest" time="0.03">
-    <system-out><![CDATA[Database Katalog siap.
-]]></system-out>
-  </testcase>
-  <testcase name="testAcousticRecommendationDoesNotReturnSingleCutElectricModels" classname="com.rplbo.app.ChatbotTest" time="0.024">
-    <system-out><![CDATA[Database Katalog siap.
-]]></system-out>
-  </testcase>
-  <testcase name="testUnknownMessageStillReturnsFallback" classname="com.rplbo.app.ChatbotTest" time="0.002"/>
-  <testcase name="testFollowUpDetailKeepsOriginalListContext" classname="com.rplbo.app.ChatbotTest" time="0.027">
-    <system-out><![CDATA[Database Katalog siap.
-]]></system-out>
-  </testcase>
-  <testcase name="testOrderStatusIgnoresOrderNumberLabel" classname="com.rplbo.app.ChatbotTest" time="0.028">
-    <system-out><![CDATA[Database Katalog siap.
-]]></system-out>
-  </testcase>
-  <testcase name="testAdminCanAddAndDeleteOrder" classname="com.rplbo.app.ChatbotTest" time="0.049">
-    <system-out><![CDATA[Database Katalog siap.
-]]></system-out>
-  </testcase>
-  <testcase name="testAllProductsRequestReturnsCatalog" classname="com.rplbo.app.ChatbotTest" time="0.042">
     <system-out><![CDATA[Database Katalog siap.
 ]]></system-out>
   </testcase>
@@ -144,14 +99,60 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
     <system-out><![CDATA[Database Katalog siap.
 ]]></system-out>
   </testcase>
-  <testcase name="testComparisonUsesPreviousSearchResults" classname="com.rplbo.app.ChatbotTest" time="0.021">
+  <testcase name="testComparisonUsesPreviousSearchResults" classname="com.rplbo.app.ChatbotTest" time="0.026">
     <system-out><![CDATA[Database Katalog siap.
 ]]></system-out>
   </testcase>
-  <testcase name="testOrderStatusCanBeCheckedByOrderNumber" classname="com.rplbo.app.ChatbotTest" time="0.021">
+  <testcase name="testAdminCanAddAndDeleteOrder" classname="com.rplbo.app.ChatbotTest" time="0.045">
     <system-out><![CDATA[Database Katalog siap.
 ]]></system-out>
   </testcase>
-  <testcase name="testGreetingStillReturnsOriginalMessage" classname="com.rplbo.app.ChatbotTest" time="0.0"/>
+  <testcase name="testFollowUpDetailKeepsOriginalListContext" classname="com.rplbo.app.ChatbotTest" time="0.023">
+    <system-out><![CDATA[Database Katalog siap.
+]]></system-out>
+  </testcase>
+  <testcase name="testOrderStatusIgnoresOrderNumberLabel" classname="com.rplbo.app.ChatbotTest" time="0.024">
+    <system-out><![CDATA[Database Katalog siap.
+]]></system-out>
+  </testcase>
   <testcase name="testThanksGetsHelpfulResponse" classname="com.rplbo.app.ChatbotTest" time="0.0"/>
+  <testcase name="testGreetingStillReturnsOriginalMessage" classname="com.rplbo.app.ChatbotTest" time="0.0"/>
+  <testcase name="testAllProductsRequestReturnsCatalog" classname="com.rplbo.app.ChatbotTest" time="0.043">
+    <system-out><![CDATA[Database Katalog siap.
+]]></system-out>
+  </testcase>
+  <testcase name="testUnknownMessageStillReturnsFallback" classname="com.rplbo.app.ChatbotTest" time="0.003"/>
+  <testcase name="testOrderStatusCanBeCheckedByOrderNumber" classname="com.rplbo.app.ChatbotTest" time="0.027">
+    <system-out><![CDATA[Database Katalog siap.
+]]></system-out>
+  </testcase>
+  <testcase name="testOrdinalReferenceWithoutListContextGetsFeedback" classname="com.rplbo.app.ChatbotTest" time="0.022">
+    <system-out><![CDATA[Database Katalog siap.
+]]></system-out>
+  </testcase>
+  <testcase name="testFollowUpDetailUsesPreviousRecommendationContext" classname="com.rplbo.app.ChatbotTest" time="0.025">
+    <system-out><![CDATA[Database Katalog siap.
+]]></system-out>
+  </testcase>
+  <testcase name="testRecommendationLainnyaReturnsDifferentProducts" classname="com.rplbo.app.ChatbotTest" time="0.033">
+    <system-out><![CDATA[Database Katalog siap.
+]]></system-out>
+  </testcase>
+  <testcase name="testFingerstyleCharacterInfersAcousticRecommendation" classname="com.rplbo.app.ChatbotTest" time="0.026">
+    <system-out><![CDATA[Database Katalog siap.
+]]></system-out>
+  </testcase>
+  <testcase name="testCharacterInfoQuestionReturnsAvailableCharacters" classname="com.rplbo.app.ChatbotTest" time="0.0"/>
+  <testcase name="testFollowUpRecommendationReusesPreviousCategory" classname="com.rplbo.app.ChatbotTest" time="0.031">
+    <system-out><![CDATA[Database Katalog siap.
+]]></system-out>
+  </testcase>
+  <testcase name="testLargeBudgetRecommendationUsesClosestPrices" classname="com.rplbo.app.ChatbotTest" time="0.025">
+    <system-out><![CDATA[Database Katalog siap.
+]]></system-out>
+  </testcase>
+  <testcase name="testOrdinalReferenceAfterSingleProductDetailGetsFeedback" classname="com.rplbo.app.ChatbotTest" time="0.03">
+    <system-out><![CDATA[Database Katalog siap.
+]]></system-out>
+  </testcase>
 </testsuite>

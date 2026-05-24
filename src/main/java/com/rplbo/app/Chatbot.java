@@ -145,6 +145,11 @@ public class Chatbot {
             return generateResponse();
         }
 
+        if (isGuitarCharacterInfoRequest(normalizedInput)) {
+            lastResponse = buildGuitarCharacterInfoResponse();
+            return generateResponse();
+        }
+
         if (analysis.getIntentType() == NLPService.IntentType.RECOMMENDATION
                 || (analysis.getIntentType() == NLPService.IntentType.UNKNOWN && isRecommendationRequest(normalizedInput))) {
             lastResponse = buildRecommendationResponse(normalizedInput);
@@ -388,6 +393,25 @@ public class Chatbot {
                 "daftar semua gitar", "list semua gitar", "katalog semua gitar",
                 "tampilkan semua produk", "lihat semua produk", "semua produk",
                 "daftar produk", "daftar gitar", "list gitar", "katalog gitar");
+    }
+
+    private boolean isGuitarCharacterInfoRequest(String input) {
+        return containsAny(input, "karakter", "tone", "suara", "genre")
+                && containsAny(input,
+                "apa saja", "apa aja", "yang ada", "tersedia", "pilihan",
+                "daftar", "list", "macam", "jenis");
+    }
+
+    private String buildGuitarCharacterInfoResponse() {
+        return "Karakter gitar yang bisa saya bantu:\n"
+                + "1. Rock - cocok untuk riff, solo, dan distorsi sedang.\n"
+                + "2. Metal - cocok untuk distorsi berat dan permainan agresif.\n"
+                + "3. Jazz - cocok untuk suara warm, mellow, dan halus.\n"
+                + "4. Blues - cocok untuk karakter vintage, classic, dan ekspresif.\n"
+                + "5. Pop - cocok untuk suara clean, jernih, dan serbaguna.\n"
+                + "6. Funk - cocok untuk groove dan permainan ritmis.\n"
+                + "7. Fingerstyle - cocok untuk petikan, strumming, dan akustikan.\n"
+                + "Contoh: 'rekomendasi gitar karakter rock budget 5 juta'.";
     }
 
     private String buildAllProductsResponse() {
