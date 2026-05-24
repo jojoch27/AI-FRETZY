@@ -318,8 +318,10 @@ public class MainController {
         addUserMessage(input);
         database.logChat("USER", input);
         String response = chatbot.receiveInput(user.askQuestion(input.toLowerCase()));
-        addBotMessage(response);
-        database.logChat("BOT", response);
+        if (!response.trim().isEmpty()) {
+            addBotMessage(response);
+            database.logChat("BOT", response);
+        }
         bottomInputField.clear();
     }
 

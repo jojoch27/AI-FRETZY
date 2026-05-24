@@ -1,5 +1,8 @@
 package com.rplbo.app;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NLPService {
     public enum IntentType {
         GREETING,
@@ -23,12 +26,13 @@ public class NLPService {
         private final String orderNumber;
         private final int budget;
         private final String category;
+        private final List<String> categories;
         private final String style;
         private final boolean strictBudget;
         private final boolean inferredCategory;
 
         public AnalysisResult(IntentType intentType, String normalizedInput, String keyword, String orderNumber, int budget, String category) {
-            this(intentType, normalizedInput, keyword, orderNumber, budget, category, "", false, false);
+            this(intentType, normalizedInput, keyword, orderNumber, budget, category, singleCategoryList(category), "", false, false);
         }
 
         public AnalysisResult(
@@ -38,6 +42,7 @@ public class NLPService {
                 String orderNumber,
                 int budget,
                 String category,
+                List<String> categories,
                 String style,
                 boolean strictBudget,
                 boolean inferredCategory
@@ -48,6 +53,7 @@ public class NLPService {
             this.orderNumber = orderNumber;
             this.budget = budget;
             this.category = category;
+            this.categories = categories == null ? new ArrayList<String>() : new ArrayList<String>(categories);
             this.style = style;
             this.strictBudget = strictBudget;
             this.inferredCategory = inferredCategory;
@@ -77,6 +83,10 @@ public class NLPService {
             return category;
         }
 
+        public List<String> getCategories() {
+            return new ArrayList<String>(categories);
+        }
+
         public String getStyle() {
             return style;
         }
@@ -94,64 +104,68 @@ public class NLPService {
         String normalizedInput = normalize(input);
         int budget = extractBudget(normalizedInput);
         String style = extractStyle(normalizedInput);
-        String category = extractCategory(normalizedInput);
+        List<String> categories = extractCategories(normalizedInput);
+        String category = firstCategory(categories);
         boolean inferredCategory = false;
         boolean strictBudget = isStrictBudgetRequest(normalizedInput);
 
         if (category.isEmpty()) {
             category = inferCategoryFromStyle(style);
             inferredCategory = !category.isEmpty();
+            if (inferredCategory) {
+                categories.add(category);
+            }
         }
 
         if (normalizedInput.isEmpty()) {
-            return result(IntentType.UNKNOWN, normalizedInput, "", "", budget, category, style, strictBudget, inferredCategory);
+            return result(IntentType.UNKNOWN, normalizedInput, "", "", budget, category, categories, style, strictBudget, inferredCategory);
         }
 
         if (isOrderStatusIntent(normalizedInput)) {
-            return result(IntentType.ORDER_STATUS, normalizedInput, "", extractOrderNumber(normalizedInput), budget, category, style, strictBudget, inferredCategory);
+            return result(IntentType.ORDER_STATUS, normalizedInput, "", extractOrderNumber(normalizedInput), budget, category, categories, style, strictBudget, inferredCategory);
         }
 
         if (isComparisonIntent(normalizedInput)) {
-            return result(IntentType.COMPARISON, normalizedInput, "", "", budget, category, style, strictBudget, inferredCategory);
+            return result(IntentType.COMPARISON, normalizedInput, "", "", budget, category, categories, style, strictBudget, inferredCategory);
         }
 
         if (isRecommendationIntent(normalizedInput, budget, category, style)) {
-            return result(IntentType.RECOMMENDATION, normalizedInput, "", "", budget, category, style, strictBudget, inferredCategory);
+            return result(IntentType.RECOMMENDATION, normalizedInput, "", "", budget, category, categories, style, strictBudget, inferredCategory);
         }
 
         if (isProductDetailIntent(normalizedInput)) {
-            return result(IntentType.PRODUCT_DETAIL, normalizedInput, extractProductKeyword(normalizedInput), "", budget, category, style, strictBudget, inferredCategory);
+            return result(IntentType.PRODUCT_DETAIL, normalizedInput, extractProductKeyword(normalizedInput), "", budget, category, categories, style, strictBudget, inferredCategory);
         }
 
         if (isProductSearchIntent(normalizedInput)) {
-            return result(IntentType.PRODUCT_SEARCH, normalizedInput, extractProductKeyword(normalizedInput), "", budget, category, style, strictBudget, inferredCategory);
+            return result(IntentType.PRODUCT_SEARCH, normalizedInput, extractProductKeyword(normalizedInput), "", budget, category, categories, style, strictBudget, inferredCategory);
         }
 
         if (containsAny(normalizedInput, "halo", "hai", "hello", "hi", "pagi", "siang", "malam")) {
-            return result(IntentType.GREETING, normalizedInput, "", "", budget, category, style, strictBudget, inferredCategory);
+            return result(IntentType.GREETING, normalizedInput, "", "", budget, category, categories, style, strictBudget, inferredCategory);
         }
 
         if (containsAny(normalizedInput, "terima kasih", "makasih", "makasi", "thanks", "thx")) {
-            return result(IntentType.THANKS, normalizedInput, "", "", budget, category, style, strictBudget, inferredCategory);
+            return result(IntentType.THANKS, normalizedInput, "", "", budget, category, categories, style, strictBudget, inferredCategory);
         }
 
         if (containsAny(normalizedInput, "bantuan", "tolong", "menu", "bisa bantu apa", "cara pakai", "panduan", "help")) {
-            return result(IntentType.HELP, normalizedInput, "", "", budget, category, style, strictBudget, inferredCategory);
+            return result(IntentType.HELP, normalizedInput, "", "", budget, category, categories, style, strictBudget, inferredCategory);
         }
 
         if (containsAny(normalizedInput, "jam operasional", "jam buka", "jam tutup", "toko buka", "buka jam")) {
-            return result(IntentType.STORE_HOURS, normalizedInput, "", "", budget, category, style, strictBudget, inferredCategory);
+            return result(IntentType.STORE_HOURS, normalizedInput, "", "", budget, category, categories, style, strictBudget, inferredCategory);
         }
 
         if (containsAny(normalizedInput, "lokasi toko", "alamat toko", "dimana toko")) {
-            return result(IntentType.STORE_LOCATION, normalizedInput, "", "", budget, category, style, strictBudget, inferredCategory);
+            return result(IntentType.STORE_LOCATION, normalizedInput, "", "", budget, category, categories, style, strictBudget, inferredCategory);
         }
 
         if (containsAny(normalizedInput, "keluar", "bye", "dadah", "sampai jumpa")) {
-            return result(IntentType.EXIT, normalizedInput, "", "", budget, category, style, strictBudget, inferredCategory);
+            return result(IntentType.EXIT, normalizedInput, "", "", budget, category, categories, style, strictBudget, inferredCategory);
         }
 
-        return result(IntentType.UNKNOWN, normalizedInput, "", "", budget, category, style, strictBudget, inferredCategory);
+        return result(IntentType.UNKNOWN, normalizedInput, "", "", budget, category, categories, style, strictBudget, inferredCategory);
     }
 
     private AnalysisResult result(
@@ -161,11 +175,12 @@ public class NLPService {
             String orderNumber,
             int budget,
             String category,
+            List<String> categories,
             String style,
             boolean strictBudget,
             boolean inferredCategory
     ) {
-        return new AnalysisResult(intentType, normalizedInput, keyword, orderNumber, budget, category, style, strictBudget, inferredCategory);
+        return new AnalysisResult(intentType, normalizedInput, keyword, orderNumber, budget, category, categories, style, strictBudget, inferredCategory);
     }
 
     public String normalize(String input) {
@@ -213,19 +228,24 @@ public class NLPService {
     }
 
     public String extractCategory(String input) {
-        if (containsAny(input, "akustik", "acoustic", "accoustic")) {
-            return "Acoustic Guitar";
+        return firstCategory(extractCategories(input));
+    }
+
+    public List<String> extractCategories(String input) {
+        List<String> categories = new ArrayList<String>();
+        if (containsAny(input, "akustik", "arkustik", "acoustic", "accoustic")) {
+            addUniqueCategory(categories, "Acoustic Guitar");
         }
         if (containsAny(input, "electric", "elektrik", "listrik", "elec")) {
-            return "Electric Guitar";
+            addUniqueCategory(categories, "Electric Guitar");
         }
         if (input != null && input.contains("bass")) {
-            return "Bass Guitar";
+            addUniqueCategory(categories, "Bass Guitar");
         }
         if (containsAny(input, "classical", "klasik", "nylon", "nilon")) {
-            return "Classical Guitar";
+            addUniqueCategory(categories, "Classical Guitar");
         }
-        return "";
+        return categories;
     }
 
     public String extractStyle(String input) {
@@ -285,7 +305,7 @@ public class NLPService {
                 "lainnya", "yang lain", "ada lagi", "rekomendasi lain",
                 "pilihan lain", "opsi lain", "alternatif", "selain itu");
         boolean hasBudgetWord = containsAny(input,
-                "budget", "anggaran", "harga", "dana", "dibawah", "di bawah",
+                "budget", "anggaran", "harga", "haga", "dana", "dibawah", "di bawah",
                 "maksimal", "max", "kurang dari", "murah", "terjangkau");
         boolean hasNeedWord = containsAny(input,
                 "ingin", "mau", "butuh", "cari", "carikan", "nyari", "saya ingin", "aku ingin");
@@ -310,6 +330,7 @@ public class NLPService {
     private boolean isProductSearchIntent(String input) {
         return containsAny(input,
                 "cari", "carikan", "mencari", "nyari", "stok", "stock", "harga",
+                "haga",
                 "aku mau", "saya mau", "ingin beli", "mau beli", "beli", "jual",
                 "tersedia", "ready", "ada", "punya", "lihat", "tampilkan", "show",
                 "butuh gitar", "berapa harga");
@@ -427,5 +448,23 @@ public class NLPService {
             }
         }
         return false;
+    }
+
+    private static List<String> singleCategoryList(String category) {
+        List<String> categories = new ArrayList<String>();
+        if (category != null && !category.isEmpty()) {
+            categories.add(category);
+        }
+        return categories;
+    }
+
+    private String firstCategory(List<String> categories) {
+        return categories == null || categories.isEmpty() ? "" : categories.get(0);
+    }
+
+    private void addUniqueCategory(List<String> categories, String category) {
+        if (!categories.contains(category)) {
+            categories.add(category);
+        }
     }
 }

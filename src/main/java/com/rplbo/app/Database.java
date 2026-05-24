@@ -239,6 +239,31 @@ public class Database {
         return products;
     }
 
+    public List<Product> getAllProducts() {
+        List<Product> products = new ArrayList<Product>();
+        String sql = "SELECT id, brand, title, category, description, image_url, price_idr FROM products ORDER BY category ASC, price_idr ASC, brand ASC, title ASC";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                products.add(new Product(
+                        rs.getInt("id"),
+                        rs.getString("brand"),
+                        rs.getString("title"),
+                        rs.getString("category"),
+                        rs.getInt("price_idr"),
+                        rs.getString("description"),
+                        rs.getString("image_url")
+                ));
+            }
+        } catch (SQLException e) {
+            products.clear();
+        }
+
+        return products;
+    }
+
     public List<Product> findProductsByCategory(String category, int limit) {
         List<Product> products = new ArrayList<Product>();
         String sql = "SELECT id, brand, title, category, description, image_url, price_idr FROM products WHERE lower(category) LIKE ? ORDER BY price_idr ASC LIMIT ?";

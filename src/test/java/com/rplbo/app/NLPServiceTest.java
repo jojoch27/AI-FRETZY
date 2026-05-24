@@ -2,6 +2,8 @@ package com.rplbo.app;
 
 import junit.framework.TestCase;
 
+import java.util.List;
+
 public class NLPServiceTest extends TestCase {
     public void testDualIntentBudgetAndRockCharacter() {
         NLPService nlpService = new NLPService();
@@ -24,6 +26,19 @@ public class NLPServiceTest extends TestCase {
         assertEquals(4000000, result.getBudget());
         assertEquals("Electric Guitar", result.getCategory());
         assertTrue(result.isStrictBudget());
+    }
+
+    public void testMultipleCategoryExtraction() {
+        NLPService nlpService = new NLPService();
+
+        NLPService.AnalysisResult result = nlpService.analyze("berikan aku rekomendasi gitar arkustik dan gitar electric");
+        List<String> categories = result.getCategories();
+
+        assertEquals(NLPService.IntentType.RECOMMENDATION, result.getIntentType());
+        assertEquals("Acoustic Guitar", result.getCategory());
+        assertEquals(2, categories.size());
+        assertTrue(categories.contains("Acoustic Guitar"));
+        assertTrue(categories.contains("Electric Guitar"));
     }
 
     public void testOrderNumberWithDatabaseStyleLabel() {

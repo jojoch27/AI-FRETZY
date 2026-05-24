@@ -62,6 +62,41 @@ public class ChatbotTest extends TestCase {
         assertFalse(response.contains("Acoustic Guitar"));
     }
 
+    public void testMultipleCategoryRecommendationIncludesEachRequestedCategory() {
+        Database database = new Database();
+        database.setupDatabase();
+        Chatbot chatbot = new Chatbot(database);
+
+        String response = chatbot.receiveInput("berikan aku rekomendasi gitar arkustik dan gitar electric");
+
+        assertTrue(response.contains("Acoustic Guitar"));
+        assertTrue(response.contains("Electric Guitar"));
+    }
+
+    public void testPriceOnlyRecommendationWorksWithoutCategory() {
+        Database database = new Database();
+        database.setupDatabase();
+        Chatbot chatbot = new Chatbot(database);
+
+        String response = chatbot.receiveInput("rekomendasi gitar harga 5 juta");
+
+        assertTrue(response.contains("Berikut rekomendasi gitar"));
+        assertTrue(response.contains("Rp "));
+        assertFalse(response.contains("Saya belum menemukan rekomendasi"));
+    }
+
+    public void testAllProductsRequestReturnsCatalog() {
+        Database database = new Database();
+        database.setupDatabase();
+        Chatbot chatbot = new Chatbot(database);
+
+        String response = chatbot.receiveInput("tampilkan semua gitar");
+
+        assertTrue(response.startsWith("Daftar semua gitar yang tersedia:"));
+        assertTrue(response.contains("Acoustic Guitar"));
+        assertTrue(response.contains("Electric Guitar"));
+    }
+
     public void testDualIntentBudgetAndRockCharacterInfersElectricRecommendation() {
         Database database = new Database();
         database.setupDatabase();

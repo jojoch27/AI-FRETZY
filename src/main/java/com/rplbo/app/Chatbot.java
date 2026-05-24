@@ -14,6 +14,7 @@ public class Chatbot {
     private final List<String> shownRecommendationProductNames = new ArrayList<String>();
     private Product focusedProduct = null;
     private String lastCategory = "";
+    private List<String> lastCategories = new ArrayList<String>();
     private int lastBudget = 0;
     private String lastStyle = "";
     private String lastRecommendationKey = "";
@@ -22,6 +23,7 @@ public class Chatbot {
     private static class RecommendationCriteria {
         private int budget;
         private String category = "";
+        private List<String> categories = new ArrayList<String>();
         private String style = "";
         private boolean strictBudget;
     }
@@ -119,6 +121,11 @@ public class Chatbot {
             return generateResponse();
         }
 
+        if (isAllProductsRequest(normalizedInput)) {
+            lastResponse = buildAllProductsResponse();
+            return generateResponse();
+        }
+
         if (analysis.getIntentType() == NLPService.IntentType.RECOMMENDATION
                 || (analysis.getIntentType() == NLPService.IntentType.UNKNOWN && isRecommendationRequest(normalizedInput))) {
             lastResponse = buildRecommendationResponse(normalizedInput);
@@ -194,6 +201,21 @@ public class Chatbot {
         return hasil.toString();
     }
 
+    private String formatProductList(String intro, List<Product> products) {
+        StringBuilder hasil = new StringBuilder(intro).append(":\n");
+        int nomor = 1;
+        for (Product product : products) {
+            hasil.append(nomor).append(". ")
+                    .append(product.getName())
+                    .append(" (").append(product.getCategory()).append(")")
+                    .append(" - Rp ")
+                    .append(String.format("%,.0f", product.getPrice()))
+                    .append("\n");
+            nomor++;
+        }
+        return hasil.toString();
+    }
+
     private String describeProduct(String keyword) {
         List<Product> products = database.findProducts(keyword);
         if (products.isEmpty()) {
@@ -261,7 +283,7 @@ public class Chatbot {
 
     private boolean isProductSearchRequest(String input) {
         return containsAny(input,
-                "cari", "carikan", "mencari", "nyari", "stok", "stock", "harga",
+                "cari", "carikan", "mencari", "nyari", "stok", "stock", "harga", "haga",
                 "aku mau", "saya mau", "ingin beli", "mau beli", "beli", "jual",
                 "tersedia", "ready", "ada", "punya", "lihat", "tampilkan", "show",
                 "butuh gitar");
@@ -282,6 +304,7 @@ public class Chatbot {
                 .replace("stok", " ")
                 .replace("stock", " ")
                 .replace("harga", " ")
+                .replace("haga", " ")
                 .replace("aku mau", " ")
                 .replace("saya mau", " ")
                 .replace("ingin beli", " ")
@@ -319,11 +342,30 @@ public class Chatbot {
         return containsAny(input,
                 "rekomendasi", "recommend", "sarankan", "saran", "pilihkan",
                 "pilih", "cocok", "pemula", "beginner", "budget", "anggaran", "harga",
-                "dana", "dibawah", "di bawah", "maksimal", "max", "kurang dari",
+                "haga", "dana", "dibawah", "di bawah", "maksimal", "max", "kurang dari",
                 "murah", "terjangkau", "terbaik", "untuk belajar", "karakter",
                 "tone", "suara", "genre", "rock", "metal", "jazz", "blues",
                 "pop", "funk", "fingerstyle", "strumming", "lainnya", "yang lain",
                 "ada lagi", "pilihan lain", "opsi lain", "alternatif");
+    }
+
+    private boolean isAllProductsRequest(String input) {
+        return containsAny(input,
+                "tampilkan semua gitar", "lihat semua gitar", "semua gitar",
+                "daftar semua gitar", "list semua gitar", "katalog semua gitar",
+                "tampilkan semua produk", "lihat semua produk", "semua produk",
+                "daftar produk", "daftar gitar", "list gitar", "katalog gitar");
+    }
+
+    private String buildAllProductsResponse() {
+        List<Product> products = database.getAllProducts();
+        if (products.isEmpty()) {
+            clearProductContext();
+            return "Belum ada gitar yang tersimpan di database.";
+        }
+
+        rememberProducts(products);
+        return formatProductList("Daftar semua gitar yang tersedia", products);
     }
 
     private String buildRecommendationResponse(String input) {
@@ -331,23 +373,23 @@ public class Chatbot {
         boolean wantsAlternative = isAlternativeRecommendationRequest(input);
         List<Product> products;
 
-        if (criteria.budget > 0 && !criteria.category.isEmpty()) {
+        if (criteria.budget > 0 && hasCategoryCriteria(criteria)) {
             products = criteria.strictBudget
-                    ? database.findProductsByCategoryAndMaxPrice(criteria.category, criteria.budget, CANDIDATE_LIMIT)
-                    : database.findProductsByCategoryNearPrice(criteria.category, criteria.budget, calculateFlexibleMinBudget(criteria.budget), calculateFlexibleMaxBudget(criteria.budget), CANDIDATE_LIMIT);
+                    ? findProductsByCategoriesAndMaxPrice(criteria.categories, criteria.budget, CANDIDATE_LIMIT)
+                    : findProductsByCategoriesNearPrice(criteria.categories, criteria.budget, calculateFlexibleMinBudget(criteria.budget), calculateFlexibleMaxBudget(criteria.budget), CANDIDATE_LIMIT);
             products = rankRecommendations(products, criteria, RECOMMENDATION_LIMIT, wantsAlternative);
             if (!products.isEmpty()) {
                 rememberRecommendationContext(products, criteria);
                 String intro = criteria.strictBudget
-                        ? buildRecommendationIntro("Berikut rekomendasi gitar " + criteria.category + buildStylePhrase(criteria.style) + " sesuai budget maksimal Anda", wantsAlternative)
-                        : buildRecommendationIntro("Berikut rekomendasi gitar " + criteria.category + buildStylePhrase(criteria.style) + " yang paling mendekati budget Anda", wantsAlternative);
+                        ? buildRecommendationIntro("Berikut rekomendasi gitar " + buildCategoryPhrase(criteria.categories) + buildStylePhrase(criteria.style) + " sesuai budget maksimal Anda", wantsAlternative)
+                        : buildRecommendationIntro("Berikut rekomendasi gitar " + buildCategoryPhrase(criteria.categories) + buildStylePhrase(criteria.style) + " yang paling mendekati budget Anda", wantsAlternative);
                 return formatRecommendation(intro, products);
             }
 
             if (wantsAlternative) {
                 return "Maaf, belum ada rekomendasi lain untuk kriteria itu. Coba ubah budget, kategori, atau karakter suara.";
             }
-            return "Maaf, belum ada gitar " + criteria.category + buildStylePhrase(criteria.style) + " dengan budget sekitar Rp " + String.format("%,.0f", (double) criteria.budget) + ". Coba naikkan budget atau pilih karakter lain.";
+            return "Maaf, belum ada gitar " + buildCategoryPhrase(criteria.categories) + buildStylePhrase(criteria.style) + " dengan budget sekitar Rp " + String.format("%,.0f", (double) criteria.budget) + ". Coba naikkan budget atau pilih karakter lain.";
         }
 
         if (criteria.budget > 0) {
@@ -361,11 +403,11 @@ public class Chatbot {
             }
         }
 
-        if (!criteria.category.isEmpty()) {
-            products = rankRecommendations(database.findProductsByCategory(criteria.category, CANDIDATE_LIMIT), criteria, RECOMMENDATION_LIMIT, wantsAlternative);
+        if (hasCategoryCriteria(criteria)) {
+            products = rankRecommendations(findProductsByCategories(criteria.categories, CANDIDATE_LIMIT), criteria, RECOMMENDATION_LIMIT, wantsAlternative);
             if (!products.isEmpty()) {
                 rememberRecommendationContext(products, criteria);
-                return formatRecommendation(buildRecommendationIntro("Berikut rekomendasi gitar kategori " + criteria.category + buildStylePhrase(criteria.style), wantsAlternative), products);
+                return formatRecommendation(buildRecommendationIntro("Berikut rekomendasi gitar kategori " + buildCategoryPhrase(criteria.categories) + buildStylePhrase(criteria.style), wantsAlternative), products);
             }
             if (wantsAlternative) {
                 return "Maaf, belum ada rekomendasi lain untuk kriteria itu. Coba ubah budget, kategori, atau karakter suara.";
@@ -376,9 +418,13 @@ public class Chatbot {
             RecommendationCriteria beginnerCriteria = new RecommendationCriteria();
             beginnerCriteria.budget = 3000000;
             beginnerCriteria.category = criteria.category;
+            beginnerCriteria.categories = copyCategories(criteria.categories);
             beginnerCriteria.style = criteria.style;
             beginnerCriteria.strictBudget = true;
-            products = rankRecommendations(database.findProductsByMaxPrice(3000000, CANDIDATE_LIMIT), beginnerCriteria, RECOMMENDATION_LIMIT, wantsAlternative);
+            products = hasCategoryCriteria(beginnerCriteria)
+                    ? findProductsByCategoriesAndMaxPrice(beginnerCriteria.categories, beginnerCriteria.budget, CANDIDATE_LIMIT)
+                    : database.findProductsByMaxPrice(3000000, CANDIDATE_LIMIT);
+            products = rankRecommendations(products, beginnerCriteria, RECOMMENDATION_LIMIT, wantsAlternative);
             if (!products.isEmpty()) {
                 rememberRecommendationContext(products, beginnerCriteria);
                 return formatRecommendation(buildRecommendationIntro("Untuk pemula, saya sarankan model yang lebih ramah budget seperti berikut", wantsAlternative), products);
@@ -395,12 +441,14 @@ public class Chatbot {
         NLPService.AnalysisResult analysis = nlpService.analyze(input);
         RecommendationCriteria criteria = new RecommendationCriteria();
         criteria.budget = analysis.getBudget();
-        criteria.category = analysis.getCategory();
+        criteria.categories = analysis.getCategories();
+        criteria.category = firstCategory(criteria.categories);
         criteria.style = analysis.getStyle();
         criteria.strictBudget = analysis.isStrictBudget();
 
-        if (criteria.category.isEmpty()) {
-            criteria.category = inferCategoryFromStyle(criteria.style);
+        if (criteria.categories.isEmpty()) {
+            addUniqueCategory(criteria.categories, inferCategoryFromStyle(criteria.style));
+            criteria.category = firstCategory(criteria.categories);
         }
         if (criteria.budget == 0 && containsAny(input, "lebih murah", "yang murah", "murahan") && !lastProducts.isEmpty()) {
             criteria.budget = Math.max(1, findLowestContextPrice() - 1);
@@ -409,8 +457,12 @@ public class Chatbot {
         if (criteria.budget == 0 && lastBudget > 0 && isContextFollowUp(input)) {
             criteria.budget = lastBudget;
         }
-        if (criteria.category.isEmpty() && !lastCategory.isEmpty() && isContextFollowUp(input)) {
-            criteria.category = lastCategory;
+        if (criteria.categories.isEmpty() && !lastCategories.isEmpty() && isContextFollowUp(input)) {
+            criteria.categories = copyCategories(lastCategories);
+            criteria.category = firstCategory(criteria.categories);
+        } else if (criteria.category.isEmpty() && !lastCategory.isEmpty() && isContextFollowUp(input)) {
+            addUniqueCategory(criteria.categories, lastCategory);
+            criteria.category = firstCategory(criteria.categories);
         }
         if (criteria.style.isEmpty() && !lastStyle.isEmpty() && isContextFollowUp(input)) {
             criteria.style = lastStyle;
@@ -433,6 +485,76 @@ public class Chatbot {
         return wantsAlternative ? intro + " lainnya" : intro;
     }
 
+    private boolean hasCategoryCriteria(RecommendationCriteria criteria) {
+        return criteria != null && criteria.categories != null && !criteria.categories.isEmpty();
+    }
+
+    private String buildCategoryPhrase(List<String> categories) {
+        if (categories == null || categories.isEmpty()) {
+            return "semua kategori";
+        }
+        if (categories.size() == 1) {
+            return categories.get(0);
+        }
+        if (categories.size() == 2) {
+            return categories.get(0) + " dan " + categories.get(1);
+        }
+
+        StringBuilder phrase = new StringBuilder();
+        for (int i = 0; i < categories.size(); i++) {
+            if (i > 0) {
+                phrase.append(i == categories.size() - 1 ? ", dan " : ", ");
+            }
+            phrase.append(categories.get(i));
+        }
+        return phrase.toString();
+    }
+
+    private List<Product> findProductsByCategories(List<String> categories, int limit) {
+        List<Product> products = new ArrayList<Product>();
+        for (String category : categories) {
+            addUniqueProducts(products, database.findProductsByCategory(category, limit));
+        }
+        return products;
+    }
+
+    private List<Product> findProductsByCategoriesAndMaxPrice(List<String> categories, int maxPriceIdr, int limit) {
+        List<Product> products = new ArrayList<Product>();
+        for (String category : categories) {
+            addUniqueProducts(products, database.findProductsByCategoryAndMaxPrice(category, maxPriceIdr, limit));
+        }
+        return products;
+    }
+
+    private List<Product> findProductsByCategoriesNearPrice(List<String> categories, int targetPriceIdr, int minPriceIdr, int maxPriceIdr, int limit) {
+        List<Product> products = new ArrayList<Product>();
+        for (String category : categories) {
+            addUniqueProducts(products, database.findProductsByCategoryNearPrice(category, targetPriceIdr, minPriceIdr, maxPriceIdr, limit));
+        }
+        return products;
+    }
+
+    private void addUniqueProducts(List<Product> target, List<Product> source) {
+        if (source == null) {
+            return;
+        }
+        for (Product product : source) {
+            if (!containsProduct(target, product)) {
+                target.add(product);
+            }
+        }
+    }
+
+    private boolean containsProduct(List<Product> products, Product target) {
+        for (Product product : products) {
+            if (product.getProductId() == target.getProductId()
+                    || normalizeProductName(product).equals(normalizeProductName(target))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private List<Product> rankRecommendations(List<Product> candidates, RecommendationCriteria criteria, int limit) {
         return rankRecommendations(candidates, criteria, limit, false);
     }
@@ -442,7 +564,7 @@ public class Chatbot {
         if (excludeShown) {
             ranked = removeShownRecommendations(ranked);
         }
-        return diversifyRecommendations(ranked, limit);
+        return diversifyRecommendations(ranked, criteria, limit);
     }
 
     private List<Product> removeShownRecommendations(List<Product> candidates) {
@@ -476,30 +598,32 @@ public class Chatbot {
     }
 
     private int calculateRecommendationScore(Product product, RecommendationCriteria criteria) {
-        if (product == null || criteria == null || criteria.style == null || criteria.style.isEmpty()) {
+        if (product == null || criteria == null) {
             return 0;
         }
 
         String text = (safeLower(product.getBrand()) + " " + safeLower(product.getTitle()) + " " + safeLower(product.getCategory()));
         String style = criteria.style;
         int score = 0;
-        if ("rock".equals(style)) {
-            score += scoreText(text, "les paul", "lp", "sc-", "single cut", "sg", "monarkh", "ec-", "jet", "custom", "humbucker", "hh");
-        } else if ("metal".equals(style)) {
-            score += scoreText(text, "metal", "fr", "floyd", "emg", "active", "prophecy", "monarkh", "ec-", "black", "jackson", "esp", "solar");
-        } else if ("jazz".equals(style)) {
-            score += scoreText(text, "jazz", "semi", "hollow", "sheraton", "casino", "es-", "gretsch", "archtop", "dot");
-        } else if ("blues".equals(style)) {
-            score += scoreText(text, "strat", "tele", "les paul", "lp", "p90", "vintage", "classic", "gretsch");
-        } else if ("pop".equals(style)) {
-            score += scoreText(text, "strat", "tele", "pacifica", "yamaha", "classic", "standard");
-        } else if ("funk".equals(style)) {
-            score += scoreText(text, "strat", "tele", "single coil", "pacifica", "yamaha");
-        } else if ("fingerstyle".equals(style)) {
-            score += scoreText(text, "acoustic", "solid top", "fg800", "dreadnought", "concert", "travel");
+        if (style != null && !style.isEmpty()) {
+            if ("rock".equals(style)) {
+                score += scoreText(text, "les paul", "lp", "sc-", "single cut", "sg", "monarkh", "ec-", "jet", "custom", "humbucker", "hh");
+            } else if ("metal".equals(style)) {
+                score += scoreText(text, "metal", "fr", "floyd", "emg", "active", "prophecy", "monarkh", "ec-", "black", "jackson", "esp", "solar");
+            } else if ("jazz".equals(style)) {
+                score += scoreText(text, "jazz", "semi", "hollow", "sheraton", "casino", "es-", "gretsch", "archtop", "dot");
+            } else if ("blues".equals(style)) {
+                score += scoreText(text, "strat", "tele", "les paul", "lp", "p90", "vintage", "classic", "gretsch");
+            } else if ("pop".equals(style)) {
+                score += scoreText(text, "strat", "tele", "pacifica", "yamaha", "classic", "standard");
+            } else if ("funk".equals(style)) {
+                score += scoreText(text, "strat", "tele", "single coil", "pacifica", "yamaha");
+            } else if ("fingerstyle".equals(style)) {
+                score += scoreText(text, "acoustic", "solid top", "fg800", "dreadnought", "concert", "travel");
+            }
         }
 
-        if (!criteria.category.isEmpty() && product.getCategory() != null && product.getCategory().equalsIgnoreCase(criteria.category)) {
+        if (matchesAnyCategory(product, criteria.categories)) {
             score += 2;
         }
         return score;
@@ -519,16 +643,62 @@ public class Chatbot {
         return text == null ? "" : text.toLowerCase();
     }
 
-    private List<Product> diversifyRecommendations(List<Product> candidates, int limit) {
+    private Product findFirstProductByCategory(List<Product> products, String category, List<Product> excludedProducts) {
+        for (Product product : products) {
+            if (matchesCategory(product, category) && !excludedProducts.contains(product)) {
+                return product;
+            }
+        }
+        return null;
+    }
+
+    private boolean matchesAnyCategory(Product product, List<String> categories) {
+        if (categories == null || categories.isEmpty()) {
+            return false;
+        }
+        for (String category : categories) {
+            if (matchesCategory(product, category)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean matchesCategory(Product product, String category) {
+        return product != null
+                && product.getCategory() != null
+                && category != null
+                && product.getCategory().equalsIgnoreCase(category);
+    }
+
+    private List<Product> diversifyRecommendations(List<Product> candidates, RecommendationCriteria criteria, int limit) {
         List<Product> selected = new ArrayList<Product>();
         if (candidates == null || candidates.isEmpty() || limit <= 0) {
             return selected;
         }
 
+        if (criteria != null && criteria.categories.size() > 1) {
+            for (String category : criteria.categories) {
+                Product categoryProduct = findFirstProductByCategory(candidates, category, selected);
+                if (categoryProduct != null) {
+                    selected.add(categoryProduct);
+                }
+                if (selected.size() == limit) {
+                    return selected;
+                }
+            }
+        }
+
         List<String> selectedBrands = new ArrayList<String>();
-        for (Product product : candidates) {
+        for (Product product : selected) {
             String brand = product.getBrand() == null ? "" : product.getBrand().toLowerCase().trim();
             if (!selectedBrands.contains(brand)) {
+                selectedBrands.add(brand);
+            }
+        }
+        for (Product product : candidates) {
+            String brand = product.getBrand() == null ? "" : product.getBrand().toLowerCase().trim();
+            if (!selected.contains(product) && !selectedBrands.contains(brand)) {
                 selected.add(product);
                 selectedBrands.add(brand);
             }
@@ -627,7 +797,7 @@ public class Chatbot {
     }
 
     private String extractCategory(String input) {
-        if (containsAny(input, "akustik", "acoustic", "accoustic")) {
+        if (containsAny(input, "akustik", "arkustik", "acoustic", "accoustic")) {
             return "Acoustic Guitar";
         }
         if (containsAny(input, "electric", "elektrik", "listrik", "elec")) {
@@ -778,11 +948,29 @@ public class Chatbot {
         return products;
     }
 
+    private List<String> copyCategories(List<String> categories) {
+        return categories == null ? new ArrayList<String>() : new ArrayList<String>(categories);
+    }
+
+    private String firstCategory(List<String> categories) {
+        return categories == null || categories.isEmpty() ? "" : categories.get(0);
+    }
+
+    private void addUniqueCategory(List<String> categories, String category) {
+        if (category != null && !category.isEmpty() && !categories.contains(category)) {
+            categories.add(category);
+        }
+    }
+
     private void rememberProducts(List<Product> products) {
         lastProducts = new ArrayList<Product>(products);
         focusedProduct = products.isEmpty() ? null : products.get(0);
+        lastCategories.clear();
         if (!products.isEmpty()) {
             lastCategory = products.get(0).getCategory();
+            for (Product product : products) {
+                addUniqueCategory(lastCategories, product.getCategory());
+            }
         }
     }
 
@@ -790,6 +978,8 @@ public class Chatbot {
         rememberProducts(products);
         if (category != null && !category.isEmpty()) {
             lastCategory = category;
+            lastCategories.clear();
+            addUniqueCategory(lastCategories, category);
         }
         if (budget > 0) {
             lastBudget = budget;
@@ -808,8 +998,13 @@ public class Chatbot {
             lastRecommendationKey = recommendationKey;
         }
         rememberShownRecommendations(products);
-        if (criteria.category != null && !criteria.category.isEmpty()) {
+        if (hasCategoryCriteria(criteria)) {
+            lastCategories = copyCategories(criteria.categories);
+            lastCategory = firstCategory(lastCategories);
+        } else if (criteria.category != null && !criteria.category.isEmpty()) {
             lastCategory = criteria.category;
+            lastCategories.clear();
+            addUniqueCategory(lastCategories, criteria.category);
         }
         if (criteria.budget > 0) {
             lastBudget = criteria.budget;
@@ -823,7 +1018,7 @@ public class Chatbot {
         if (criteria == null) {
             return "";
         }
-        return criteria.category + "|" + criteria.budget + "|" + criteria.style + "|" + criteria.strictBudget;
+        return buildCategoryPhrase(criteria.categories) + "|" + criteria.budget + "|" + criteria.style + "|" + criteria.strictBudget;
     }
 
     private void rememberShownRecommendations(List<Product> products) {
@@ -847,6 +1042,7 @@ public class Chatbot {
 
     private void clearProductContext() {
         lastProducts.clear();
+        lastCategories.clear();
         focusedProduct = null;
     }
 

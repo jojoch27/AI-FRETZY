@@ -1,0 +1,5 @@
+# Created at 2026-05-25T00:58:30.416
+Boot Manifest-JAR contains absolute paths in classpath 'D:\Tugas SMT4\PrRPLBO\AI-FRETZY\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
