@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+
+<HBox alignment="CENTER" prefHeight="78.0" spacing="10.0" style="-fx-background-color: #344858; -fx-padding: 14 14 14 14;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="bottomInputField" id="bottomInputField" maxWidth="1.7976931348623157E308" prefHeight="38.0" promptText="Type your message..." style="-fx-background-color: #2d3f4e; -fx-text-fill: #f7efe4; -fx-prompt-text-fill: #9eabb4; -fx-background-radius: 5;" HBox.hgrow="ALWAYS" />
+      <Button fx:id="bottomSendButton" id="bottomSendButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #2d3f4e; -fx-text-fill: #f7efe4; -fx-background-radius: 5;" text="Send" />
+   </children>
+</HBox>

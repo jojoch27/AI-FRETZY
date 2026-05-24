@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane style="-fx-background-color: #1f1f1f;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox maxWidth="571.0" prefHeight="329.0" prefWidth="742.0" spacing="14.0" style="-fx-background-color: #506B82; -fx-background-radius: 6; -fx-padding: 28 24 28 24;">
+         <children>
+            <Label text="Username Admin" textFill="#f7efe4">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField id="adminEmailField" fx:id="adminEmailField" prefHeight="38.0" promptText="Masukkan username" style="-fx-background-color: #f6eee2; -fx-background-radius: 4;" />
+            <Label text="Password" textFill="#f7efe4">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="6.0" />
+               </VBox.margin>
+            </Label>
+            <PasswordField id="adminPasswordField" fx:id="adminPasswordField" prefHeight="38.0" promptText="Masukkan password" style="-fx-background-color: #f6eee2; -fx-background-radius: 4;" />
+            <Button id="adminLoginButton" fx:id="adminLoginButton" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #f6eee2; -fx-text-fill: #405a70; -fx-font-weight: bold; -fx-background-radius: 8;" text="Login">
+               <VBox.margin>
+                  <Insets left="90.0" right="90.0" top="14.0" />
+               </VBox.margin>
+            </Button>
+            <Label id="adminLoginStatusLabel" fx:id="adminLoginStatusLabel" textFill="#ffd1d1" wrapText="true" />
+         </children>
+      </VBox>
+   </children>
+</StackPane>

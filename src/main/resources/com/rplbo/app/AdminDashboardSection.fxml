@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fitToWidth="true" style="-fx-background-color: #1f1f1f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox fillWidth="true" spacing="16.0" style="-fx-background-color: #1f1f1f; -fx-padding: 14 14 14 14;">
+         <children>
+      <Label text="Items" textFill="#f7efe4">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <VBox spacing="10.0" style="-fx-background-color: #506B82; -fx-background-radius: 10; -fx-padding: 14 14 14 14;">
+         <children>
+            <Label text="Product Form" textFill="#f7efe4">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <HBox spacing="10.0">
+               <children>
+                  <TextField fx:id="brandField" id="brandField" promptText="Brand" style="-fx-background-color: #f6eee2; -fx-background-radius: 4;" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="titleField" id="titleField" promptText="Product Name" style="-fx-background-color: #f6eee2; -fx-background-radius: 4;" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <TextField fx:id="categoryField" id="categoryField" promptText="Category" style="-fx-background-color: #f6eee2; -fx-background-radius: 4;" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="priceField" id="priceField" promptText="Price (IDR)" style="-fx-background-color: #f6eee2; -fx-background-radius: 4;" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <TextField fx:id="descriptionField" id="descriptionField" promptText="Deskripsi gitar" style="-fx-background-color: #f6eee2; -fx-background-radius: 4;" />
+            <TextField fx:id="imageUrlField" id="imageUrlField" promptText="URL gambar gitar" style="-fx-background-color: #f6eee2; -fx-background-radius: 4;" />
+            <HBox spacing="10.0">
+               <children>
+                  <Button fx:id="saveProductButton" id="saveProductButton" mnemonicParsing="false" prefHeight="36.0" style="-fx-background-color: #f6eee2; -fx-text-fill: #405a70; -fx-font-weight: bold; -fx-background-radius: 6;" text="Tambah Produk" />
+                  <Button fx:id="cancelEditButton" id="cancelEditButton" mnemonicParsing="false" prefHeight="36.0" style="-fx-background-color: transparent; -fx-border-color: #f6eee2; -fx-text-fill: #f6eee2; -fx-border-radius: 6; -fx-background-radius: 6;" text="Batal" />
+                  <Button fx:id="logoutButton" id="logoutButton" mnemonicParsing="false" prefHeight="36.0" style="-fx-background-color: #b74646; -fx-text-fill: #f7efe4; -fx-font-weight: bold; -fx-background-radius: 6;" text="Logout" />
+                  <Label fx:id="dashboardStatusLabel" id="dashboardStatusLabel" textFill="#f7efe4" wrapText="true">
+                     <HBox.margin>
+                        <Insets top="8.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox spacing="12.0" style="-fx-background-color: #f6eee2; -fx-background-radius: 10; -fx-padding: 14 14 14 14;" VBox.vgrow="ALWAYS">
+         <children>
+            <TableView fx:id="dashboardTable" id="dashboardTable" prefHeight="240.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #d6dde3; -fx-border-radius: 10;" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+      <VBox spacing="10.0" style="-fx-background-color: #506B82; -fx-background-radius: 10; -fx-padding: 14 14 14 14;">
+         <children>
+            <Label text="Order Status" textFill="#f7efe4">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <HBox spacing="10.0">
+               <children>
+                  <TextField fx:id="orderNumberField" id="orderNumberField" promptText="Nomor pesanan" style="-fx-background-color: #f6eee2; -fx-background-radius: 4;" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="customerNameField" id="customerNameField" promptText="Nama customer" style="-fx-background-color: #f6eee2; -fx-background-radius: 4;" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <ComboBox fx:id="orderProductComboBox" id="orderProductComboBox" promptText="Pilih produk" style="-fx-background-color: #f6eee2; -fx-background-radius: 4;" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="addOrderButton" id="addOrderButton" mnemonicParsing="false" prefHeight="36.0" style="-fx-background-color: #f6eee2; -fx-text-fill: #405a70; -fx-font-weight: bold; -fx-background-radius: 6;" text="Tambah Pesanan" />
+                  <Button fx:id="deleteOrderButton" id="deleteOrderButton" mnemonicParsing="false" prefHeight="36.0" style="-fx-background-color: #b74646; -fx-text-fill: #f7efe4; -fx-font-weight: bold; -fx-background-radius: 6;" text="Delete Pesanan" />
+               </children>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <TextField fx:id="selectedOrderField" id="selectedOrderField" editable="false" promptText="Pilih pesanan dari tabel" style="-fx-background-color: #f6eee2; -fx-background-radius: 4;" HBox.hgrow="ALWAYS" />
+                  <ComboBox fx:id="orderStatusComboBox" id="orderStatusComboBox" prefWidth="190.0" promptText="Status" style="-fx-background-color: #f6eee2; -fx-background-radius: 4;" />
+                  <Button fx:id="updateOrderStatusButton" id="updateOrderStatusButton" mnemonicParsing="false" prefHeight="36.0" style="-fx-background-color: #f6eee2; -fx-text-fill: #405a70; -fx-font-weight: bold; -fx-background-radius: 6;" text="Update Status" />
+               </children>
+            </HBox>
+            <TableView fx:id="orderTable" id="orderTable" prefHeight="180.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #d6dde3; -fx-border-radius: 10;" />
+         </children>
+      </VBox>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

@@ -1,0 +1,881 @@
+package com.rplbo.app;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Chatbot {
+    private static final int RECOMMENDATION_LIMIT = 3;
+    private static final int CANDIDATE_LIMIT = 25;
+    private final Database database;
+    private final NLPService nlpService = new NLPService();
+    private final List<KnowledgeBase> knowledgeBaseEntries = new ArrayList<KnowledgeBase>();
+    private List<Product> lastProducts = new ArrayList<Product>();
+    private final List<Integer> shownRecommendationProductIds = new ArrayList<Integer>();
+    private final List<String> shownRecommendationProductNames = new ArrayList<String>();
+    private Product focusedProduct = null;
+    private String lastCategory = "";
+    private int lastBudget = 0;
+    private String lastStyle = "";
+    private String lastRecommendationKey = "";
+    private String lastResponse = "";
+
+    private static class RecommendationCriteria {
+        private int budget;
+        private String category = "";
+        private String style = "";
+        private boolean strictBudget;
+    }
+
+    //knowledge base
+    public Chatbot(Database database) {
+        this.database = database;
+        knowledgeBaseEntries.add(new KnowledgeBase("halo", "Halo juga! Ada gitar yang sedang Anda incar hari ini?"));
+        knowledgeBaseEntries.add(new KnowledgeBase("hai", "Halo juga! Ada gitar yang sedang Anda incar hari ini?"));
+        knowledgeBaseEntries.add(new KnowledgeBase("hello", "Halo juga! Ada gitar yang sedang Anda incar hari ini?"));
+        knowledgeBaseEntries.add(new KnowledgeBase("hi", "Halo juga! Ada gitar yang sedang Anda incar hari ini?"));
+        knowledgeBaseEntries.add(new KnowledgeBase("permisi", "Halo juga! Ada gitar yang sedang Anda incar hari ini?"));
+        knowledgeBaseEntries.add(new KnowledgeBase("pagi", "Halo juga! Ada gitar yang sedang Anda incar hari ini?"));
+        knowledgeBaseEntries.add(new KnowledgeBase("siapa namamu", "Nama saya Fretzy, asisten virtual toko gitar native ini."));
+        knowledgeBaseEntries.add(new KnowledgeBase("nama kamu", "Nama saya Fretzy, asisten virtual toko gitar native ini."));
+        knowledgeBaseEntries.add(new KnowledgeBase("kamu siapa", "Nama saya Fretzy, asisten virtual toko gitar native ini."));
+        knowledgeBaseEntries.add(new KnowledgeBase("bantuan", "Cara mencari gitar:\nKetik 'cari [nama gitar]'\nKetik 'stok [brand]'\nKetik 'harga [model]'"));
+        knowledgeBaseEntries.add(new KnowledgeBase("menu", "Cara mencari gitar:\nKetik 'cari [nama gitar]'\nKetik 'stok [brand]'\nKetik 'harga [model]'"));
+        knowledgeBaseEntries.add(new KnowledgeBase("tolong", "Cara mencari gitar:\nKetik 'cari [nama gitar]'\nKetik 'stok [brand]'\nKetik 'harga [model]'"));
+        knowledgeBaseEntries.add(new KnowledgeBase("help", "Cara mencari gitar:\nKetik 'cari [nama gitar]'\nKetik 'stok [brand]'\nKetik 'harga [model]'"));
+        knowledgeBaseEntries.add(new KnowledgeBase("panduan", "Cara mencari gitar:\nKetik 'cari [nama gitar]'\nKetik 'stok [brand]'\nKetik 'harga [model]'"));
+        knowledgeBaseEntries.add(new KnowledgeBase("terima kasih", "Sama-sama. Kalau mau, saya bisa bantu carikan gitar berdasarkan brand, kategori, atau budget."));
+        knowledgeBaseEntries.add(new KnowledgeBase("makasih", "Sama-sama. Kalau mau, saya bisa bantu carikan gitar berdasarkan brand, kategori, atau budget."));
+        knowledgeBaseEntries.add(new KnowledgeBase("thanks", "Sama-sama. Kalau mau, saya bisa bantu carikan gitar berdasarkan brand, kategori, atau budget."));
+        knowledgeBaseEntries.add(new KnowledgeBase("thank you", "Sama-sama. Kalau mau, saya bisa bantu carikan gitar berdasarkan brand, kategori, atau budget."));
+        knowledgeBaseEntries.add(new KnowledgeBase("jam operasional", "Jam operasional toko: Senin sampai Sabtu, pukul 09.00 sampai 20.00."));
+        knowledgeBaseEntries.add(new KnowledgeBase("jam buka toko", "Jam operasional toko: Senin sampai Sabtu, pukul 09.00 sampai 20.00."));
+        knowledgeBaseEntries.add(new KnowledgeBase("toko buka", "Jam operasional toko: Senin sampai Sabtu, pukul 09.00 sampai 20.00."));
+        knowledgeBaseEntries.add(new KnowledgeBase("buka jam", "Jam operasional toko: Senin sampai Sabtu, pukul 09.00 sampai 20.00."));
+        knowledgeBaseEntries.add(new KnowledgeBase("lokasi toko", "Saat ini saya fokus membantu katalog gitar dan status pesanan. Untuk lokasi toko, silakan cek informasi admin toko."));
+        knowledgeBaseEntries.add(new KnowledgeBase("alamat toko", "Saat ini saya fokus membantu katalog gitar dan status pesanan. Untuk lokasi toko, silakan cek informasi admin toko."));
+        knowledgeBaseEntries.add(new KnowledgeBase("dimana toko", "Saat ini saya fokus membantu katalog gitar dan status pesanan. Untuk lokasi toko, silakan cek informasi admin toko."));
+        knowledgeBaseEntries.add(new KnowledgeBase("jenis gitar", "Jenis gitar yang tersedia: akustik, elektrik, bass, dan klasik. Sebutkan jenisnya untuk mendapat rekomendasi."));
+        knowledgeBaseEntries.add(new KnowledgeBase("gitar akustik", "Gitar akustik cocok untuk belajar chord, fingerstyle, dan bermain tanpa amplifier."));
+        knowledgeBaseEntries.add(new KnowledgeBase("acoustic guitar", "Gitar akustik cocok untuk belajar chord, fingerstyle, dan bermain tanpa amplifier."));
+        knowledgeBaseEntries.add(new KnowledgeBase("gitar elektrik", "Gitar elektrik cocok untuk rock, pop, jazz, dan penggunaan efek suara melalui amplifier."));
+        knowledgeBaseEntries.add(new KnowledgeBase("electric guitar", "Gitar elektrik cocok untuk rock, pop, jazz, dan penggunaan efek suara melalui amplifier."));
+        knowledgeBaseEntries.add(new KnowledgeBase("gitar bass", "Bass guitar dipakai untuk menjaga ritme dan nada rendah dalam band."));
+        knowledgeBaseEntries.add(new KnowledgeBase("gitar klasik", "Gitar klasik memakai senar nylon, nyaman untuk pemula dan musik klasik."));
+        knowledgeBaseEntries.add(new KnowledgeBase("classical guitar", "Gitar klasik memakai senar nylon, nyaman untuk pemula dan musik klasik."));
+        knowledgeBaseEntries.add(new KnowledgeBase("cara memilih gitar", "Pilih gitar berdasarkan kebutuhan: akustik untuk latihan praktis, elektrik untuk panggung dan efek, bass untuk rhythm section, klasik untuk senar yang lebih lembut."));
+        knowledgeBaseEntries.add(new KnowledgeBase("tips memilih gitar", "Pilih gitar berdasarkan kebutuhan: akustik untuk latihan praktis, elektrik untuk panggung dan efek, bass untuk rhythm section, klasik untuk senar yang lebih lembut."));
+        knowledgeBaseEntries.add(new KnowledgeBase("perawatan gitar", "Simpan gitar di tempat kering, bersihkan senar setelah dipakai, cek tuning, dan ganti senar jika sudah kusam atau berkarat."));
+        knowledgeBaseEntries.add(new KnowledgeBase("merawat gitar", "Simpan gitar di tempat kering, bersihkan senar setelah dipakai, cek tuning, dan ganti senar jika sudah kusam atau berkarat."));
+        knowledgeBaseEntries.add(new KnowledgeBase("admin", "Menu admin tersedia di sidebar. Admin harus login dengan akun terdaftar sebelum mengelola produk."));
+        knowledgeBaseEntries.add(new KnowledgeBase("keluar", "Terima kasih sudah berkunjung! Sampai jumpa."));
+        knowledgeBaseEntries.add(new KnowledgeBase("bye", "Terima kasih sudah berkunjung! Sampai jumpa."));
+        knowledgeBaseEntries.add(new KnowledgeBase("dadah", "Terima kasih sudah berkunjung! Sampai jumpa."));
+    }
+    //penerima input
+    public String receiveInput(String input) {
+        return processQuestion(input);
+    }
+
+    //prosessor
+    public String processQuestion(String input) {
+        NLPService.AnalysisResult analysis = nlpService.analyze(input);
+        String normalizedInput = analysis.getNormalizedInput();
+        if (normalizedInput.isEmpty()) {
+            lastResponse = "Silakan ketik kebutuhan gitar Anda, misalnya 'rekomendasi akustik 3 juta' atau 'info Gibson Les Paul'.";
+            return generateResponse();
+        }
+
+        //order number handler
+        if (analysis.getIntentType() == NLPService.IntentType.ORDER_STATUS || isOrderStatusRequest(normalizedInput)) {
+            String orderNumber = analysis.getOrderNumber().isEmpty()
+                    ? nlpService.extractOrderNumber(normalizedInput)
+                    : analysis.getOrderNumber();
+            if (orderNumber.length() < 2) {
+                lastResponse = "Mohon masukkan nomor pesanan yang valid.";
+                return generateResponse();
+            }
+
+            Order order = database.findOrder(orderNumber);
+            lastResponse = order == null
+                    ? "Maaf, nomor pesanan tidak ditemukan."
+                    : "Status pesanan " + orderNumber + " saat ini: " + order.checkStatus() + ".";
+            return generateResponse();
+        }
+
+        if (isContextualProductDetailRequest(normalizedInput)) {
+            Product product = resolveProductFromContext(normalizedInput);
+            if (product == null) {
+                lastResponse = "Saya belum punya produk acuan. Coba cari atau minta rekomendasi gitar dulu, lalu sebutkan 'detail nomor 1'.";
+                return generateResponse();
+            }
+
+            lastResponse = describeProduct(product);
+            focusedProduct = product;
+            return generateResponse();
+        }
+
+        if (analysis.getIntentType() == NLPService.IntentType.COMPARISON || isComparisonRequest(normalizedInput)) {
+            lastResponse = buildComparisonResponse();
+            return generateResponse();
+        }
+
+        if (analysis.getIntentType() == NLPService.IntentType.RECOMMENDATION
+                || (analysis.getIntentType() == NLPService.IntentType.UNKNOWN && isRecommendationRequest(normalizedInput))) {
+            lastResponse = buildRecommendationResponse(normalizedInput);
+            return generateResponse();
+        }
+
+        //search handler
+        if (analysis.getIntentType() == NLPService.IntentType.PRODUCT_DETAIL || isProductDetailRequest(normalizedInput)) {
+            String keyword = analysis.getKeyword().isEmpty()
+                    ? cleanProductKeyword(normalizedInput)
+                    : analysis.getKeyword();
+            if (keyword.length() < 2) {
+                lastResponse = "Bisa. Sebutkan nama gitarnya, misalnya 'Gibson Les Paul Standard 60s IT'.";
+                return generateResponse();
+            }
+
+            lastResponse = describeProduct(keyword);
+            return generateResponse();
+        }
+
+        if (analysis.getIntentType() == NLPService.IntentType.PRODUCT_SEARCH || isProductSearchRequest(normalizedInput)) {
+            String keyword = analysis.getKeyword().isEmpty()
+                    ? cleanProductKeyword(normalizedInput)
+                    : analysis.getKeyword();
+            if (keyword.length() < 2) {
+                lastResponse = "Mohon masukkan nama gitar yang lebih spesifik.";
+                return generateResponse();
+            }
+
+            lastResponse = searchProduct(keyword);
+            return generateResponse();
+        }
+
+        for (KnowledgeBase knowledgeBase : knowledgeBaseEntries) {
+            if (knowledgeBase.searchAnswer(normalizedInput)) {
+                lastResponse = knowledgeBase.getResponse();
+                return generateResponse();
+            }
+        }
+
+        lastResponse = describeProductIfKnown(normalizedInput);
+        if (!lastResponse.isEmpty()) {
+            return generateResponse();
+        }
+
+        lastResponse = "Maaf, saya tidak mengerti. Coba gunakan kata kunci 'cari', 'harga', 'stok', atau 'rekomendasi' diikuti kebutuhan gitarnya.";
+        return generateResponse();
+    }
+
+    //generator respons
+    public String generateResponse() {
+        return lastResponse;
+    }
+    //handler cari produk
+    public String searchProduct(String keyword) {
+        List<Product> products = database.findProducts(keyword);
+        if (products.isEmpty()) {
+            clearProductContext();
+            return "Maaf, gitar '" + keyword + "' tidak ditemukan di database kami.";
+        }
+
+        rememberProducts(products);
+        StringBuilder hasil = new StringBuilder("Fretzy menemukan beberapa gitar:\n");
+        int nomor = 1;
+        for (Product product : products) {
+            hasil.append(nomor).append(". ")
+                    .append(product.getName())
+                    .append(" - Rp ")
+                    .append(String.format("%,.0f", product.getPrice()))
+                    .append("\n");
+            nomor++;
+        }
+        return hasil.toString();
+    }
+
+    private String describeProduct(String keyword) {
+        List<Product> products = database.findProducts(keyword);
+        if (products.isEmpty()) {
+            return "Maaf, detail gitar '" + keyword + "' tidak ditemukan di database kami.";
+        }
+
+        Product product = products.get(0);
+        rememberProducts(singleProductList(product));
+        focusedProduct = product;
+        return describeProduct(product);
+    }
+
+    private String describeProduct(Product product) {
+        return "Info lengkap gitar:\n"
+                + "Nama: " + product.getName() + "\n"
+                + "Kategori: " + product.getCategory() + "\n"
+                + "Harga: Rp " + String.format("%,.0f", product.getPrice()) + "\n"
+                + "Deskripsi: " + product.getDescription() + "\n"
+                + "Gambar: " + product.getImageUrl();
+    }
+
+    private String describeProductIfKnown(String input) {
+        if (input.length() < 4 || isSmallTalk(input)) {
+            return "";
+        }
+
+        List<Product> products = database.findProducts(input);
+        if (products.isEmpty()) {
+            return "";
+        }
+
+        return describeProduct(input);
+    }
+
+    private boolean isSmallTalk(String input) {
+        return input.contains("apa kabar")
+                || input.contains("terima kasih")
+                || input.contains("makasih")
+                || input.contains("halo")
+                || input.contains("hai")
+                || input.contains("hello")
+                || input.contains("hi")
+                || input.contains("pagi")
+                || input.contains("siang")
+                || input.contains("malam");
+    }
+
+    private boolean isProductDetailRequest(String input) {
+        return containsAny(input,
+                "deskripsi", "detail", "gambar", "foto", "info", "informasi",
+                "spesifikasi", "spec", "spek", "review", "ulasan", "jelaskan",
+                "ceritakan", "tentang produk", "lihat produk");
+    }
+
+    private boolean isContextualProductDetailRequest(String input) {
+        return !lastProducts.isEmpty()
+                && (containsAny(input, "detail", "deskripsi", "gambar", "foto", "info", "informasi", "spesifikasi", "spek")
+                || input.matches(".*\\b(nomor|no)\\s*\\d+\\b.*")
+                || containsAny(input, "yang pertama", "yang kedua", "yang ketiga", "produk tadi", "gitar tadi", "yang tadi", "itu"));
+    }
+
+    private boolean isComparisonRequest(String input) {
+        return containsAny(input, "bandingkan", "perbandingan", "beda", "bedanya", "compare");
+    }
+
+    private boolean isProductSearchRequest(String input) {
+        return containsAny(input,
+                "cari", "carikan", "mencari", "nyari", "stok", "stock", "harga",
+                "aku mau", "saya mau", "ingin beli", "mau beli", "beli", "jual",
+                "tersedia", "ready", "ada", "punya", "lihat", "tampilkan", "show",
+                "butuh gitar");
+    }
+
+    private boolean isOrderStatusRequest(String input) {
+        return containsAny(input,
+                "status pesanan", "status order", "cek pesanan", "cek order",
+                "lacak pesanan", "lacak order", "tracking pesanan", "tracking order",
+                "nomor pesanan", "nomor order");
+    }
+
+    private String cleanProductKeyword(String input) {
+        return input.replace("cari", " ")
+                .replace("carikan", " ")
+                .replace("mencari", " ")
+                .replace("nyari", " ")
+                .replace("stok", " ")
+                .replace("stock", " ")
+                .replace("harga", " ")
+                .replace("aku mau", " ")
+                .replace("saya mau", " ")
+                .replace("ingin beli", " ")
+                .replace("mau beli", " ")
+                .replace("beli", " ")
+                .replace("jual", " ")
+                .replace("tersedia", " ")
+                .replace("ready", " ")
+                .replace("ada", " ")
+                .replace("punya", " ")
+                .replace("lihat", " ")
+                .replace("tampilkan", " ")
+                .replace("show", " ")
+                .replace("butuh", " ")
+                .replace("deskripsi", " ")
+                .replace("detail", " ")
+                .replace("gambar", " ")
+                .replace("foto", " ")
+                .replace("tentang", " ")
+                .replace("info", " ")
+                .replace("informasi", " ")
+                .replace("spesifikasi", " ")
+                .replace("spec", " ")
+                .replace("spek", " ")
+                .replace("review", " ")
+                .replace("ulasan", " ")
+                .replace("jelaskan", " ")
+                .replace("ceritakan", " ")
+                .replace("gitar", " ")
+                .replaceAll("\\s+", " ")
+                .trim();
+    }
+
+    private boolean isRecommendationRequest(String input) {
+        return containsAny(input,
+                "rekomendasi", "recommend", "sarankan", "saran", "pilihkan",
+                "pilih", "cocok", "pemula", "beginner", "budget", "anggaran", "harga",
+                "dana", "dibawah", "di bawah", "maksimal", "max", "kurang dari",
+                "murah", "terjangkau", "terbaik", "untuk belajar", "karakter",
+                "tone", "suara", "genre", "rock", "metal", "jazz", "blues",
+                "pop", "funk", "fingerstyle", "strumming", "lainnya", "yang lain",
+                "ada lagi", "pilihan lain", "opsi lain", "alternatif");
+    }
+
+    private String buildRecommendationResponse(String input) {
+        RecommendationCriteria criteria = extractRecommendationCriteria(input);
+        boolean wantsAlternative = isAlternativeRecommendationRequest(input);
+        List<Product> products;
+
+        if (criteria.budget > 0 && !criteria.category.isEmpty()) {
+            products = criteria.strictBudget
+                    ? database.findProductsByCategoryAndMaxPrice(criteria.category, criteria.budget, CANDIDATE_LIMIT)
+                    : database.findProductsByCategoryNearPrice(criteria.category, criteria.budget, calculateFlexibleMinBudget(criteria.budget), calculateFlexibleMaxBudget(criteria.budget), CANDIDATE_LIMIT);
+            products = rankRecommendations(products, criteria, RECOMMENDATION_LIMIT, wantsAlternative);
+            if (!products.isEmpty()) {
+                rememberRecommendationContext(products, criteria);
+                String intro = criteria.strictBudget
+                        ? buildRecommendationIntro("Berikut rekomendasi gitar " + criteria.category + buildStylePhrase(criteria.style) + " sesuai budget maksimal Anda", wantsAlternative)
+                        : buildRecommendationIntro("Berikut rekomendasi gitar " + criteria.category + buildStylePhrase(criteria.style) + " yang paling mendekati budget Anda", wantsAlternative);
+                return formatRecommendation(intro, products);
+            }
+
+            if (wantsAlternative) {
+                return "Maaf, belum ada rekomendasi lain untuk kriteria itu. Coba ubah budget, kategori, atau karakter suara.";
+            }
+            return "Maaf, belum ada gitar " + criteria.category + buildStylePhrase(criteria.style) + " dengan budget sekitar Rp " + String.format("%,.0f", (double) criteria.budget) + ". Coba naikkan budget atau pilih karakter lain.";
+        }
+
+        if (criteria.budget > 0) {
+            products = rankRecommendations(database.findProductsByMaxPrice(criteria.budget, CANDIDATE_LIMIT), criteria, RECOMMENDATION_LIMIT, wantsAlternative);
+            if (!products.isEmpty()) {
+                rememberRecommendationContext(products, criteria);
+                return formatRecommendation(buildRecommendationIntro("Berikut rekomendasi gitar" + buildStylePhrase(criteria.style) + " sesuai budget Anda", wantsAlternative), products);
+            }
+            if (wantsAlternative) {
+                return "Maaf, belum ada rekomendasi lain untuk kriteria itu. Coba ubah budget, kategori, atau karakter suara.";
+            }
+        }
+
+        if (!criteria.category.isEmpty()) {
+            products = rankRecommendations(database.findProductsByCategory(criteria.category, CANDIDATE_LIMIT), criteria, RECOMMENDATION_LIMIT, wantsAlternative);
+            if (!products.isEmpty()) {
+                rememberRecommendationContext(products, criteria);
+                return formatRecommendation(buildRecommendationIntro("Berikut rekomendasi gitar kategori " + criteria.category + buildStylePhrase(criteria.style), wantsAlternative), products);
+            }
+            if (wantsAlternative) {
+                return "Maaf, belum ada rekomendasi lain untuk kriteria itu. Coba ubah budget, kategori, atau karakter suara.";
+            }
+        }
+
+        if (input.contains("pemula")) {
+            RecommendationCriteria beginnerCriteria = new RecommendationCriteria();
+            beginnerCriteria.budget = 3000000;
+            beginnerCriteria.category = criteria.category;
+            beginnerCriteria.style = criteria.style;
+            beginnerCriteria.strictBudget = true;
+            products = rankRecommendations(database.findProductsByMaxPrice(3000000, CANDIDATE_LIMIT), beginnerCriteria, RECOMMENDATION_LIMIT, wantsAlternative);
+            if (!products.isEmpty()) {
+                rememberRecommendationContext(products, beginnerCriteria);
+                return formatRecommendation(buildRecommendationIntro("Untuk pemula, saya sarankan model yang lebih ramah budget seperti berikut", wantsAlternative), products);
+            }
+            if (wantsAlternative) {
+                return "Maaf, belum ada rekomendasi lain untuk kriteria itu. Coba ubah budget, kategori, atau karakter suara.";
+            }
+        }
+
+        return "Saya belum menemukan rekomendasi yang pas dari permintaan itu. Coba sebutkan kategori seperti akustik, electric, bass, atau budget misalnya 'dibawah 3 juta'.";
+    }
+
+    private RecommendationCriteria extractRecommendationCriteria(String input) {
+        NLPService.AnalysisResult analysis = nlpService.analyze(input);
+        RecommendationCriteria criteria = new RecommendationCriteria();
+        criteria.budget = analysis.getBudget();
+        criteria.category = analysis.getCategory();
+        criteria.style = analysis.getStyle();
+        criteria.strictBudget = analysis.isStrictBudget();
+
+        if (criteria.category.isEmpty()) {
+            criteria.category = inferCategoryFromStyle(criteria.style);
+        }
+        if (criteria.budget == 0 && containsAny(input, "lebih murah", "yang murah", "murahan") && !lastProducts.isEmpty()) {
+            criteria.budget = Math.max(1, findLowestContextPrice() - 1);
+            criteria.strictBudget = true;
+        }
+        if (criteria.budget == 0 && lastBudget > 0 && isContextFollowUp(input)) {
+            criteria.budget = lastBudget;
+        }
+        if (criteria.category.isEmpty() && !lastCategory.isEmpty() && isContextFollowUp(input)) {
+            criteria.category = lastCategory;
+        }
+        if (criteria.style.isEmpty() && !lastStyle.isEmpty() && isContextFollowUp(input)) {
+            criteria.style = lastStyle;
+        }
+        return criteria;
+    }
+
+    private String buildStylePhrase(String style) {
+        return style == null || style.isEmpty() ? "" : " berkarakter " + style;
+    }
+
+    private boolean isAlternativeRecommendationRequest(String input) {
+        return isContextFollowUp(input)
+                && containsAny(input,
+                "lainnya", "yang lain", "ada lagi", "rekomendasi lain",
+                "pilihan lain", "opsi lain", "alternatif", "selain itu");
+    }
+
+    private String buildRecommendationIntro(String intro, boolean wantsAlternative) {
+        return wantsAlternative ? intro + " lainnya" : intro;
+    }
+
+    private List<Product> rankRecommendations(List<Product> candidates, RecommendationCriteria criteria, int limit) {
+        return rankRecommendations(candidates, criteria, limit, false);
+    }
+
+    private List<Product> rankRecommendations(List<Product> candidates, RecommendationCriteria criteria, int limit, boolean excludeShown) {
+        List<Product> ranked = sortByStyleScore(candidates, criteria);
+        if (excludeShown) {
+            ranked = removeShownRecommendations(ranked);
+        }
+        return diversifyRecommendations(ranked, limit);
+    }
+
+    private List<Product> removeShownRecommendations(List<Product> candidates) {
+        List<Product> filtered = new ArrayList<Product>();
+        for (Product product : candidates) {
+            if (!shownRecommendationProductIds.contains(Integer.valueOf(product.getProductId()))
+                    && !shownRecommendationProductNames.contains(normalizeProductName(product))) {
+                filtered.add(product);
+            }
+        }
+        return filtered;
+    }
+
+    private List<Product> sortByStyleScore(List<Product> candidates, RecommendationCriteria criteria) {
+        List<Product> ranked = new ArrayList<Product>();
+        if (candidates == null) {
+            return ranked;
+        }
+        ranked.addAll(candidates);
+        for (int i = 1; i < ranked.size(); i++) {
+            Product current = ranked.get(i);
+            int currentScore = calculateRecommendationScore(current, criteria);
+            int j = i - 1;
+            while (j >= 0 && calculateRecommendationScore(ranked.get(j), criteria) < currentScore) {
+                ranked.set(j + 1, ranked.get(j));
+                j--;
+            }
+            ranked.set(j + 1, current);
+        }
+        return ranked;
+    }
+
+    private int calculateRecommendationScore(Product product, RecommendationCriteria criteria) {
+        if (product == null || criteria == null || criteria.style == null || criteria.style.isEmpty()) {
+            return 0;
+        }
+
+        String text = (safeLower(product.getBrand()) + " " + safeLower(product.getTitle()) + " " + safeLower(product.getCategory()));
+        String style = criteria.style;
+        int score = 0;
+        if ("rock".equals(style)) {
+            score += scoreText(text, "les paul", "lp", "sc-", "single cut", "sg", "monarkh", "ec-", "jet", "custom", "humbucker", "hh");
+        } else if ("metal".equals(style)) {
+            score += scoreText(text, "metal", "fr", "floyd", "emg", "active", "prophecy", "monarkh", "ec-", "black", "jackson", "esp", "solar");
+        } else if ("jazz".equals(style)) {
+            score += scoreText(text, "jazz", "semi", "hollow", "sheraton", "casino", "es-", "gretsch", "archtop", "dot");
+        } else if ("blues".equals(style)) {
+            score += scoreText(text, "strat", "tele", "les paul", "lp", "p90", "vintage", "classic", "gretsch");
+        } else if ("pop".equals(style)) {
+            score += scoreText(text, "strat", "tele", "pacifica", "yamaha", "classic", "standard");
+        } else if ("funk".equals(style)) {
+            score += scoreText(text, "strat", "tele", "single coil", "pacifica", "yamaha");
+        } else if ("fingerstyle".equals(style)) {
+            score += scoreText(text, "acoustic", "solid top", "fg800", "dreadnought", "concert", "travel");
+        }
+
+        if (!criteria.category.isEmpty() && product.getCategory() != null && product.getCategory().equalsIgnoreCase(criteria.category)) {
+            score += 2;
+        }
+        return score;
+    }
+
+    private int scoreText(String text, String... keywords) {
+        int score = 0;
+        for (String keyword : keywords) {
+            if (text.contains(keyword)) {
+                score += 3;
+            }
+        }
+        return score;
+    }
+
+    private String safeLower(String text) {
+        return text == null ? "" : text.toLowerCase();
+    }
+
+    private List<Product> diversifyRecommendations(List<Product> candidates, int limit) {
+        List<Product> selected = new ArrayList<Product>();
+        if (candidates == null || candidates.isEmpty() || limit <= 0) {
+            return selected;
+        }
+
+        List<String> selectedBrands = new ArrayList<String>();
+        for (Product product : candidates) {
+            String brand = product.getBrand() == null ? "" : product.getBrand().toLowerCase().trim();
+            if (!selectedBrands.contains(brand)) {
+                selected.add(product);
+                selectedBrands.add(brand);
+            }
+            if (selected.size() == limit) {
+                return selected;
+            }
+        }
+
+        for (Product product : candidates) {
+            if (!selected.contains(product)) {
+                selected.add(product);
+            }
+            if (selected.size() == limit) {
+                return selected;
+            }
+        }
+        return selected;
+    }
+
+    private boolean isStrictBudgetRequest(String input) {
+        return input.contains("dibawah")
+                || input.contains("di bawah")
+                || input.contains("maksimal")
+                || input.contains("max")
+                || input.contains("kurang dari")
+                || input.contains("tidak lebih dari")
+                || input.contains("lebih murah")
+                || input.contains("<");
+    }
+
+    private int calculateFlexibleMaxBudget(int budget) {
+        return (int) Math.round(budget * 1.2);
+    }
+
+    private int calculateFlexibleMinBudget(int budget) {
+        return (int) Math.round(budget * 0.8);
+    }
+
+    private String formatRecommendation(String intro, List<Product> products) {
+        StringBuilder hasil = new StringBuilder(intro).append(":\n");
+        int nomor = 1;
+        for (Product product : products) {
+            hasil.append(nomor).append(". ")
+                    .append(product.getName())
+                    .append(" (").append(product.getCategory()).append(")")
+                    .append(" - Rp ")
+                    .append(String.format("%,.0f", product.getPrice()))
+                    .append("\n");
+            nomor++;
+        }
+        return hasil.toString();
+    }
+
+    private String buildComparisonResponse() {
+        if (lastProducts.size() < 2) {
+            return "Saya butuh minimal dua produk untuk dibandingkan. Coba cari atau minta rekomendasi gitar dulu.";
+        }
+
+        StringBuilder hasil = new StringBuilder("Perbandingan singkat dari pilihan terakhir:\n");
+        int limit = Math.min(3, lastProducts.size());
+        for (int i = 0; i < limit; i++) {
+            Product product = lastProducts.get(i);
+            hasil.append(i + 1).append(". ")
+                    .append(product.getName())
+                    .append(" - ").append(product.getCategory())
+                    .append(", Rp ").append(String.format("%,.0f", product.getPrice()))
+                    .append("\n");
+        }
+        hasil.append("Pilih 'detail nomor 1' untuk melihat deskripsi lengkap salah satu produk.");
+        return hasil.toString();
+    }
+
+    private int extractBudget(String input) {
+        String normalized = input.replace(".", "").replace(",", "");
+        String[] parts = normalized.split("\\s+");
+        for (int i = 0; i < parts.length; i++) {
+            int budget = parseBudgetToken(parts[i]);
+            if (budget > 0) {
+                return budget;
+            }
+
+            if (parts[i].matches("\\d+")) {
+                int value = Integer.parseInt(parts[i]);
+                if (i + 1 < parts.length && isMillionToken(parts[i + 1])) {
+                    return value * 1000000;
+                }
+                if (i + 1 < parts.length && isThousandToken(parts[i + 1])) {
+                    return value * 1000;
+                }
+                if (value > 1000) {
+                    return value;
+                }
+            }
+        }
+        return 0;
+    }
+
+    private String extractCategory(String input) {
+        if (containsAny(input, "akustik", "acoustic", "accoustic")) {
+            return "Acoustic Guitar";
+        }
+        if (containsAny(input, "electric", "elektrik", "listrik", "elec")) {
+            return "Electric Guitar";
+        }
+        if (input.contains("bass")) {
+            return "Bass Guitar";
+        }
+        if (containsAny(input, "classical", "klasik", "nylon", "nilon")) {
+            return "Classical Guitar";
+        }
+        return "";
+    }
+
+    private String extractStyle(String input) {
+        if (containsAny(input, "metal", "heavy", "distorsi berat", "keras")) {
+            return "metal";
+        }
+        if (containsAny(input, "rock", "distorsi", "riff", "solo")) {
+            return "rock";
+        }
+        if (containsAny(input, "jazz", "warm", "mellow", "halus")) {
+            return "jazz";
+        }
+        if (containsAny(input, "blues", "vintage", "classic", "klasik rock")) {
+            return "blues";
+        }
+        if (containsAny(input, "funk", "funky", "groove")) {
+            return "funk";
+        }
+        if (containsAny(input, "fingerstyle", "finger style", "petikan", "finger picking", "fingerpicking", "strumming", "akustikan")) {
+            return "fingerstyle";
+        }
+        if (containsAny(input, "pop", "clean", "jernih")) {
+            return "pop";
+        }
+        return "";
+    }
+
+    private String inferCategoryFromStyle(String style) {
+        if ("fingerstyle".equals(style)) {
+            return "Acoustic Guitar";
+        }
+        if (containsAny(style, "rock", "metal", "jazz", "blues", "funk", "pop")) {
+            return "Electric Guitar";
+        }
+        return "";
+    }
+
+    private String normalizeInput(String input) {
+        return nlpService.normalize(input);
+    }
+
+    private String cleanOrderNumber(String input) {
+        return input.replace("cek", " ")
+                .replace("status", " ")
+                .replace("pesanan", " ")
+                .replace("order", " ")
+                .replace("lacak", " ")
+                .replace("tracking", " ")
+                .replace("nomor", " ")
+                .replace("no", " ")
+                .replaceAll("\\s+", " ")
+                .trim();
+    }
+
+    private String extractOrderNumber(String input) {
+        String cleanedInput = cleanOrderNumber(input)
+                .replace("order_number", " ")
+                .replace("ordernumber", " ")
+                .replace("nomor_pesanan", " ")
+                .replaceAll("[^a-z0-9_-]", " ")
+                .replaceAll("\\s+", " ")
+                .trim();
+        if (cleanedInput.isEmpty()) {
+            return "";
+        }
+
+        String[] parts = cleanedInput.split("\\s+");
+        for (int i = parts.length - 1; i >= 0; i--) {
+            String part = parts[i].replaceAll("^[^a-z0-9]+|[^a-z0-9]+$", "");
+            if (part.matches(".*\\d.*") && part.matches("[a-z0-9][a-z0-9_-]*")) {
+                return part.toUpperCase();
+            }
+        }
+        return cleanedInput.toUpperCase();
+    }
+
+    private boolean containsAny(String input, String... phrases) {
+        for (String phrase : phrases) {
+            if (input.contains(phrase)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isContextFollowUp(String input) {
+        return !lastProducts.isEmpty()
+                && containsAny(input,
+                "yang", "itu", "tadi", "lebih murah", "lebih mahal", "dibawah", "di bawah",
+                "maksimal", "max", "budget", "anggaran", "dana", "ada lagi", "lainnya");
+    }
+
+    private Product resolveProductFromContext(String input) {
+        if (lastProducts.isEmpty()) {
+            return null;
+        }
+
+        int index = extractProductIndex(input);
+        if (index >= 0 && index < lastProducts.size()) {
+            return lastProducts.get(index);
+        }
+
+        if (focusedProduct != null && containsAny(input, "produk tadi", "gitar tadi", "yang tadi", "itu")) {
+            return focusedProduct;
+        }
+
+        if (lastProducts.size() == 1) {
+            return lastProducts.get(0);
+        }
+
+        return null;
+    }
+
+    private int extractProductIndex(String input) {
+        String[] parts = input.split("\\s+");
+        for (String part : parts) {
+            if (part.matches("\\d+")) {
+                return Integer.parseInt(part) - 1;
+            }
+        }
+        if (containsAny(input, "pertama", "satu")) {
+            return 0;
+        }
+        if (containsAny(input, "kedua", "dua")) {
+            return 1;
+        }
+        if (containsAny(input, "ketiga", "tiga")) {
+            return 2;
+        }
+        return -1;
+    }
+
+    private List<Product> singleProductList(Product product) {
+        List<Product> products = new ArrayList<Product>();
+        products.add(product);
+        return products;
+    }
+
+    private void rememberProducts(List<Product> products) {
+        lastProducts = new ArrayList<Product>(products);
+        focusedProduct = products.isEmpty() ? null : products.get(0);
+        if (!products.isEmpty()) {
+            lastCategory = products.get(0).getCategory();
+        }
+    }
+
+    private void rememberRecommendationContext(List<Product> products, String category, int budget) {
+        rememberProducts(products);
+        if (category != null && !category.isEmpty()) {
+            lastCategory = category;
+        }
+        if (budget > 0) {
+            lastBudget = budget;
+        }
+    }
+
+    private void rememberRecommendationContext(List<Product> products, RecommendationCriteria criteria) {
+        rememberProducts(products);
+        if (criteria == null) {
+            return;
+        }
+        String recommendationKey = buildRecommendationKey(criteria);
+        if (!recommendationKey.equals(lastRecommendationKey)) {
+            shownRecommendationProductIds.clear();
+            shownRecommendationProductNames.clear();
+            lastRecommendationKey = recommendationKey;
+        }
+        rememberShownRecommendations(products);
+        if (criteria.category != null && !criteria.category.isEmpty()) {
+            lastCategory = criteria.category;
+        }
+        if (criteria.budget > 0) {
+            lastBudget = criteria.budget;
+        }
+        if (criteria.style != null && !criteria.style.isEmpty()) {
+            lastStyle = criteria.style;
+        }
+    }
+
+    private String buildRecommendationKey(RecommendationCriteria criteria) {
+        if (criteria == null) {
+            return "";
+        }
+        return criteria.category + "|" + criteria.budget + "|" + criteria.style + "|" + criteria.strictBudget;
+    }
+
+    private void rememberShownRecommendations(List<Product> products) {
+        for (Product product : products) {
+            Integer productId = Integer.valueOf(product.getProductId());
+            if (!shownRecommendationProductIds.contains(productId)) {
+                shownRecommendationProductIds.add(productId);
+            }
+            String productName = normalizeProductName(product);
+            if (!shownRecommendationProductNames.contains(productName)) {
+                shownRecommendationProductNames.add(productName);
+            }
+        }
+    }
+
+    private String normalizeProductName(Product product) {
+        return product == null || product.getName() == null
+                ? ""
+                : product.getName().toLowerCase().replaceAll("\\s+", " ").trim();
+    }
+
+    private void clearProductContext() {
+        lastProducts.clear();
+        focusedProduct = null;
+    }
+
+    private int findLowestContextPrice() {
+        int lowestPrice = Integer.MAX_VALUE;
+        for (Product product : lastProducts) {
+            lowestPrice = Math.min(lowestPrice, (int) product.getPrice());
+        }
+        return lowestPrice == Integer.MAX_VALUE ? 0 : lowestPrice;
+    }
+
+    private int parseBudgetToken(String token) {
+        if (token.matches("\\d+jt") || token.matches("\\d+juta")) {
+            return Integer.parseInt(token.replace("jt", "").replace("juta", "")) * 1000000;
+        }
+        if (token.matches("\\d+rb") || token.matches("\\d+ribu")) {
+            return Integer.parseInt(token.replace("rb", "").replace("ribu", "")) * 1000;
+        }
+        if (token.matches("\\d+k")) {
+            return Integer.parseInt(token.replace("k", "")) * 1000;
+        }
+        return 0;
+    }
+
+    private boolean isMillionToken(String token) {
+        return token.startsWith("juta") || "jt".equals(token);
+    }
+
+    private boolean isThousandToken(String token) {
+        return token.startsWith("ribu") || "rb".equals(token);
+    }
+}

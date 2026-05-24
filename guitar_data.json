@@ -1,0 +1,3548 @@
+[
+  {
+    "brand":"Harley Benton",
+    "title":"SC-1000 SBK Progressive Line",
+    "price_eur":175.0,
+    "price_idr":2975000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"Electric Guitar Kit Single Cut",
+    "price_eur":87.0,
+    "price_idr":1479000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450 BK Classic Series",
+    "price_eur":123.0,
+    "price_idr":2091000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450 P90 GT Classic Series",
+    "price_eur":132.0,
+    "price_idr":2244000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus HB Vintage Series",
+    "price_eur":158.0,
+    "price_idr":2686000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Standard 60s IT",
+    "price_eur":2079.0,
+    "price_idr":35343000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-500 BK Vintage Series",
+    "price_eur":149.0,
+    "price_idr":2533000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-550 II PAF",
+    "price_eur":264.0,
+    "price_idr":4488000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G5425 Jet Club Black",
+    "price_eur":273.0,
+    "price_idr":4641000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II Vintage Black",
+    "price_eur":238.0,
+    "price_idr":4046000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Player Pack VS",
+    "price_eur":194.0,
+    "price_idr":3298000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"1959 LP Standard Outfit ADB",
+    "price_eur":688.0,
+    "price_idr":11696000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-400 SBK Vintage Series",
+    "price_eur":114.0,
+    "price_idr":1938000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-500 WH Vintage Series",
+    "price_eur":149.0,
+    "price_idr":2533000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Billie Joe Armstrong LP Junior",
+    "price_eur":439.0,
+    "price_idr":7463000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-1000 WH Progressive Line",
+    "price_eur":175.0,
+    "price_idr":2975000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Custom EB GH",
+    "price_eur":3979.0,
+    "price_idr":67643000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Standard 60´s Ebony",
+    "price_eur":456.0,
+    "price_idr":7752000
+  },
+  {
+    "brand":"DAngelico",
+    "title":"DLX Atlantic Baritone Walnut",
+    "price_eur":1325.0,
+    "price_idr":22525000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Classic HCS",
+    "price_eur":1769.0,
+    "price_idr":30073000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Modern Sparkling Burg",
+    "price_eur":500.0,
+    "price_idr":8500000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-400 SGT Classic Series",
+    "price_eur":132.0,
+    "price_idr":2244000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-400 SBK Vintage Bundle",
+    "price_eur":219.0,
+    "price_idr":3723000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-550 II PAF Bundle",
+    "price_eur":288.0,
+    "price_idr":4896000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Standard 50`s MG",
+    "price_eur":505.0,
+    "price_idr":8585000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Slash Standard GT",
+    "price_eur":2539.0,
+    "price_idr":43163000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Slash Standard NB",
+    "price_eur":2389.0,
+    "price_idr":40613000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II SPAF",
+    "price_eur":229.0,
+    "price_idr":3893000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II FR Vintage Black",
+    "price_eur":333.0,
+    "price_idr":5661000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Slash Standard AA LH",
+    "price_eur":2469.0,
+    "price_idr":41973000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 54 Goldtop VOS",
+    "price_eur":3979.0,
+    "price_idr":67643000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 Dirty Lemon VOS",
+    "price_eur":5315.0,
+    "price_idr":90355000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Classic Worn HC",
+    "price_eur":385.0,
+    "price_idr":6545000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-1000 SBK Progressive Bundle",
+    "price_eur":299.0,
+    "price_idr":5083000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Classic HB",
+    "price_eur":1859.0,
+    "price_idr":31603000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Classic EB",
+    "price_eur":1859.0,
+    "price_idr":31603000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-550 II DFB",
+    "price_eur":264.0,
+    "price_idr":4488000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 57 Goldtop DB VOS",
+    "price_eur":3985.0,
+    "price_idr":67745000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 68 Goldtop Reissue",
+    "price_eur":3939.0,
+    "price_idr":66963000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 Iced Tea Burst VOS",
+    "price_eur":5929.0,
+    "price_idr":100793000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Special VE VSB",
+    "price_eur":166.0,
+    "price_idr":2822000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II Lemon Flame",
+    "price_eur":229.0,
+    "price_idr":3893000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Classic TC",
+    "price_eur":1859.0,
+    "price_idr":31603000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 57 Goldtop VOS",
+    "price_eur":3975.0,
+    "price_idr":67575000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000 Vintage Black",
+    "price_eur":944.0,
+    "price_idr":16048000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Jerry Cantrell Wino LP Custom",
+    "price_eur":749.0,
+    "price_idr":12733000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 68 Custom Reissue EB",
+    "price_eur":5111.0,
+    "price_idr":86887000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh Black",
+    "price_eur":289.0,
+    "price_idr":4913000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Standard 60´s BB",
+    "price_eur":495.0,
+    "price_idr":8415000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus VB Vintage Series",
+    "price_eur":158.0,
+    "price_idr":2686000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Standard 50s HCS",
+    "price_eur":2111.0,
+    "price_idr":35887000
+  },
+  {
+    "brand":"Gibson",
+    "title":"LP Axcess Custom Figured BB",
+    "price_eur":4429.0,
+    "price_idr":75293000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Classic Honeyburst",
+    "price_eur":435.0,
+    "price_idr":7395000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Standard 50`s HCS",
+    "price_eur":511.0,
+    "price_idr":8687000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000FR Black Satin",
+    "price_eur":1099.0,
+    "price_idr":18683000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Special VE EBV",
+    "price_eur":158.0,
+    "price_idr":2686000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II Ocean Flame",
+    "price_eur":229.0,
+    "price_idr":3893000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD Iron Cross SW",
+    "price_eur":1399.0,
+    "price_idr":23783000
+  },
+  {
+    "brand":"DAngelico",
+    "title":"DLX Atlantic Bariton Solid BLK",
+    "price_eur":1325.0,
+    "price_idr":22525000
+  },
+  {
+    "brand":"ESP",
+    "title":"Eclipse Custom BLM",
+    "price_eur":5049.0,
+    "price_idr":85833000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh Daphne Blue",
+    "price_eur":245.0,
+    "price_idr":4165000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G6134TFM-NH Nigel Hendroff AF",
+    "price_eur":2899.0,
+    "price_idr":49283000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Custom AW",
+    "price_eur":5111.0,
+    "price_idr":86887000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh Pelham Blue",
+    "price_eur":264.0,
+    "price_idr":4488000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Prophecy Black",
+    "price_eur":749.0,
+    "price_idr":12733000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh Shell Pink",
+    "price_eur":229.0,
+    "price_idr":3893000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus LD Vintage Series",
+    "price_eur":175.0,
+    "price_idr":2975000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Classic Ebony",
+    "price_eur":435.0,
+    "price_idr":7395000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 58 Iced Tea VOS",
+    "price_eur":3985.0,
+    "price_idr":67745000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"1959 LP Standard Outfit ADCB",
+    "price_eur":689.0,
+    "price_idr":11713000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Modern Graphite Black",
+    "price_eur":511.0,
+    "price_idr":8687000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000 Evertune BB BLKS",
+    "price_eur":1279.0,
+    "price_idr":21743000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Lester Midnight Sunset 59 aged",
+    "price_eur":2035.0,
+    "price_idr":34595000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom Plus EMG FR VBK",
+    "price_eur":485.0,
+    "price_idr":8245000
+  },
+  {
+    "brand":"Gibson",
+    "title":"LP Custom 54 Black Beauty VOS",
+    "price_eur":5999.0,
+    "price_idr":101983000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000VB\/Duncan",
+    "price_eur":933.0,
+    "price_idr":15861000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Classic HCS",
+    "price_eur":439.0,
+    "price_idr":7463000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Slash Standard AA",
+    "price_eur":2545.0,
+    "price_idr":43265000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Slash Les Paul Anaconda Burst",
+    "price_eur":688.0,
+    "price_idr":11696000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-256 Black Satin",
+    "price_eur":456.0,
+    "price_idr":7752000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD GH-200 BLK Gary Holt",
+    "price_eur":619.0,
+    "price_idr":10523000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Custom Ebony",
+    "price_eur":549.0,
+    "price_idr":9333000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Studio Alpine White",
+    "price_eur":395.0,
+    "price_idr":6715000
+  },
+  {
+    "brand":"Duesenberg",
+    "title":"Starplayer TV Silver Sparkle",
+    "price_eur":2299.0,
+    "price_idr":39083000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000QM STBC",
+    "price_eur":1039.0,
+    "price_idr":17663000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-550 Plus EMG PAF",
+    "price_eur":353.0,
+    "price_idr":6001000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-550 II FTF",
+    "price_eur":264.0,
+    "price_idr":4488000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Special TV Yellow",
+    "price_eur":211.0,
+    "price_idr":3587000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II Honey Burst Flame",
+    "price_eur":229.0,
+    "price_idr":3893000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Standard 50`s VSS",
+    "price_eur":495.0,
+    "price_idr":8415000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Tribute SCS",
+    "price_eur":998.0,
+    "price_idr":16966000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Special TV Yellow",
+    "price_eur":353.0,
+    "price_idr":6001000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Standard 60s BB",
+    "price_eur":2111.0,
+    "price_idr":35887000
+  },
+  {
+    "brand":"Solar Guitars",
+    "title":"GC 2.6 C",
+    "price_eur":619.0,
+    "price_idr":10523000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Junior TV Yellow",
+    "price_eur":175.0,
+    "price_idr":2975000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD GH 600 BLK",
+    "price_eur":1505.0,
+    "price_idr":25585000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Tribute SHB",
+    "price_eur":1015.0,
+    "price_idr":17255000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 58 Bourbon Burst VOS",
+    "price_eur":3985.0,
+    "price_idr":67745000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus CB Vintage Series",
+    "price_eur":175.0,
+    "price_idr":2975000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-200 BK Student Series",
+    "price_eur":96.0,
+    "price_idr":1632000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Custom Koa",
+    "price_eur":619.0,
+    "price_idr":10523000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Custom Alpine w\/Case",
+    "price_eur":619.0,
+    "price_idr":10523000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Standard 50s TB",
+    "price_eur":2111.0,
+    "price_idr":35887000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-FR Black Metal BLKS",
+    "price_eur":929.0,
+    "price_idr":15793000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Standard 60s UB",
+    "price_eur":2111.0,
+    "price_idr":35887000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-Black Metal BLKS",
+    "price_eur":969.0,
+    "price_idr":16473000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Jared James Nichols Gold Glory",
+    "price_eur":599.0,
+    "price_idr":10183000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-550 Plus EMG FTF",
+    "price_eur":353.0,
+    "price_idr":6001000
+  },
+  {
+    "brand":"ESP",
+    "title":"KH-3 Spider",
+    "price_eur":4567.0,
+    "price_idr":77639000
+  },
+  {
+    "brand":"Larry Carlton",
+    "title":"L7 TS",
+    "price_eur":477.0,
+    "price_idr":8109000
+  },
+  {
+    "brand":"Godin",
+    "title":"xtSA Koa",
+    "price_eur":2525.0,
+    "price_idr":42925000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Standard 50s Faded",
+    "price_eur":2199.0,
+    "price_idr":37383000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II Active White",
+    "price_eur":238.0,
+    "price_idr":4046000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Studio Wine Red",
+    "price_eur":395.0,
+    "price_idr":6715000
+  },
+  {
+    "brand":"PRS",
+    "title":"SE Zach Myers MB",
+    "price_eur":795.0,
+    "price_idr":13515000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000ET QM DBSB",
+    "price_eur":1159.0,
+    "price_idr":19703000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Standard 60´s IT",
+    "price_eur":575.0,
+    "price_idr":9775000
+  },
+  {
+    "brand":"PRS",
+    "title":"SE 245 CA Charcoal Burst",
+    "price_eur":729.0,
+    "price_idr":12393000
+  },
+  {
+    "brand":"PRS",
+    "title":"SE Mark Tremonti Standard",
+    "price_eur":544.0,
+    "price_idr":9248000
+  },
+  {
+    "brand":"Cort",
+    "title":"MBM-1 Manson Meta Silver",
+    "price_eur":415.0,
+    "price_idr":7055000
+  },
+  {
+    "brand":"ESP",
+    "title":"E-II Eclipse QM STBCSB",
+    "price_eur":2299.0,
+    "price_idr":39083000
+  },
+  {
+    "brand":"ESP",
+    "title":"E-II Eclipse Snow White",
+    "price_eur":2099.0,
+    "price_idr":35683000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Custom Ebony w\/Case",
+    "price_eur":605.0,
+    "price_idr":10285000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom Plus EMG VBK",
+    "price_eur":395.0,
+    "price_idr":6715000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD KH-3 Spider",
+    "price_eur":1325.0,
+    "price_idr":22525000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 Washed Cherry VOS",
+    "price_eur":5315.0,
+    "price_idr":90355000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G5230T Electromatic Jet FT BLK",
+    "price_eur":485.0,
+    "price_idr":8245000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Modern Graphite",
+    "price_eur":2299.0,
+    "price_idr":39083000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Special Pelham Blue",
+    "price_eur":211.0,
+    "price_idr":3587000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 60 WTB ULA",
+    "price_eur":5935.0,
+    "price_idr":100895000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Jerry Cantrell Prophecy LP Cus",
+    "price_eur":955.0,
+    "price_idr":16235000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Junior Faded Cherry",
+    "price_eur":175.0,
+    "price_idr":2975000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II P90 Black",
+    "price_eur":238.0,
+    "price_idr":4046000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Tommy Thayer Electric Blue LP",
+    "price_eur":699.0,
+    "price_idr":11883000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000 Piezo QM STB",
+    "price_eur":1099.0,
+    "price_idr":18683000
+  },
+  {
+    "brand":"Gibson",
+    "title":"LP 57 Black Beauty VOS",
+    "price_eur":5315.0,
+    "price_idr":90355000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Prophecy Red Tiger",
+    "price_eur":705.0,
+    "price_idr":11985000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom Plus EMG TBF",
+    "price_eur":395.0,
+    "price_idr":6715000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Junior EB",
+    "price_eur":1234.0,
+    "price_idr":20978000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom Plus EMG BCF",
+    "price_eur":379.0,
+    "price_idr":6443000
+  },
+  {
+    "brand":"Gibson",
+    "title":"LP 57 Custom 3PU Bigsby VOS",
+    "price_eur":5999.0,
+    "price_idr":101983000
+  },
+  {
+    "brand":"ESP",
+    "title":"E-II Eclipse FT FM TSB",
+    "price_eur":2369.0,
+    "price_idr":40273000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Slash Standard VB",
+    "price_eur":2259.0,
+    "price_idr":38403000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G5220 EMTC Jet BT Mid.Sapphire",
+    "price_eur":429.0,
+    "price_idr":7293000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-550 II BCF",
+    "price_eur":282.0,
+    "price_idr":4794000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Standard 50s GT",
+    "price_eur":2111.0,
+    "price_idr":35887000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Prophecy Olive Tiger",
+    "price_eur":678.0,
+    "price_idr":11526000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom Plus EMG OCF",
+    "price_eur":395.0,
+    "price_idr":6715000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-256FM STPSB",
+    "price_eur":456.0,
+    "price_idr":7752000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus CB Vintage Bundle",
+    "price_eur":282.0,
+    "price_idr":4794000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-10 BLK",
+    "price_eur":211.0,
+    "price_idr":3587000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-256FM Cobalt Blue",
+    "price_eur":456.0,
+    "price_idr":7752000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000S Fluence BLK",
+    "price_eur":1009.0,
+    "price_idr":17153000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-256 BLK",
+    "price_eur":456.0,
+    "price_idr":7752000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Custom Ebony w\/Bag",
+    "price_eur":565.0,
+    "price_idr":9605000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Studio SB",
+    "price_eur":1325.0,
+    "price_idr":22525000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Studio WR",
+    "price_eur":1325.0,
+    "price_idr":22525000
+  },
+  {
+    "brand":"Gibson",
+    "title":"LP Axcess Custom FR EB",
+    "price_eur":4429.0,
+    "price_idr":75293000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G6134TFM-NH Nigel Hendroff DC",
+    "price_eur":2965.0,
+    "price_idr":50405000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Tribute STB",
+    "price_eur":1059.0,
+    "price_idr":18003000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Nancy Wilson Fanatic Fireburst",
+    "price_eur":477.0,
+    "price_idr":8109000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Studio EB",
+    "price_eur":1325.0,
+    "price_idr":22525000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II FR Vintage Bundle",
+    "price_eur":344.0,
+    "price_idr":5848000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II Active Vintage BK",
+    "price_eur":245.0,
+    "price_idr":4165000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450 CB Classic Series",
+    "price_eur":123.0,
+    "price_idr":2091000
+  },
+  {
+    "brand":"PRS",
+    "title":"Mark Tremonti PQ",
+    "price_eur":3895.0,
+    "price_idr":66215000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Special Faded White",
+    "price_eur":219.0,
+    "price_idr":3723000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Custom Peter Frampton",
+    "price_eur":6099.0,
+    "price_idr":103683000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-500 BK Vintage Serie Bundle",
+    "price_eur":264.0,
+    "price_idr":4488000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Special VintageCherry",
+    "price_eur":1234.0,
+    "price_idr":20978000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Standard 50s P90",
+    "price_eur":2111.0,
+    "price_idr":35887000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-400 SBK Vintage Seri Bundle",
+    "price_eur":202.0,
+    "price_idr":3434000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Modern FPB",
+    "price_eur":529.0,
+    "price_idr":8993000
+  },
+  {
+    "brand":"Larry Carlton",
+    "title":"L7 BK",
+    "price_eur":485.0,
+    "price_idr":8245000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-256FM DBSB",
+    "price_eur":439.0,
+    "price_idr":7463000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Junior Vintage Sunburst",
+    "price_eur":175.0,
+    "price_idr":2975000
+  },
+  {
+    "brand":"Larry Carlton",
+    "title":"L7 GT",
+    "price_eur":485.0,
+    "price_idr":8245000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000T CMT TSB",
+    "price_eur":1149.0,
+    "price_idr":19533000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G6128T-53 VS Duo Jet BK",
+    "price_eur":2599.0,
+    "price_idr":44183000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Muse Radio Blue",
+    "price_eur":435.0,
+    "price_idr":7395000
+  },
+  {
+    "brand":"Gibson",
+    "title":"LP 57 Black Beauty 3PU VOS",
+    "price_eur":5579.0,
+    "price_idr":94843000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Junior Black",
+    "price_eur":175.0,
+    "price_idr":2975000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-400 SBK Vintage Seri Bundle",
+    "price_eur":175.0,
+    "price_idr":2975000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Studio LT HCS",
+    "price_eur":211.0,
+    "price_idr":3587000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Studio Ebony",
+    "price_eur":395.0,
+    "price_idr":6715000
+  },
+  {
+    "brand":"Larry Carlton",
+    "title":"L7 TBL",
+    "price_eur":485.0,
+    "price_idr":8245000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G5230T Elmtc. Jet SC Bgsby CG",
+    "price_eur":485.0,
+    "price_idr":8245000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Standard 60´s w\/Bag",
+    "price_eur":474.0,
+    "price_idr":8058000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Modern Figured MOF",
+    "price_eur":619.0,
+    "price_idr":10523000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh Black Bundle",
+    "price_eur":422.0,
+    "price_idr":7174000
+  },
+  {
+    "brand":"Hagstrom",
+    "title":"Fantomen Black",
+    "price_eur":795.0,
+    "price_idr":13515000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Slash Standard NB LH",
+    "price_eur":2389.0,
+    "price_idr":40613000
+  },
+  {
+    "brand":"Chapman Guitars",
+    "title":"ML2 Pro River Styx Black",
+    "price_eur":1059.0,
+    "price_idr":18003000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-500 WH Vintage Serie Bundle",
+    "price_eur":264.0,
+    "price_idr":4488000
+  },
+  {
+    "brand":"Kramer Guitars",
+    "title":"Assault 220 FR AW",
+    "price_eur":309.0,
+    "price_idr":5253000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-550 Plus EMG PAF Bundle",
+    "price_eur":369.0,
+    "price_idr":6273000
+  },
+  {
+    "brand":"PRS",
+    "title":"SE Tremonti Custom CA",
+    "price_eur":795.0,
+    "price_idr":13515000
+  },
+  {
+    "brand":"Larry Carlton",
+    "title":"L7V GD Top",
+    "price_eur":511.0,
+    "price_idr":8687000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G2215-P90 Strml Jr. Jet Club B",
+    "price_eur":315.0,
+    "price_idr":5355000
+  },
+  {
+    "brand":"ESP",
+    "title":"E-II Eclipse FM BLK NAT B",
+    "price_eur":2299.0,
+    "price_idr":39083000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Custom SIB CH",
+    "price_eur":4429.0,
+    "price_idr":75293000
+  },
+  {
+    "brand":"ESP",
+    "title":"E-II Eclipse DB GRANSP",
+    "price_eur":2345.0,
+    "price_idr":39865000
+  },
+  {
+    "brand":"ESP",
+    "title":"E-II Eclipse QM RDB",
+    "price_eur":2369.0,
+    "price_idr":40273000
+  },
+  {
+    "brand":"PRS",
+    "title":"S2 McCarty SC594 FS",
+    "price_eur":1899.0,
+    "price_idr":32283000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000 BP BLUNFD",
+    "price_eur":969.0,
+    "price_idr":16473000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G2215-P90 Strml Jr. Jet Club M",
+    "price_eur":353.0,
+    "price_idr":6001000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-200 BK Student Serie Bundle",
+    "price_eur":185.0,
+    "price_idr":3145000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul SL Vintage Sunburst",
+    "price_eur":140.0,
+    "price_idr":2380000
+  },
+  {
+    "brand":"Gibson",
+    "title":"LP Junior 57 Singlecut VSB VOS",
+    "price_eur":2999.0,
+    "price_idr":50983000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Custom Alpine White",
+    "price_eur":566.0,
+    "price_idr":9622000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-500 BK Vintage Serie Bundle",
+    "price_eur":309.0,
+    "price_idr":5253000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Junior VSB",
+    "price_eur":333.0,
+    "price_idr":5661000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Classic Worn Purple",
+    "price_eur":379.0,
+    "price_idr":6443000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-256 Snow White",
+    "price_eur":439.0,
+    "price_idr":7463000
+  },
+  {
+    "brand":"Taylor",
+    "title":"T5z Classic DLX",
+    "price_eur":2299.0,
+    "price_idr":39083000
+  },
+  {
+    "brand":"Hagstrom",
+    "title":"Fantomen White",
+    "price_eur":795.0,
+    "price_idr":13515000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Muse Jet Black",
+    "price_eur":422.0,
+    "price_idr":7174000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 56 Goldtop VOS",
+    "price_eur":4159.0,
+    "price_idr":70703000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Muse Wanderlust Green",
+    "price_eur":422.0,
+    "price_idr":7174000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G5230T Electromatic Jet FT FBR",
+    "price_eur":485.0,
+    "price_idr":8245000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Modern Figured CBF",
+    "price_eur":511.0,
+    "price_idr":8687000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000FR See Thru Black",
+    "price_eur":1159.0,
+    "price_idr":19703000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G5220 EMTC Jet BT Bristol Fog",
+    "price_eur":405.0,
+    "price_idr":6885000
+  },
+  {
+    "brand":"Hagstrom",
+    "title":"Ultra Swede CBB",
+    "price_eur":511.0,
+    "price_idr":8687000
+  },
+  {
+    "brand":"Heritage Guitar",
+    "title":"H-150 Custom Core DLB",
+    "price_eur":4249.0,
+    "price_idr":72233000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G5220 Electromatic Jet BT BK",
+    "price_eur":435.0,
+    "price_idr":7395000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Muse Purple Passion",
+    "price_eur":395.0,
+    "price_idr":6715000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000 Black",
+    "price_eur":1015.0,
+    "price_idr":17255000
+  },
+  {
+    "brand":"Gibson",
+    "title":"LP Axcess Figured FR DC Rust",
+    "price_eur":4333.0,
+    "price_idr":73661000
+  },
+  {
+    "brand":"Hagstrom",
+    "title":"Ultra Max Dark Storm Burst",
+    "price_eur":609.0,
+    "price_idr":10353000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000 Gold Andromeda",
+    "price_eur":1279.0,
+    "price_idr":21743000
+  },
+  {
+    "brand":"Godin",
+    "title":"Summit Classic HT Havana Brown",
+    "price_eur":1459.0,
+    "price_idr":24803000
+  },
+  {
+    "brand":"Schecter",
+    "title":"Solo-II Blackjack BLK",
+    "price_eur":1505.0,
+    "price_idr":25585000
+  },
+  {
+    "brand":"Larry Carlton",
+    "title":"L7 WH",
+    "price_eur":529.0,
+    "price_idr":8993000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Lester Honey Pie 59 aged",
+    "price_eur":2035.0,
+    "price_idr":34595000
+  },
+  {
+    "brand":"Duesenberg",
+    "title":"Senior BD",
+    "price_eur":1899.0,
+    "price_idr":32283000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-401 Black",
+    "price_eur":855.0,
+    "price_idr":14535000
+  },
+  {
+    "brand":"Godin",
+    "title":"Radiator Matte Black RN",
+    "price_eur":1195.0,
+    "price_idr":20315000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000FM Amber Sunburst",
+    "price_eur":1015.0,
+    "price_idr":17255000
+  },
+  {
+    "brand":"Solar Guitars",
+    "title":"GC1.6FR Killertone Flame Black",
+    "price_eur":1234.0,
+    "price_idr":20978000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Lester Midnight Sunset 60 aged",
+    "price_eur":2035.0,
+    "price_idr":34595000
+  },
+  {
+    "brand":"ESP",
+    "title":"Iron Cross SW",
+    "price_eur":5625.0,
+    "price_idr":95625000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450 P90 GT Classic S Bundle",
+    "price_eur":149.0,
+    "price_idr":2533000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Slash Les Paul Metallic Gold",
+    "price_eur":688.0,
+    "price_idr":11696000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-401 Olympic White",
+    "price_eur":855.0,
+    "price_idr":14535000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Deluxe 70s GT",
+    "price_eur":2299.0,
+    "price_idr":39083000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G2210 Streaml. Jr. Jet Club VW",
+    "price_eur":264.0,
+    "price_idr":4488000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Deluxe 70s CS",
+    "price_eur":1939.0,
+    "price_idr":32963000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Classic Worn H w\/Bag",
+    "price_eur":400.0,
+    "price_idr":6800000
+  },
+  {
+    "brand":"Duesenberg",
+    "title":"Alliance Series Jeff Darosa",
+    "price_eur":2295.0,
+    "price_idr":39015000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000 VLAND",
+    "price_eur":1234.0,
+    "price_idr":20978000
+  },
+  {
+    "brand":"ESP",
+    "title":"E-II Eclipse DB VB",
+    "price_eur":2099.0,
+    "price_idr":35683000
+  },
+  {
+    "brand":"ESP",
+    "title":"E-II Eclipse Evertune BLKS",
+    "price_eur":2525.0,
+    "price_idr":42925000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G6129T-89VS 89 SJ Bgsby GSP",
+    "price_eur":2525.0,
+    "price_idr":42925000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh Black Bundle",
+    "price_eur":309.0,
+    "price_idr":5253000
+  },
+  {
+    "brand":"Solar Guitars",
+    "title":"GC1.6FR Killertone Fla B-Stock",
+    "price_eur":1059.0,
+    "price_idr":18003000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-550 II DFB Bundle",
+    "price_eur":288.0,
+    "price_idr":4896000
+  },
+  {
+    "brand":"Heritage Guitar",
+    "title":"H-150 Custom Core TSB",
+    "price_eur":4249.0,
+    "price_idr":72233000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus VB Vintage S Bundle",
+    "price_eur":273.0,
+    "price_idr":4641000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD AS 1FRFM BLKAQSB",
+    "price_eur":1505.0,
+    "price_idr":25585000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus CB Vintage S Bundle",
+    "price_eur":195.0,
+    "price_idr":3315000
+  },
+  {
+    "brand":"Gibson",
+    "title":"LP Standard 60 WC VOS",
+    "price_eur":5049.0,
+    "price_idr":85833000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Special VE HCSB",
+    "price_eur":132.0,
+    "price_idr":2244000
+  },
+  {
+    "brand":"Gibson",
+    "title":"LP 57 Custom 3PU Bigsby Gloss",
+    "price_eur":6899.0,
+    "price_idr":117283000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh Daph. Blue Bundle",
+    "price_eur":259.0,
+    "price_idr":4403000
+  },
+  {
+    "brand":"PRS",
+    "title":"S2 McCarty SC594 SR",
+    "price_eur":1679.0,
+    "price_idr":28543000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 58 Lemon Burst VOS",
+    "price_eur":4249.0,
+    "price_idr":72233000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Studio Wine Re w\/Bag",
+    "price_eur":411.0,
+    "price_idr":6987000
+  },
+  {
+    "brand":"Hagstrom",
+    "title":"Ultra Max Fall Sky Satin",
+    "price_eur":589.0,
+    "price_idr":10013000
+  },
+  {
+    "brand":"Duesenberg",
+    "title":"Senior BK",
+    "price_eur":1999.0,
+    "price_idr":33983000
+  },
+  {
+    "brand":"Stanford",
+    "title":"CR Marquee CA",
+    "price_eur":722.0,
+    "price_idr":12274000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000 BP BLKNB",
+    "price_eur":969.0,
+    "price_idr":16473000
+  },
+  {
+    "brand":"ESP",
+    "title":"E-II Eclipse BM Blue Nat Fade",
+    "price_eur":2299.0,
+    "price_idr":39083000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Lester Wild Cherry 59 aged",
+    "price_eur":2035.0,
+    "price_idr":34595000
+  },
+  {
+    "brand":"PRS",
+    "title":"S2 McCarty SC594 ER",
+    "price_eur":1945.0,
+    "price_idr":33065000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II Oc. Flame Bundle",
+    "price_eur":353.0,
+    "price_idr":6001000
+  },
+  {
+    "brand":"PRS",
+    "title":"S2 McCarty SC594 EY",
+    "price_eur":1859.0,
+    "price_idr":31603000
+  },
+  {
+    "brand":"ESP",
+    "title":"E-II Eclipse DB PSP",
+    "price_eur":2299.0,
+    "price_idr":39083000
+  },
+  {
+    "brand":"DAngelico",
+    "title":"Deluxe Atlantic Solid Black",
+    "price_eur":1325.0,
+    "price_idr":22525000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Lester Cherry Lane 58 aged",
+    "price_eur":2035.0,
+    "price_idr":34595000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Studio Alpine w\/Bag",
+    "price_eur":411.0,
+    "price_idr":6987000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Standard 60s Faded",
+    "price_eur":2111.0,
+    "price_idr":35887000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-550 II FTF Bundle",
+    "price_eur":288.0,
+    "price_idr":4896000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh Black B-Stock",
+    "price_eur":255.0,
+    "price_idr":4335000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Lester Gold Rush 57",
+    "price_eur":2035.0,
+    "price_idr":34595000
+  },
+  {
+    "brand":"Kramer Guitars",
+    "title":"Assault 220 FR AW w\/Bag",
+    "price_eur":325.0,
+    "price_idr":5525000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000FM Evertune STBLK",
+    "price_eur":1175.0,
+    "price_idr":19975000
+  },
+  {
+    "brand":"Schecter",
+    "title":"Solo-II Supreme CEBB",
+    "price_eur":1799.0,
+    "price_idr":30583000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh PelhamBlue Bundle",
+    "price_eur":277.0,
+    "price_idr":4709000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 60 Tangerine BurstVOS",
+    "price_eur":5222.0,
+    "price_idr":88774000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Custom Alpine w\/Bag",
+    "price_eur":579.0,
+    "price_idr":9843000
+  },
+  {
+    "brand":"PRS",
+    "title":"S2 McCarty SC594 WB",
+    "price_eur":1859.0,
+    "price_idr":31603000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus HB Vintage Bundle",
+    "price_eur":264.0,
+    "price_idr":4488000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh Shell Pin B-Stock",
+    "price_eur":195.0,
+    "price_idr":3315000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Junior Pelham Blue",
+    "price_eur":175.0,
+    "price_idr":2975000
+  },
+  {
+    "brand":"Gibson",
+    "title":"57 LP Special SC TVY VOS NH",
+    "price_eur":3275.0,
+    "price_idr":55675000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Special VE EBV w\/Bag",
+    "price_eur":175.0,
+    "price_idr":2975000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G2210 Streaml. Jr. Jet Club IS",
+    "price_eur":282.0,
+    "price_idr":4794000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul SL Vintage Sun Bundle",
+    "price_eur":243.0,
+    "price_idr":4131000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Special VE VSB w\/Bag",
+    "price_eur":185.0,
+    "price_idr":3145000
+  },
+  {
+    "brand":"Solar Guitars",
+    "title":"GC1.6C",
+    "price_eur":929.0,
+    "price_idr":15793000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh Shell Pink Bundle",
+    "price_eur":245.0,
+    "price_idr":4165000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-1000 SBK Progressive Bundle",
+    "price_eur":282.0,
+    "price_idr":4794000
+  },
+  {
+    "brand":"Solar Guitars",
+    "title":"GC1.6TBR",
+    "price_eur":885.0,
+    "price_idr":15045000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II Oc. Flame Bundle",
+    "price_eur":333.0,
+    "price_idr":5661000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Standard 60s  B-Stock",
+    "price_eur":1969.0,
+    "price_idr":33473000
+  },
+  {
+    "brand":"DAngelico",
+    "title":"DLX SS Baritone Satin Honey",
+    "price_eur":1769.0,
+    "price_idr":30073000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 Kindred Burst UHA",
+    "price_eur":8899.0,
+    "price_idr":151283000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-550 II BCF Bundle",
+    "price_eur":304.0,
+    "price_idr":5168000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh Daphne Bl B-Stock",
+    "price_eur":219.0,
+    "price_idr":3723000
+  },
+  {
+    "brand":"Jackson",
+    "title":"JS22 SC Monarkh AH SBlack",
+    "price_eur":194.0,
+    "price_idr":3298000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom Plus EMG FR Bundle",
+    "price_eur":499.0,
+    "price_idr":8483000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450PlusHB Vint. Ser. Bundle",
+    "price_eur":175.0,
+    "price_idr":2975000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 58 Washed Cherry VOS",
+    "price_eur":4429.0,
+    "price_idr":75293000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1001FM Tiger Eye",
+    "price_eur":1099.0,
+    "price_idr":18683000
+  },
+  {
+    "brand":"DAngelico",
+    "title":"Deluxe Brighton Solid Black",
+    "price_eur":1325.0,
+    "price_idr":22525000
+  },
+  {
+    "brand":"Godin",
+    "title":"Radiator Bourbon Burst RN",
+    "price_eur":885.0,
+    "price_idr":15045000
+  },
+  {
+    "brand":"Heritage Guitar",
+    "title":"H-150 Custom Core DCSB",
+    "price_eur":4249.0,
+    "price_idr":72233000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-500 WH Vintage Serie Bundle",
+    "price_eur":309.0,
+    "price_idr":5253000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-200LH BK Student Series",
+    "price_eur":105.0,
+    "price_idr":1785000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-550 Plus EMG FTF Bundle",
+    "price_eur":369.0,
+    "price_idr":6273000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II Vintage B B-Stock",
+    "price_eur":199.0,
+    "price_idr":3383000
+  },
+  {
+    "brand":"DAngelico",
+    "title":"DLX SS Barit. Satin Trans Wine",
+    "price_eur":1769.0,
+    "price_idr":30073000
+  },
+  {
+    "brand":"Cort",
+    "title":"Classic Rock CR250 TBK",
+    "price_eur":353.0,
+    "price_idr":6001000
+  },
+  {
+    "brand":"Schecter",
+    "title":"Solo II Custom Black Burst",
+    "price_eur":1099.0,
+    "price_idr":18683000
+  },
+  {
+    "brand":"Cort",
+    "title":"MBM-2H Manson Meta SUS SB",
+    "price_eur":955.0,
+    "price_idr":16235000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom Plus EMG TBF Bundle",
+    "price_eur":411.0,
+    "price_idr":6987000
+  },
+  {
+    "brand":"ESP",
+    "title":"E-II Eclipse BB BLKS",
+    "price_eur":2099.0,
+    "price_idr":35683000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Special TV Yellow Bundle",
+    "price_eur":225.0,
+    "price_idr":3825000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-500 BK Vintage Serie Bundle",
+    "price_eur":389.0,
+    "price_idr":6613000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Player Pack EB",
+    "price_eur":211.0,
+    "price_idr":3587000
+  },
+  {
+    "brand":"PRS",
+    "title":"S2 McCarty SC594 FR B-Stock",
+    "price_eur":1679.0,
+    "price_idr":28543000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Studio Ebony w\/Bag",
+    "price_eur":409.0,
+    "price_idr":6953000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G2210 Streaml. Jr. Jet Club GN",
+    "price_eur":272.0,
+    "price_idr":4624000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450 P90 GT Classic S Bundle",
+    "price_eur":199.0,
+    "price_idr":3383000
+  },
+  {
+    "brand":"PRS",
+    "title":"SE 245 VS Vintage Burst",
+    "price_eur":729.0,
+    "price_idr":12393000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh Daph. Blue Bundle",
+    "price_eur":349.0,
+    "price_idr":5933000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Junior Black Bundle",
+    "price_eur":189.0,
+    "price_idr":3213000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Lester Black Velvet 57",
+    "price_eur":2035.0,
+    "price_idr":34595000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus VB V. Series Bundle",
+    "price_eur":175.0,
+    "price_idr":2975000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom Plus EMG VBK Bundle",
+    "price_eur":411.0,
+    "price_idr":6987000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom Plus EMG BCF Bundle",
+    "price_eur":395.0,
+    "price_idr":6715000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000T HBS",
+    "price_eur":1149.0,
+    "price_idr":19533000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus HB Vintage Bundle",
+    "price_eur":282.0,
+    "price_idr":4794000
+  },
+  {
+    "brand":"DAngelico",
+    "title":"Premier Brandon Niederauer Atl",
+    "price_eur":749.0,
+    "price_idr":12733000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Studio Smokehouse B",
+    "price_eur":395.0,
+    "price_idr":6715000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-200BK Student Series Bundle",
+    "price_eur":202.0,
+    "price_idr":3434000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II FR Vint. B-Stock",
+    "price_eur":282.0,
+    "price_idr":4794000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000 Vintage Bl B-Stock",
+    "price_eur":811.0,
+    "price_idr":13787000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-401 Black B-Stock",
+    "price_eur":739.0,
+    "price_idr":12563000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-1000 WH Progressive Bundle",
+    "price_eur":299.0,
+    "price_idr":5083000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-1000 SBK Progressive Bundle",
+    "price_eur":299.0,
+    "price_idr":5083000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom Plus EMG VBK B-Stock",
+    "price_eur":332.0,
+    "price_idr":5644000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-500 WH Vintage Seri B-Stock",
+    "price_eur":128.0,
+    "price_idr":2176000
+  },
+  {
+    "brand":"DAngelico",
+    "title":"Premier Atlantic Oxblood",
+    "price_eur":575.0,
+    "price_idr":9775000
+  },
+  {
+    "brand":"Guild",
+    "title":"Aristocrat P90 VSB",
+    "price_eur":659.0,
+    "price_idr":11203000
+  },
+  {
+    "brand":"PRS",
+    "title":"S2 McCarty SC594 FR",
+    "price_eur":1939.0,
+    "price_idr":32963000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-1000SBK Progressive B-Stock",
+    "price_eur":140.0,
+    "price_idr":2380000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Junior Vintage Sunbu Bundle",
+    "price_eur":189.0,
+    "price_idr":3213000
+  },
+  {
+    "brand":"DAngelico",
+    "title":"Deluxe Atlantic LE Sapphire",
+    "price_eur":1459.0,
+    "price_idr":24803000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-256 Black Satin Bundle",
+    "price_eur":588.0,
+    "price_idr":9996000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450 BK Classic Serie Bundle",
+    "price_eur":238.0,
+    "price_idr":4046000
+  },
+  {
+    "brand":"Godin",
+    "title":"Summit Classic HT Trans White",
+    "price_eur":1369.0,
+    "price_idr":23273000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450 P90 GT Classic S Bundle",
+    "price_eur":252.0,
+    "price_idr":4284000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh PelhamBlue Bundle",
+    "price_eur":359.0,
+    "price_idr":6103000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD GH 600 BLK B-Stock",
+    "price_eur":1234.0,
+    "price_idr":20978000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Standard 60s  B-Stock",
+    "price_eur":1969.0,
+    "price_idr":33473000
+  },
+  {
+    "brand":"FGN",
+    "title":"Neo Classic NLS10RFM FCB",
+    "price_eur":1234.0,
+    "price_idr":20978000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-400 SGT Classic Seri Bundle",
+    "price_eur":211.0,
+    "price_idr":3587000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh Shell Pink Bundle",
+    "price_eur":325.0,
+    "price_idr":5525000
+  },
+  {
+    "brand":"DAngelico",
+    "title":"Deluxe Atlantic LE Rust",
+    "price_eur":1459.0,
+    "price_idr":24803000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-256 Black Satin Bundle",
+    "price_eur":588.0,
+    "price_idr":9996000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus LD Vintage S Bundle",
+    "price_eur":289.0,
+    "price_idr":4913000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus HB Vintage S Bundle",
+    "price_eur":225.0,
+    "price_idr":3825000
+  },
+  {
+    "brand":"FGN",
+    "title":"Neo Classic LC10 Classic White",
+    "price_eur":1415.0,
+    "price_idr":24055000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Prophecy Oliv B-Stock",
+    "price_eur":579.0,
+    "price_idr":9843000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus HB Vintage S Bundle",
+    "price_eur":208.0,
+    "price_idr":3536000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus VB V. Series Bundle",
+    "price_eur":175.0,
+    "price_idr":2975000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450 P90 GT Classic  B-Stock",
+    "price_eur":108.0,
+    "price_idr":1836000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Junior Faded Cherry B-Stock",
+    "price_eur":163.0,
+    "price_idr":2771000
+  },
+  {
+    "brand":"Heritage Guitar",
+    "title":"H-150 VCSB",
+    "price_eur":2525.0,
+    "price_idr":42925000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II Act. Vint. Bundle",
+    "price_eur":369.0,
+    "price_idr":6273000
+  },
+  {
+    "brand":"Kramer Guitars",
+    "title":"Assault 220 FR Black",
+    "price_eur":309.0,
+    "price_idr":5253000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh Shell Pink Bundle",
+    "price_eur":359.0,
+    "price_idr":6103000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II Silver Bu B-Stock",
+    "price_eur":195.0,
+    "price_idr":3315000
+  },
+  {
+    "brand":"Larry Carlton",
+    "title":"L7V TS",
+    "price_eur":511.0,
+    "price_idr":8687000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Special TV Yellow Bundle",
+    "price_eur":225.0,
+    "price_idr":3825000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh PelhamBlue Bundle",
+    "price_eur":395.0,
+    "price_idr":6715000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom Plus EMG TBF B-Stock",
+    "price_eur":366.0,
+    "price_idr":6222000
+  },
+  {
+    "brand":"PRS",
+    "title":"Mark Tremonti 10 Top CC FWBSB",
+    "price_eur":4429.0,
+    "price_idr":75293000
+  },
+  {
+    "brand":"Chapman Guitars",
+    "title":"ML2 Pro Azure Blue B-Stock",
+    "price_eur":929.0,
+    "price_idr":15793000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-200BK Student Series Bundle",
+    "price_eur":219.0,
+    "price_idr":3723000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Classic Honey B-Stock",
+    "price_eur":405.0,
+    "price_idr":6885000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-400 SGT Classic Seri Bundle",
+    "price_eur":245.0,
+    "price_idr":4165000
+  },
+  {
+    "brand":"Schecter",
+    "title":"Kenny Hickey Solo-6 EX S",
+    "price_eur":1369.0,
+    "price_idr":23273000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Tribute SCS B-Stock",
+    "price_eur":929.0,
+    "price_idr":15793000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Junior Black B-Stock",
+    "price_eur":149.0,
+    "price_idr":2533000
+  },
+  {
+    "brand":"Duesenberg",
+    "title":"Alliance Series Dave Baksh",
+    "price_eur":2555.0,
+    "price_idr":43435000
+  },
+  {
+    "brand":"PRS",
+    "title":"Mark Tremonti CC Black WA",
+    "price_eur":3985.0,
+    "price_idr":67745000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-400 SBK Vintage Bundle",
+    "price_eur":238.0,
+    "price_idr":4046000
+  },
+  {
+    "brand":"Cort",
+    "title":"MBM-2 Meta Dry Satin Black LH",
+    "price_eur":619.0,
+    "price_idr":10523000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-1000 WH Progressive Bundle",
+    "price_eur":283.0,
+    "price_idr":4811000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Classic HCS B-Stock",
+    "price_eur":379.0,
+    "price_idr":6443000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Modern Sparkl B-Stock",
+    "price_eur":465.0,
+    "price_idr":7905000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Tommy Thayer Electric  B-Stock",
+    "price_eur":649.0,
+    "price_idr":11033000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-550 II Silver Burst",
+    "price_eur":255.0,
+    "price_idr":4335000
+  },
+  {
+    "brand":"Gibson",
+    "title":"LP Special SC TV Yellow",
+    "price_eur":1369.0,
+    "price_idr":23273000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"1959 LP Standard Outfi B-Stock",
+    "price_eur":633.0,
+    "price_idr":10761000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 LB HA",
+    "price_eur":11519.0,
+    "price_idr":195823000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Modern Pelham Blue",
+    "price_eur":2199.0,
+    "price_idr":37383000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000FM Amber Su B-Stock",
+    "price_eur":885.0,
+    "price_idr":15045000
+  },
+  {
+    "brand":"Duesenberg",
+    "title":"Alliance Series Tom Bukovac",
+    "price_eur":2479.0,
+    "price_idr":42143000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom II Act. Vint. Bundle",
+    "price_eur":353.0,
+    "price_idr":6001000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-DLX Gotoh Black Bundle",
+    "price_eur":389.0,
+    "price_idr":6613000
+  },
+  {
+    "brand":"Gibson",
+    "title":"LP Junior 57 Singlecut TVY VOS",
+    "price_eur":2999.0,
+    "price_idr":50983000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 Lemonburst UHA",
+    "price_eur":8859.0,
+    "price_idr":150603000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-201 Black Satin",
+    "price_eur":579.0,
+    "price_idr":9843000
+  },
+  {
+    "brand":"Heritage Guitar",
+    "title":"H-150 DLB",
+    "price_eur":2655.0,
+    "price_idr":45135000
+  },
+  {
+    "brand":"DAngelico",
+    "title":"Premier Atlantic Black Flake",
+    "price_eur":575.0,
+    "price_idr":9775000
+  },
+  {
+    "brand":"Hagstrom",
+    "title":"Fantomen Tobacco Sunburst",
+    "price_eur":795.0,
+    "price_idr":13515000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 68 Custom AVW LA",
+    "price_eur":6729.0,
+    "price_idr":114393000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G2210 Streaml. Jr. Jet B-Stock",
+    "price_eur":229.0,
+    "price_idr":3893000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G6134T-58 VS Penguin",
+    "price_eur":3189.0,
+    "price_idr":54213000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Custom Ebony B-Stock",
+    "price_eur":511.0,
+    "price_idr":8687000
+  },
+  {
+    "brand":"Solar Guitars",
+    "title":"GC1.6 Vinter Pearl White Matte",
+    "price_eur":1149.0,
+    "price_idr":19533000
+  },
+  {
+    "brand":"Solar Guitars",
+    "title":"GC1.6NC FTB",
+    "price_eur":1549.0,
+    "price_idr":26333000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-Custom Plus EMG OCF B-Stock",
+    "price_eur":366.0,
+    "price_idr":6222000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000 QM STPSB",
+    "price_eur":1234.0,
+    "price_idr":20978000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G5230T Electromatic Je B-Stock",
+    "price_eur":419.0,
+    "price_idr":7123000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000T Evertune BK",
+    "price_eur":1635.0,
+    "price_idr":27795000
+  },
+  {
+    "brand":"Cort",
+    "title":"MBM-1 Manson Meta Silv B-Stock",
+    "price_eur":385.0,
+    "price_idr":6545000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G6128T Jet FT Black",
+    "price_eur":2111.0,
+    "price_idr":35887000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Special VE EB B-Stock",
+    "price_eur":145.0,
+    "price_idr":2465000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-200LH BK Student Se B-Stock",
+    "price_eur":86.0,
+    "price_idr":1462000
+  },
+  {
+    "brand":"Larry Carlton",
+    "title":"L7V BK",
+    "price_eur":566.0,
+    "price_idr":9622000
+  },
+  {
+    "brand":"PRS",
+    "title":"Mark Tremonti CH 10 Top",
+    "price_eur":4429.0,
+    "price_idr":75293000
+  },
+  {
+    "brand":"Larry Carlton",
+    "title":"L7 GT B-Stock",
+    "price_eur":393.0,
+    "price_idr":6681000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 Lemonburst UHA",
+    "price_eur":8859.0,
+    "price_idr":150603000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-200 BK Student Serie Bundle",
+    "price_eur":166.0,
+    "price_idr":2822000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G6228 Jet BT Black",
+    "price_eur":2035.0,
+    "price_idr":34595000
+  },
+  {
+    "brand":"Framus",
+    "title":"Panthera Supreme BK Showroom",
+    "price_eur":1769.0,
+    "price_idr":30073000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Standard 60s OLF ULA",
+    "price_eur":6199.0,
+    "price_idr":105383000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G5230T Elmtc. Jet SC B B-Stock",
+    "price_eur":449.0,
+    "price_idr":7633000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus HB Vintage S Bundle",
+    "price_eur":315.0,
+    "price_idr":5355000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Lester 54 Custom P90 Bigsby",
+    "price_eur":2259.0,
+    "price_idr":38403000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 GLF Heavy Aged",
+    "price_eur":8595.0,
+    "price_idr":146115000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000T CTM FM VS",
+    "price_eur":1369.0,
+    "price_idr":23273000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Lester Gold Rush 90",
+    "price_eur":2035.0,
+    "price_idr":34595000
+  },
+  {
+    "brand":"Gibson",
+    "title":"LP 57 Custom 3PU Bigsby LA",
+    "price_eur":7969.0,
+    "price_idr":135473000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G6228TG-PE Jet Bigsby MSPH",
+    "price_eur":2345.0,
+    "price_idr":39865000
+  },
+  {
+    "brand":"PRS",
+    "title":"S2 McCarty 594 Black Sunburst",
+    "price_eur":1945.0,
+    "price_idr":33065000
+  },
+  {
+    "brand":"Godin",
+    "title":"DS-1 Daryl Stuermer Signature",
+    "price_eur":1939.0,
+    "price_idr":32963000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Lester Wild Saffron CustomShop",
+    "price_eur":2879.0,
+    "price_idr":48943000
+  },
+  {
+    "brand":"Framus",
+    "title":"D-Series Panthera Supreme BB",
+    "price_eur":722.0,
+    "price_idr":12274000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-400 SGT Classic Seri Bundle",
+    "price_eur":194.0,
+    "price_idr":3298000
+  },
+  {
+    "brand":"Godin",
+    "title":"Radiator Faded Cream RN",
+    "price_eur":1222.0,
+    "price_idr":20774000
+  },
+  {
+    "brand":"Chapman Guitars",
+    "title":"ML2 Slate Black Satin",
+    "price_eur":659.0,
+    "price_idr":11203000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 FB ULA",
+    "price_eur":6599.0,
+    "price_idr":112183000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD WA Warbird incl Case",
+    "price_eur":1505.0,
+    "price_idr":25585000
+  },
+  {
+    "brand":"Framus",
+    "title":"D-Series Panthera Supreme BK",
+    "price_eur":722.0,
+    "price_idr":12274000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 54 Goldtop Heavy Aged",
+    "price_eur":6799.0,
+    "price_idr":115583000
+  },
+  {
+    "brand":"Heritage Guitar",
+    "title":"H-150 OSB",
+    "price_eur":2655.0,
+    "price_idr":45135000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Little Wing Arched Top C MSA",
+    "price_eur":2345.0,
+    "price_idr":39865000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G6129T-89VS 89 SJ Bgsby SSP",
+    "price_eur":2525.0,
+    "price_idr":42925000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G6128T Pl.Ed. Jet DS Bigsby LI",
+    "price_eur":2169.0,
+    "price_idr":36873000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450 CB Classic Seri B-Stock",
+    "price_eur":114.0,
+    "price_idr":1938000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 68 Custom Ebony ULA",
+    "price_eur":6111.0,
+    "price_idr":103887000
+  },
+  {
+    "brand":"Chapman Guitars",
+    "title":"ML2 Buttercream Satin",
+    "price_eur":659.0,
+    "price_idr":11203000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Lester 59 P90 Pelham Blue aged",
+    "price_eur":2035.0,
+    "price_idr":34595000
+  },
+  {
+    "brand":"Heritage Guitar",
+    "title":"H-150 Oxblood",
+    "price_eur":2655.0,
+    "price_idr":45135000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Lester Havanna Tobacco 58 aged",
+    "price_eur":2035.0,
+    "price_idr":34595000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus LD \/ Mooer Bundle",
+    "price_eur":308.0,
+    "price_idr":5236000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000T CTM VGS",
+    "price_eur":1369.0,
+    "price_idr":23273000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Special VE EBV Bundle",
+    "price_eur":259.0,
+    "price_idr":4403000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000 QM STPSB LH",
+    "price_eur":1234.0,
+    "price_idr":20978000
+  },
+  {
+    "brand":"Chapman Guitars",
+    "title":"ML2 Deep Red Satin",
+    "price_eur":659.0,
+    "price_idr":11203000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000T Evertune BK LH",
+    "price_eur":1415.0,
+    "price_idr":24055000
+  },
+  {
+    "brand":"Journey Instruments",
+    "title":"OE990BL Travel El. Guitar FB",
+    "price_eur":439.0,
+    "price_idr":7463000
+  },
+  {
+    "brand":"PRS",
+    "title":"McCarty SC594 CC EV Smokeburst",
+    "price_eur":4075.0,
+    "price_idr":69275000
+  },
+  {
+    "brand":"Solar Guitars",
+    "title":"GC1.6AAN",
+    "price_eur":1195.0,
+    "price_idr":20315000
+  },
+  {
+    "brand":"Framus",
+    "title":"Panthera II Supreme ATHPS",
+    "price_eur":3365.0,
+    "price_idr":57205000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 SF Light Aged",
+    "price_eur":7085.0,
+    "price_idr":120445000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 58 FB Light Aged",
+    "price_eur":5759.0,
+    "price_idr":97903000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 58 Bourbon Burst ULA",
+    "price_eur":5405.0,
+    "price_idr":91885000
+  },
+  {
+    "brand":"Gibson",
+    "title":"57 LP Junior SC TV Yellow ULA",
+    "price_eur":3809.0,
+    "price_idr":64753000
+  },
+  {
+    "brand":"Schecter",
+    "title":"Solo II Custom ABSN",
+    "price_eur":1129.0,
+    "price_idr":19193000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul Modern Burgundy",
+    "price_eur":2299.0,
+    "price_idr":39083000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000T CTM FM VS LH",
+    "price_eur":1369.0,
+    "price_idr":23273000
+  },
+  {
+    "brand":"Gibson",
+    "title":"57 LP Junior SC Ebony HA",
+    "price_eur":5579.0,
+    "price_idr":94843000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Lester Honey Pie 60 aged",
+    "price_eur":2111.0,
+    "price_idr":35887000
+  },
+  {
+    "brand":"Framus",
+    "title":"Panthera II Supreme LBTH",
+    "price_eur":3455.0,
+    "price_idr":58735000
+  },
+  {
+    "brand":"Journey Instruments",
+    "title":"OE990CB Travel El. Guitar CB",
+    "price_eur":439.0,
+    "price_idr":7463000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Special VE VS B-Stock",
+    "price_eur":140.0,
+    "price_idr":2380000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Lester Earl Grey FTB 60",
+    "price_eur":2035.0,
+    "price_idr":34595000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 57 Ebony Gloss",
+    "price_eur":4159.0,
+    "price_idr":70703000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Lester Midnight Sunset P90aged",
+    "price_eur":2035.0,
+    "price_idr":34595000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 58 GPB Light Aged",
+    "price_eur":5759.0,
+    "price_idr":97903000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-256FM DBSB B-Stock",
+    "price_eur":405.0,
+    "price_idr":6885000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 GPB Light Aged",
+    "price_eur":7085.0,
+    "price_idr":120445000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 56 Goldtop ULA",
+    "price_eur":5111.0,
+    "price_idr":86887000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 DL Light Aged",
+    "price_eur":7529.0,
+    "price_idr":127993000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 GPB Heavy Aged",
+    "price_eur":8595.0,
+    "price_idr":146115000
+  },
+  {
+    "brand":"Framus",
+    "title":"Panthera II Supreme BTHP",
+    "price_eur":3455.0,
+    "price_idr":58735000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus LD Vintage S Bundle",
+    "price_eur":333.0,
+    "price_idr":5661000
+  },
+  {
+    "brand":"Journey Instruments",
+    "title":"OE990BK Travel El. Guitar BK",
+    "price_eur":439.0,
+    "price_idr":7463000
+  },
+  {
+    "brand":"Gibson",
+    "title":"57 LP Junior SC TV Yellow HA",
+    "price_eur":5399.0,
+    "price_idr":91783000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 54 Goldtop VOS LH",
+    "price_eur":4159.0,
+    "price_idr":70703000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 57 Goldtop ULA",
+    "price_eur":5111.0,
+    "price_idr":86887000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 Southern Fade ULA",
+    "price_eur":6599.0,
+    "price_idr":112183000
+  },
+  {
+    "brand":"Heritage Guitar",
+    "title":"H-150 Artisan Aged FSR AB",
+    "price_eur":3099.0,
+    "price_idr":52683000
+  },
+  {
+    "brand":"PRS",
+    "title":"S2 McCarty SC594 CC",
+    "price_eur":1945.0,
+    "price_idr":33065000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 57 Goldtop VOS LH",
+    "price_eur":4429.0,
+    "price_idr":75293000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-400 SGT Cl. Series Bundle",
+    "price_eur":369.0,
+    "price_idr":6273000
+  },
+  {
+    "brand":"Gibson",
+    "title":"LP Axcess Custom FR Silver Spk",
+    "price_eur":5111.0,
+    "price_idr":86887000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 Washed Cherry VOS",
+    "price_eur":5315.0,
+    "price_idr":90355000
+  },
+  {
+    "brand":"Schecter",
+    "title":"Solo-II FR Apocalypse RR",
+    "price_eur":1589.0,
+    "price_idr":27013000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-200 BK Student Serie Bundle",
+    "price_eur":255.0,
+    "price_idr":4335000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-400 SGT Classic Seri Bundle",
+    "price_eur":289.0,
+    "price_idr":4913000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 58 Lemon Burst Gloss",
+    "price_eur":4429.0,
+    "price_idr":75293000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Little Wing Flat Top Cut EGrey",
+    "price_eur":2079.0,
+    "price_idr":35343000
+  },
+  {
+    "brand":"Schecter",
+    "title":"Solo-II Custom GNAT",
+    "price_eur":1415.0,
+    "price_idr":24055000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 58 WC ULA",
+    "price_eur":5405.0,
+    "price_idr":91885000
+  },
+  {
+    "brand":"Heritage Guitar",
+    "title":"H-150 Custom Core PT Aged TSB",
+    "price_eur":4739.0,
+    "price_idr":80563000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 57 Goldtop UHA",
+    "price_eur":6444.0,
+    "price_idr":109548000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 STB ULA",
+    "price_eur":6599.0,
+    "price_idr":112183000
+  },
+  {
+    "brand":"Heritage Guitar",
+    "title":"H-150 Custom Core PT DSB",
+    "price_eur":4075.0,
+    "price_idr":69275000
+  },
+  {
+    "brand":"Danelectro",
+    "title":"57 Jade",
+    "price_eur":575.0,
+    "price_idr":9775000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000 QM CHB",
+    "price_eur":1369.0,
+    "price_idr":23273000
+  },
+  {
+    "brand":"Gibson",
+    "title":"LP 57 Black Beauty 3PU Gloss",
+    "price_eur":6199.0,
+    "price_idr":105383000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-550 II Silver Burst Bundle",
+    "price_eur":279.0,
+    "price_idr":4743000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 Lemonburst ULA",
+    "price_eur":6199.0,
+    "price_idr":105383000
+  },
+  {
+    "brand":"Gibson",
+    "title":"LP Axcess Custom FR AspenWhite",
+    "price_eur":5111.0,
+    "price_idr":86887000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 57 Goldtop Bigsby",
+    "price_eur":4429.0,
+    "price_idr":75293000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 Lemon Burst Gloss",
+    "price_eur":5579.0,
+    "price_idr":94843000
+  },
+  {
+    "brand":"PRS",
+    "title":"Mark Tremonti FR",
+    "price_eur":3809.0,
+    "price_idr":64753000
+  },
+  {
+    "brand":"Jackson",
+    "title":"JS22 AH SC Monarkh Snow White",
+    "price_eur":202.0,
+    "price_idr":3434000
+  },
+  {
+    "brand":"Schecter",
+    "title":"Solo-II SLS Elite Evil Twin",
+    "price_eur":1459.0,
+    "price_idr":24803000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 Murphy Lab DB UHA",
+    "price_eur":11519.0,
+    "price_idr":195823000
+  },
+  {
+    "brand":"PRS",
+    "title":"S2 McCarty SC594 LB",
+    "price_eur":1899.0,
+    "price_idr":32283000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 BS VOS Ltd",
+    "price_eur":5755.0,
+    "price_idr":97835000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450 CB Classic Serie Bundle",
+    "price_eur":282.0,
+    "price_idr":4794000
+  },
+  {
+    "brand":"Danelectro",
+    "title":"57 Limo Black",
+    "price_eur":575.0,
+    "price_idr":9775000
+  },
+  {
+    "brand":"PRS",
+    "title":"Mark Tremonti CH",
+    "price_eur":3809.0,
+    "price_idr":64753000
+  },
+  {
+    "brand":"Maybach",
+    "title":"Lester Masterbuilt Custom WHA",
+    "price_eur":4869.0,
+    "price_idr":82773000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G5220 Elmtc. Jet BT SC B-Stock",
+    "price_eur":339.0,
+    "price_idr":5763000
+  },
+  {
+    "brand":"PRS",
+    "title":"Mark Tremonti FW 10 Top",
+    "price_eur":4429.0,
+    "price_idr":75293000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 57 Silver Fox Gloss",
+    "price_eur":4695.0,
+    "price_idr":79815000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 BS VOS Ltd",
+    "price_eur":5755.0,
+    "price_idr":97835000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 58 Royal Tea Gloss",
+    "price_eur":4429.0,
+    "price_idr":75293000
+  },
+  {
+    "brand":"Schecter",
+    "title":"Solo-II Apocalypse RR LH",
+    "price_eur":1415.0,
+    "price_idr":24055000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 Royal Tea Gloss",
+    "price_eur":5579.0,
+    "price_idr":94843000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 ITB Lefthand VOS",
+    "price_eur":5579.0,
+    "price_idr":94843000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 58 Golden Poppy Gloss",
+    "price_eur":4429.0,
+    "price_idr":75293000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-200BK Student Series Bundle",
+    "price_eur":238.0,
+    "price_idr":4046000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus LD \/ Mooer Bundle",
+    "price_eur":308.0,
+    "price_idr":5236000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 Kindred Burst UHA",
+    "price_eur":8899.0,
+    "price_idr":151283000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 LB Lefthand VOS",
+    "price_eur":5579.0,
+    "price_idr":94843000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 ITB Lefthand VOS",
+    "price_eur":5579.0,
+    "price_idr":94843000
+  },
+  {
+    "brand":"PRS",
+    "title":"McCarty SC594 DS",
+    "price_eur":4159.0,
+    "price_idr":70703000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G6128T-57 VS Duo Jet CG",
+    "price_eur":2835.0,
+    "price_idr":48195000
+  },
+  {
+    "brand":"Larry Carlton",
+    "title":"L7 TBL LH",
+    "price_eur":579.0,
+    "price_idr":9843000
+  },
+  {
+    "brand":"Solar Guitars",
+    "title":"GC1.6 Vinter Pearl Whi B-Stock",
+    "price_eur":929.0,
+    "price_idr":15793000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450Plus VB Vintage S Bundle",
+    "price_eur":315.0,
+    "price_idr":5355000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 59 KBF Light Aged hpt",
+    "price_eur":7529.0,
+    "price_idr":127993000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"6134CST 55 Penguin SFP Relic",
+    "price_eur":6799.0,
+    "price_idr":115583000
+  },
+  {
+    "brand":"Gibson",
+    "title":"57 LP Special SC TV Yellow ULA",
+    "price_eur":3985.0,
+    "price_idr":67745000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1001FM Tiger Ey B-Stock",
+    "price_eur":929.0,
+    "price_idr":15793000
+  },
+  {
+    "brand":"Epiphone",
+    "title":"Les Paul Modern Figure B-Stock",
+    "price_eur":495.0,
+    "price_idr":8415000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-400 SBK Vintage Seri Bundle",
+    "price_eur":229.0,
+    "price_idr":3893000
+  },
+  {
+    "brand":"Gibson",
+    "title":"Les Paul 60 Iced Tea VOS",
+    "price_eur":5935.0,
+    "price_idr":100895000
+  },
+  {
+    "brand":"Larry Carlton",
+    "title":"L7 TS LH",
+    "price_eur":579.0,
+    "price_idr":9843000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450 P90 GT Classic S Bundle",
+    "price_eur":255.0,
+    "price_idr":4335000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450 CB Classic Serie Bundle",
+    "price_eur":238.0,
+    "price_idr":4046000
+  },
+  {
+    "brand":"Larry Carlton",
+    "title":"L7 GT LH",
+    "price_eur":579.0,
+    "price_idr":9843000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"6134CST 59 Penguin CP Relic",
+    "price_eur":6799.0,
+    "price_idr":115583000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"6134CST 55 Penguin PCS Relic",
+    "price_eur":6729.0,
+    "price_idr":114393000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"6134CST 55 Penguin GS Relic",
+    "price_eur":6729.0,
+    "price_idr":114393000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"6130CS 55 DuoJet Western Relic",
+    "price_eur":7439.0,
+    "price_idr":126463000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-400 SBK Vintage Seri Bundle",
+    "price_eur":273.0,
+    "price_idr":4641000
+  },
+  {
+    "brand":"Framus",
+    "title":"D-Series Panthera Supr B-Stock",
+    "price_eur":605.0,
+    "price_idr":10285000
+  },
+  {
+    "brand":"Godin",
+    "title":"Summit Classic Havana Brown",
+    "price_eur":2299.0,
+    "price_idr":39083000
+  },
+  {
+    "brand":"Solar Guitars",
+    "title":"GC1.6ROP+",
+    "price_eur":1355.0,
+    "price_idr":23035000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-450 BK Classic Serie Bundle",
+    "price_eur":282.0,
+    "price_idr":4794000
+  },
+  {
+    "brand":"Chapman Guitars",
+    "title":"ML2 Pro River Styx Bla B-Stock",
+    "price_eur":979.0,
+    "price_idr":16643000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"6134CST 55 Penguin LPB Relic",
+    "price_eur":7795.0,
+    "price_idr":132515000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000QM STBC B-Stock",
+    "price_eur":965.0,
+    "price_idr":16405000
+  },
+  {
+    "brand":"ESP",
+    "title":"E-II Eclipse Snow Whit B-Stock",
+    "price_eur":1939.0,
+    "price_idr":32963000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G2210 Streaml. Jr. Jet B-Stock",
+    "price_eur":229.0,
+    "price_idr":3893000
+  },
+  {
+    "brand":"Gretsch",
+    "title":"G6128T-53 VS Duo Jet B B-Stock",
+    "price_eur":2399.0,
+    "price_idr":40783000
+  },
+  {
+    "brand":"ESP",
+    "title":"LTD EC-1000FR Black Sa B-Stock",
+    "price_eur":1025.0,
+    "price_idr":17425000
+  },
+  {
+    "brand":"Harley Benton",
+    "title":"SC-200 BK Student Serie Bundle",
+    "price_eur":211.0,
+    "price_idr":3587000
+  }
+]
