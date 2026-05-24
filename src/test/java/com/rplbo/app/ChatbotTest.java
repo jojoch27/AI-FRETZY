@@ -69,8 +69,23 @@ public class ChatbotTest extends TestCase {
 
         String response = chatbot.receiveInput("berikan aku rekomendasi gitar arkustik dan gitar electric");
 
-        assertTrue(response.contains("Acoustic Guitar"));
-        assertTrue(response.contains("Electric Guitar"));
+        assertTrue(response.contains("Kategori Acoustic Guitar:"));
+        assertTrue(response.contains("Kategori Electric Guitar:"));
+        assertTrue(response.indexOf("(Acoustic Guitar)") > response.indexOf("Kategori Acoustic Guitar:"));
+        assertTrue(response.indexOf("(Electric Guitar)") > response.indexOf("Kategori Electric Guitar:"));
+    }
+
+    public void testMultipleCategoryAndBudgetRecommendationIsGroupedByCategory() {
+        Database database = new Database();
+        database.setupDatabase();
+        Chatbot chatbot = new Chatbot(database);
+
+        String response = chatbot.receiveInput("rekomendasi gitar akustik dan electric harga 5 juta");
+
+        assertTrue(response.contains("Kategori Acoustic Guitar:"));
+        assertTrue(response.contains("Kategori Electric Guitar:"));
+        assertTrue(response.indexOf("(Acoustic Guitar)") > response.indexOf("Kategori Acoustic Guitar:"));
+        assertTrue(response.indexOf("(Electric Guitar)") > response.indexOf("Kategori Electric Guitar:"));
     }
 
     public void testPriceOnlyRecommendationWorksWithoutCategory() {
@@ -162,6 +177,39 @@ public class ChatbotTest extends TestCase {
 
         chatbot.receiveInput("rekomendasi gitar elektrik budget 50 juta");
         String response = chatbot.receiveInput("detail nomor 1");
+
+        assertTrue(response.contains("Info lengkap gitar:"));
+        assertTrue(response.contains("Electric Guitar"));
+        assertTrue(response.contains("Deskripsi:"));
+    }
+
+    public void testOrdinalReferenceWithoutListContextGetsFeedback() {
+        Database database = new Database();
+        database.setupDatabase();
+        Chatbot chatbot = new Chatbot(database);
+
+        assertTrue(chatbot.receiveInput("yang kedua").contains("Saya belum punya daftar gitar bernomor"));
+        assertTrue(chatbot.receiveInput("gitar ke 2").contains("Saya belum punya daftar gitar bernomor"));
+    }
+
+    public void testOrdinalReferenceAfterSingleProductDetailGetsFeedback() {
+        Database database = new Database();
+        database.setupDatabase();
+        Chatbot chatbot = new Chatbot(database);
+
+        chatbot.receiveInput("info gibson les paul standard 60s it");
+        String response = chatbot.receiveInput("yang kedua");
+
+        assertTrue(response.contains("Saya belum punya daftar gitar bernomor"));
+    }
+
+    public void testOrdinalProductReferenceUsesPreviousRecommendationContext() {
+        Database database = new Database();
+        database.setupDatabase();
+        Chatbot chatbot = new Chatbot(database);
+
+        chatbot.receiveInput("rekomendasi gitar elektrik budget 3 juta");
+        String response = chatbot.receiveInput("gitar ke 2");
 
         assertTrue(response.contains("Info lengkap gitar:"));
         assertTrue(response.contains("Electric Guitar"));

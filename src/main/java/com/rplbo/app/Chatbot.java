@@ -6,6 +6,7 @@ import java.util.List;
 public class Chatbot {
     private static final int RECOMMENDATION_LIMIT = 3;
     private static final int CANDIDATE_LIMIT = 25;
+    private static final String MISSING_NUMBERED_LIST_CONTEXT_RESPONSE = "Saya belum punya daftar gitar bernomor. Minta rekomendasi atau tampilkan semua gitar dulu, lalu sebutkan 'gitar ke 2'.";
     private final Database database;
     private final NLPService nlpService = new NLPService();
     private final List<KnowledgeBase> knowledgeBaseEntries = new ArrayList<KnowledgeBase>();
@@ -15,6 +16,7 @@ public class Chatbot {
     private Product focusedProduct = null;
     private String lastCategory = "";
     private List<String> lastCategories = new ArrayList<String>();
+    private boolean hasNumberedProductListContext = false;
     private int lastBudget = 0;
     private String lastStyle = "";
     private String lastRecommendationKey = "";
@@ -104,6 +106,23 @@ public class Chatbot {
             return generateResponse();
         }
 
+        if (isProductOrdinalReferenceRequest(normalizedInput)) {
+            if (!hasNumberedProductListContext) {
+                lastResponse = MISSING_NUMBERED_LIST_CONTEXT_RESPONSE;
+                return generateResponse();
+            }
+
+            Product product = resolveProductFromContext(normalizedInput);
+            if (product == null) {
+                lastResponse = "Nomor gitar itu tidak ada di daftar terakhir. Coba pilih nomor yang tersedia di list rekomendasi.";
+                return generateResponse();
+            }
+
+            lastResponse = describeProduct(product);
+            focusedProduct = product;
+            return generateResponse();
+        }
+
         if (isContextualProductDetailRequest(normalizedInput)) {
             Product product = resolveProductFromContext(normalizedInput);
             if (product == null) {
@@ -188,6 +207,7 @@ public class Chatbot {
         }
 
         rememberProducts(products);
+        hasNumberedProductListContext = true;
         StringBuilder hasil = new StringBuilder("Fretzy menemukan beberapa gitar:\n");
         int nomor = 1;
         for (Product product : products) {
@@ -274,7 +294,20 @@ public class Chatbot {
         return !lastProducts.isEmpty()
                 && (containsAny(input, "detail", "deskripsi", "gambar", "foto", "info", "informasi", "spesifikasi", "spek")
                 || input.matches(".*\\b(nomor|no)\\s*\\d+\\b.*")
+                || isProductOrdinalReferenceRequest(input)
                 || containsAny(input, "yang pertama", "yang kedua", "yang ketiga", "produk tadi", "gitar tadi", "yang tadi", "itu"));
+    }
+
+    private boolean isProductOrdinalReferenceRequest(String input) {
+        return input.matches(".*\\b(gitar|produk|yang)\\s+ke\\s*-?\\s*\\d+\\b.*")
+                || input.matches(".*\\b(nomor|no)\\s*\\d+\\b.*")
+                || containsAny(input,
+                "yang pertama", "yang kedua", "yang ketiga",
+                "yang ke satu", "yang ke dua", "yang ke tiga",
+                "gitar pertama", "gitar kedua", "gitar ketiga",
+                "gitar ke satu", "gitar ke dua", "gitar ke tiga",
+                "produk pertama", "produk kedua", "produk ketiga",
+                "produk ke satu", "produk ke dua", "produk ke tiga");
     }
 
     private boolean isComparisonRequest(String input) {
@@ -365,6 +398,7 @@ public class Chatbot {
         }
 
         rememberProducts(products);
+        hasNumberedProductListContext = true;
         return formatProductList("Daftar semua gitar yang tersedia", products);
     }
 
@@ -374,6 +408,22 @@ public class Chatbot {
         List<Product> products;
 
         if (criteria.budget > 0 && hasCategoryCriteria(criteria)) {
+            if (hasMultipleCategoryCriteria(criteria)) {
+                products = findRankedProductsByEachCategory(criteria, wantsAlternative);
+                if (!products.isEmpty()) {
+                    rememberRecommendationContext(products, criteria);
+                    String intro = criteria.strictBudget
+                            ? buildRecommendationIntro("Berikut rekomendasi gitar " + buildCategoryPhrase(criteria.categories) + buildStylePhrase(criteria.style) + " sesuai budget maksimal Anda", wantsAlternative)
+                            : buildRecommendationIntro("Berikut rekomendasi gitar " + buildCategoryPhrase(criteria.categories) + buildStylePhrase(criteria.style) + " yang paling mendekati budget Anda", wantsAlternative);
+                    return formatGroupedRecommendation(intro, products, criteria.categories);
+                }
+
+                if (wantsAlternative) {
+                    return "Maaf, belum ada rekomendasi lain untuk kriteria itu. Coba ubah budget, kategori, atau karakter suara.";
+                }
+                return "Maaf, belum ada gitar " + buildCategoryPhrase(criteria.categories) + buildStylePhrase(criteria.style) + " dengan budget sekitar Rp " + String.format("%,.0f", (double) criteria.budget) + ". Coba naikkan budget atau pilih karakter lain.";
+            }
+
             products = criteria.strictBudget
                     ? findProductsByCategoriesAndMaxPrice(criteria.categories, criteria.budget, CANDIDATE_LIMIT)
                     : findProductsByCategoriesNearPrice(criteria.categories, criteria.budget, calculateFlexibleMinBudget(criteria.budget), calculateFlexibleMaxBudget(criteria.budget), CANDIDATE_LIMIT);
@@ -404,6 +454,17 @@ public class Chatbot {
         }
 
         if (hasCategoryCriteria(criteria)) {
+            if (hasMultipleCategoryCriteria(criteria)) {
+                products = findRankedProductsByEachCategory(criteria, wantsAlternative);
+                if (!products.isEmpty()) {
+                    rememberRecommendationContext(products, criteria);
+                    return formatGroupedRecommendation(buildRecommendationIntro("Berikut rekomendasi gitar kategori " + buildCategoryPhrase(criteria.categories) + buildStylePhrase(criteria.style), wantsAlternative), products, criteria.categories);
+                }
+                if (wantsAlternative) {
+                    return "Maaf, belum ada rekomendasi lain untuk kriteria itu. Coba ubah budget, kategori, atau karakter suara.";
+                }
+            }
+
             products = rankRecommendations(findProductsByCategories(criteria.categories, CANDIDATE_LIMIT), criteria, RECOMMENDATION_LIMIT, wantsAlternative);
             if (!products.isEmpty()) {
                 rememberRecommendationContext(products, criteria);
@@ -489,6 +550,10 @@ public class Chatbot {
         return criteria != null && criteria.categories != null && !criteria.categories.isEmpty();
     }
 
+    private boolean hasMultipleCategoryCriteria(RecommendationCriteria criteria) {
+        return hasCategoryCriteria(criteria) && criteria.categories.size() > 1;
+    }
+
     private String buildCategoryPhrase(List<String> categories) {
         if (categories == null || categories.isEmpty()) {
             return "semua kategori";
@@ -529,7 +594,11 @@ public class Chatbot {
     private List<Product> findProductsByCategoriesNearPrice(List<String> categories, int targetPriceIdr, int minPriceIdr, int maxPriceIdr, int limit) {
         List<Product> products = new ArrayList<Product>();
         for (String category : categories) {
-            addUniqueProducts(products, database.findProductsByCategoryNearPrice(category, targetPriceIdr, minPriceIdr, maxPriceIdr, limit));
+            List<Product> categoryProducts = database.findProductsByCategoryNearPrice(category, targetPriceIdr, minPriceIdr, maxPriceIdr, limit);
+            if (categoryProducts.isEmpty()) {
+                categoryProducts = database.findProductsByCategoryAndMaxPrice(category, targetPriceIdr, limit);
+            }
+            addUniqueProducts(products, categoryProducts);
         }
         return products;
     }
@@ -553,6 +622,43 @@ public class Chatbot {
             }
         }
         return false;
+    }
+
+    private List<Product> findRankedProductsByEachCategory(RecommendationCriteria criteria, boolean wantsAlternative) {
+        List<Product> products = new ArrayList<Product>();
+        for (String category : criteria.categories) {
+            RecommendationCriteria categoryCriteria = copyCriteriaForCategory(criteria, category);
+            addUniqueProducts(products, rankRecommendations(
+                    findProductsForCategoryCriteria(categoryCriteria),
+                    categoryCriteria,
+                    RECOMMENDATION_LIMIT,
+                    wantsAlternative
+            ));
+        }
+        return products;
+    }
+
+    private RecommendationCriteria copyCriteriaForCategory(RecommendationCriteria criteria, String category) {
+        RecommendationCriteria categoryCriteria = new RecommendationCriteria();
+        categoryCriteria.budget = criteria.budget;
+        categoryCriteria.category = category;
+        addUniqueCategory(categoryCriteria.categories, category);
+        categoryCriteria.style = criteria.style;
+        categoryCriteria.strictBudget = criteria.strictBudget;
+        return categoryCriteria;
+    }
+
+    private List<Product> findProductsForCategoryCriteria(RecommendationCriteria criteria) {
+        if (criteria.budget > 0) {
+            if (criteria.strictBudget) {
+                return database.findProductsByCategoryAndMaxPrice(criteria.category, criteria.budget, CANDIDATE_LIMIT);
+            }
+            List<Product> products = database.findProductsByCategoryNearPrice(criteria.category, criteria.budget, calculateFlexibleMinBudget(criteria.budget), calculateFlexibleMaxBudget(criteria.budget), CANDIDATE_LIMIT);
+            return products.isEmpty()
+                    ? database.findProductsByCategoryAndMaxPrice(criteria.category, criteria.budget, CANDIDATE_LIMIT)
+                    : products;
+        }
+        return database.findProductsByCategory(criteria.category, CANDIDATE_LIMIT);
     }
 
     private List<Product> rankRecommendations(List<Product> candidates, RecommendationCriteria criteria, int limit) {
@@ -752,6 +858,31 @@ public class Chatbot {
         return hasil.toString();
     }
 
+    private String formatGroupedRecommendation(String intro, List<Product> products, List<String> categories) {
+        StringBuilder hasil = new StringBuilder(intro).append(":\n");
+        int nomor = 1;
+        for (String category : categories) {
+            hasil.append("Kategori ").append(category).append(":\n");
+            int categoryStartNumber = nomor;
+            for (Product product : products) {
+                if (!matchesCategory(product, category)) {
+                    continue;
+                }
+                hasil.append(nomor).append(". ")
+                        .append(product.getName())
+                        .append(" (").append(product.getCategory()).append(")")
+                        .append(" - Rp ")
+                        .append(String.format("%,.0f", product.getPrice()))
+                        .append("\n");
+                nomor++;
+            }
+            if (categoryStartNumber == nomor) {
+                hasil.append("- Belum ada rekomendasi tersedia.\n");
+            }
+        }
+        return hasil.toString();
+    }
+
     private String buildComparisonResponse() {
         if (lastProducts.size() < 2) {
             return "Saya butuh minimal dua produk untuk dibandingkan. Coba cari atau minta rekomendasi gitar dulu.";
@@ -929,6 +1060,9 @@ public class Chatbot {
             if (part.matches("\\d+")) {
                 return Integer.parseInt(part) - 1;
             }
+            if (part.matches("ke-?\\d+")) {
+                return Integer.parseInt(part.replace("ke", "").replace("-", "")) - 1;
+            }
         }
         if (containsAny(input, "pertama", "satu")) {
             return 0;
@@ -966,6 +1100,7 @@ public class Chatbot {
         lastProducts = new ArrayList<Product>(products);
         focusedProduct = products.isEmpty() ? null : products.get(0);
         lastCategories.clear();
+        hasNumberedProductListContext = false;
         if (!products.isEmpty()) {
             lastCategory = products.get(0).getCategory();
             for (Product product : products) {
@@ -976,6 +1111,7 @@ public class Chatbot {
 
     private void rememberRecommendationContext(List<Product> products, String category, int budget) {
         rememberProducts(products);
+        hasNumberedProductListContext = true;
         if (category != null && !category.isEmpty()) {
             lastCategory = category;
             lastCategories.clear();
@@ -988,6 +1124,7 @@ public class Chatbot {
 
     private void rememberRecommendationContext(List<Product> products, RecommendationCriteria criteria) {
         rememberProducts(products);
+        hasNumberedProductListContext = true;
         if (criteria == null) {
             return;
         }
@@ -1043,6 +1180,7 @@ public class Chatbot {
     private void clearProductContext() {
         lastProducts.clear();
         lastCategories.clear();
+        hasNumberedProductListContext = false;
         focusedProduct = null;
     }
 
